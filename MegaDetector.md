@@ -22,7 +22,9 @@ Created by Microsoft and trained on millions of images from afround the world, t
 
 Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](https://beerys.github.io/).
 
-*Background:* Camera traps (rugged cameras deployed in the field that can remotely capture wildlife images) are increasingly being applied to ecological and wildlife conservation conundrums. Their improved reliability and continually decreasing cost has resulted in ballooning use of camera traps, and – concomitantly - exponential growth in the number of images they capture. 
+### Background
+
+Camera traps (rugged cameras deployed in the field that can remotely capture wildlife images) are increasingly being applied to ecological and wildlife conservation conundrums. Their improved reliability and continually decreasing cost has resulted in ballooning use of camera traps, and – concomitantly - exponential growth in the number of images they capture. 
 
 Medium- to large-scale camera trap projects now amass millions of photos (terabytes of images) every year. In fact, the rate at which we are now capturing camera trap data now far exceeds our ability to process those images. A major bottleneck is transforming raw images into the kinds of data that can be used in statistical analyses: once collected, each image must be classified by species and, often, further classified by counts and characteristics captured (e.g., age, sex, behavior) of the animal(s) captured. The time and labor required to annotate these images can mean that survey results are less relevant to managers by the time analysis is complete.  
 
