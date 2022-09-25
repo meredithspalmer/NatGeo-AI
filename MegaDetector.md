@@ -2,9 +2,9 @@
 25-SEP-2022: THIS IS CURRENTLY A WORK IN PROGRESS
 
 
-## Getting started with MegaDetector! 
+# Getting started with MegaDetector! 
 
-**DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to set up and run MegaDetector and import data for review in Timelapse. The instructions presented are largely and gratefully taken from the original [MegaDetetctor documentation](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md), created and maintained by Sara Beery, Dan Morris, and Siyu Yang ([Efficiency Pipeline for Camera Trap Image Review](https://arxiv.org/abs/1907.06772), 2019). Modifications have been made to simplify the pipeline (e.g., using only the most up-to-date version of MegaDetector) and to add additional explanations or clarifications to aid understanding by a non-technical audience. 
+**DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to set up and run MegaDetector and import data for review in Timelapse. The instructions presented are largely and gratefully taken from the original [MegaDetetctor documentation](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md), created and maintained by Sara Beery, Dan Morris, and Siyu Yang ([Efficiency Pipeline for Camera Trap Image Review](https://arxiv.org/abs/1907.06772), 2019). Modifications have been made to simplify the pipeline (e.g., using only the most up-to-date version of MegaDetector) and to add additional explanations or clarifications to aid understanding by a non-technical audience. We have also drawn heavily on the documentation and background provided in Saul Greenberg's excellent [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf). We strongly recommend that you consult these original sources for additional information. 
 
 1. [What is MegaDetector](#what-is-megadetector)
 2. [What MegaDetector does](#what-megadetector-does) 
@@ -14,21 +14,32 @@
 
 MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. 
 
-![Alt Text](https://i.imgur.com/aFRVdQS.gif)
+![Alt Text](https://i.imgur.com/YHjuxaN.gif)
 
-*insert image* 
+Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](https://beerys.github.io/).
 
-**Detectors vs. Classifiers** 
+
+
+### Image Recognition: Detectors vs. Classifiers
 
 MegaDetector is **not** an image classifier! When you run MegaDetector, you will not learn what type of animal is present in your camera trap image. Rather, MegaDetector is what we call an image *detector*, which tells you whether there is a thing in the image and where it is. 
 
-*insert image - classifier vs detector*
+From Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf):
 
-Classifiers ((need to be trained for specific system...)) ... no 'MegaClassifier' for all species in all systems (although check out emerging tools like Wildlife Insights or TrapTagger). 
+- A *detector* detects whether something is in an image or not. For each
+suspected detection, it:
+   - assigns a coarse identifying label to it (e.g., empty, animal, person, vehicle)
+   - locates it via bounding box coordinates, which can be used to draw a rectangle around the suspected entity
+   - assigns a confidence value indicating the likelihood that it is correct
 
-**So what?** 
+- A *classifier* analyzes the sub-image contained by the detector's bounding box, where it performs a fine-grained classification chosen from a set
+of known categories. A classifier will typically produce a list of possible classifications for each detection. For example, wildlife classification, categories will be wildlife species (e.g., elk, wolf, bear, dog). The recognizer includes a probability value that very roughly indicates the likelihood that the classification is correct.
 
-Why is information from a detector useful? 
+Classifiers need to be trained for specific target specis in specific system - there is no 'MegaClassifier' for all species in all systems! (although check out emerging tools like [Wildlife Insights](https://www.wildlifeinsights.org/) that are trained on global camera trap data sets). 
+
+### So what?
+
+Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it - why is information from a detector useful? 
 
 1. Natural way to get rid of non-animal images: 
 
@@ -86,7 +97,9 @@ Importantly for us, Timelapse has ((worked with MegaDetector to integrate data))
 
 **Want to learn more?** 
 Here are some additional MegaDetector tutorials that ... 
+- 
 
+**Need more help?** Contact Dan Morris (cameratraps@lila.science) to guide you through the MegaDetector process. 
 
 ## 0. Before we begin... 
 
