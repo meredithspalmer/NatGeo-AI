@@ -20,7 +20,16 @@ MegaDetector is a free, open-source image recognition system designed to detect 
 
 Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](https://beerys.github.io/).
 
-*Problem:* Camera traps are increasingly used to answer complex ecological questions. However, the rapidly growing number of images collected presents technical challenges. Each image must be classified to extract data, requiring significant labor, and potentially creating an information bottleneck. MORE HERE. ... We suggest that this tool could be integrated into existing camera trap workflows to accelerate research and application by alleviating data bottlenecks. 
+Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone. 
+
+*Background:* Camera traps (rugged cameras deployed in the field that can remotely capture wildlife images) are increasingly being applied to ecological and wildlife conservation conundrums. Their improved reliability and continually decreasing cost has resulted in ballooning use of camera traps, and – concomitantly - exponential growth in the number of images they capture. 
+
+Medium- to large-scale camera trap projects now amass millions of photos (terabytes of images) every year. In fact, the rate at which we are now capturing camera trap data now far exceeds our ability to process those images. A major bottleneck is transforming raw images into the kinds of data that can be used in statistical analyses: once collected, each image must be classified by species and, often, further classified by counts and characteristics captured (e.g., age, sex, behavior) of the animal(s) captured. The time and labor required to annotate these images can mean that survey results are less relevant to managers by the time analysis is complete.  Loss meaning … 
+
+A huge fraction of the time wildlife ecologists and conservation biologists invest in reviewing camera trap images is spent going through data they aren’t interested in – that is, empty images or those containing people or vehicles. The good news is, artificial intelligence (AI) can help accelerate this process, removing these “noise” images and allowing biologists to spend their time on images that matter!   
+
+While AI is not a perfect replacement for the human eye, integrating AI algorithms into camera trap workflows can massively accelerate research and conservation by alleviating data bottlenecks. 
+
 
 ### Image Recognition: Detectors vs. Classifiers
 
@@ -58,7 +67,7 @@ REVISIT PAPER FOR PHRASING
 
 2. Detectors make classification a LOT easier
 
-The detector pinpoints where in the image you need to look - you'll then be classifying an animal vs. classifying an animal and lots of noisy background. Studies have found that incorporating a image detector into a camera trap classification pipeline can [increase efficiency >500% over manual labelling](https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020).
+The detector pinpoints where in the image you need to look - you'll then be classifying an animal vs. classifying an animal and lots of noisy background. Studies have found that incorporating a image detector into a camera trap classification pipeline can [increase efficiency >500% over manual labelling](https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020) while still maintaining high accuracy and precision.
 
 2b. This is also helpful information for AI classifiers - naturally handle multiple species in an image 
 
@@ -89,7 +98,7 @@ Talk abour reliability vs recall? -- take from Phuong's report.
 
 
 
-## What MegaDetector does (fold in with above/below??) 
+## What MegaDetector does
 
 MegaDetector does ... adding a 'bounding box' (DEINFE) around objects of interest ... creating a JSON file that contains XX 
 
@@ -268,3 +277,13 @@ brew install --cask --no-quarantine wine-stable
 
 7. Now gow back to Timelapse folder, right-click 'Timelapse2.exe' and click 'Open' 
 
+
+
+
+
+
+## Further Considations
+
+### Human anonymity 
+
+We additionally developed and deployed a human blurring program, which uses the outputs from MegaDetector to obscure individual human identities (Fig. 1; see: https://github.com/WildCoLab/WildCo-FaceBlur). This tool uses the output file from MegaDetector, which provides classifications by category, bounding box coordinates around the detection, as well as a confidence value for each detection. Using this information, the blurring program applies a gaussian blur within bounding boxes classified as human above a user defined confidence threshold. Users interact with the program via an R (R Core Team, 2020) interface, which allows specification of a confidence threshold and a level of blurriness, while being familiar for many ecologists. The blurring process itself occurs via Python (Python Software Foundation, 2021) to maximize image handling speed, which is called from the R interface via the package reticulate (Ushey et al., 2021). from: https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020).
