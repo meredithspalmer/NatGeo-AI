@@ -11,6 +11,7 @@
 1. [What is MegaDetector](#what-is-megadetector)
 2. [What MegaDetector does](#what-megadetector-does) 
 3. [What we will do today](#what-we-will-do-today)
+4. [Before we begin](#0-before-we-begin) 
 
 ## What is MegaDetector?
 
@@ -114,15 +115,11 @@ Of course, running MegaDetector doesn't do anything useful by itself: it just pr
 
 These files can be ... integrated with ..., enabling the ... 
 
-You can read more about MegaDetector and check out the original documentation **here** *link*. 
+### What MegaDetector does NOT do: 
 
-## What we will do today 
+Introduce TIMELAPSE HERE 
 
-1. First, we will run a simple script that will process one camera trap image: the AI will attempt to locate the object of interest (wildlife, human, or car) in a camera trap image and add a bounding box around the area it predicts the object to be located. This is neat to see, but running through images one at a time is not particularly useful! Rather, we will use this as a test to make sure that your environment is set up correctly. 
-
-2. Next, we will run a script that processes entire batches of images in one go. This script produces a JSON file that we will use to view and sort our images in a camera trap image analyser. 
-
-3. We will then be loading our resultant JSON files and camera trap images into [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse). This nifty program allows researchers to visualize and encode data, and has features that include: 
+Timelapse](https://saul.cpsc.ucalgary.ca/timelapse). This nifty program allows researchers to visualize and encode data, and has features that include: 
    - reading, organizing, and displaying images
    - automatically extracting information (dates, times, locations) from images
    - allowing you to create a custom interface for entering data specific to your project 
@@ -137,6 +134,17 @@ Of course, running MegaDetector doesn't do anything useful by itself: it just pr
 We have somewhat-less-complete integrations with the eMammal desktop application and with dikiKam.
 
 We also have Python tools that use MegaDetector results to just separate a folder of images into folders containing images that are probably-empty, probably-animal, etc., preserving the original folder structure within these folders. Users often use this approach to just get rid of the images that MegaDetector is really sure are empty, then you can go about your workflow exactly as you did before, just with fewer empty images.
+
+You can read more about MegaDetector and check out the original documentation **here** *link*. 
+Link to Timelapse commentation 
+
+## What we will do today 
+
+1. First, we will run a simple script that will process one camera trap image: the AI will attempt to locate the object of interest (wildlife, human, or car) in a camera trap image and add a bounding box around the area it predicts the object to be located. This is neat to see, but running through images one at a time is not particularly useful! Rather, we will use this as a test to make sure that your environment is set up correctly. 
+
+2. Next, we will run a script that processes entire batches of images in one go. This script produces a JSON file that we will use to view and sort our images in a camera trap image analyser. 
+
+3. We will then be loading our resultant JSON files and camera trap images into [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse) for manual review and additional data extraction.  
 
 **Important notes**: 
 - The following instructions are for Windows and Mac machines: please follow the instructions particular to your operating system.  
