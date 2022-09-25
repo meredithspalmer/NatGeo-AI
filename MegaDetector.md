@@ -6,6 +6,8 @@
 
 **DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to set up and run MegaDetector and import data for review in Timelapse. The instructions presented are largely and gratefully taken from the original [MegaDetetctor documentation](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md), created and maintained by Sara Beery, Dan Morris, and Siyu Yang ([Efficiency Pipeline for Camera Trap Image Review](https://arxiv.org/abs/1907.06772), 2019). Modifications have been made to simplify the pipeline (e.g., using only the most up-to-date version of MegaDetector) and to add additional explanations or clarifications to aid understanding by a non-technical audience. We have also drawn heavily on the documentation and background provided in Saul Greenberg's excellent [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf). We strongly recommend that you consult these original sources for additional information. 
 
+## Table of Contents 
+
 1. [What is MegaDetector](#what-is-megadetector)
 2. [What MegaDetector does](#what-megadetector-does) 
 3. [What we will do today](#what-we-will-do-today)
@@ -39,13 +41,18 @@ Classifiers need to be trained for specific target specis in specific system - t
 
 ### So what?
 
-Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it - why is information from a detector useful? 
+Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it?? - why is information from a detector useful? 
 
-1. Detectors are a natural way to get rid of non-animal images: 
+1. Detectors can help eliminate non-animal images: 
 
-An obscene number of images in camera trap datases (up to >70% of dataset - link to Snapshot) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. 
+An obscene number of images in camera trap datases (up to >70% of dataset - link to Snapshot) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. This might also occur when the camera is set to timelapse mode (i.e., taking photos every hour rather than waiting to be triggered). If your camera is set along a road or in an urban area, you may also collect volumes of vehicle data that are not important to your analysis. 
 
-Some images might also capture people or vehicles -- typically not data interested in, but good to remove images of people before sharing data (e.g., on citizen science platform) for ethics reasons... 
+- 1b. Some images might also capture people or vehicles -- typically not data interested in, but good to remove images of people before sharing data (e.g., on citizen science platform) for ethics reasons... 
+
+• Identify images containing people. This is especially important if your
+agency has a privacy policy that requires those images to handled
+somewhat differently from other images, or when you have a different
+set of analysis criteria for people vs. animals.
 
 2. Detectors make classification a LOT easier
 
@@ -56,11 +63,25 @@ The detector pinpoints where in the image you need to look - you'll then be clas
 2c. Path to counting 
 
 
-**The falibility of AI: AI is not taking our wildlife ecology jobs yet** 
+
+
+
+
+### The falibility of AI: robots are not taking our wildlife ecology jobs yet!
 
 Talk about how data needs to be manually qc'd because not perfect 100% of time 
 
+**Types of errors**
+
+[Saul Greenberg](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf) highlights four types of errors to be on the look-out for when running an image recognition algorithm: 
+- *False positives*: The algorithm DOES detect an entity when there is NO entity (i.e., in an empty image)
+- *False negatives*: The algorithm DOES NOT detect an entity when the entity is present  
+- *Incorrect identification*: The algorithm DOES detect an entity when an entity is present, but incorrectly labels it (e.g., [simple detector] a person gets labelled as wildlife, or [classifier] a warthog gets labelled as a mongoose) 
+- *Amiguity*: The algorithm detects several overlapping and possibly conflicting detections
+
+**Reliability vs. recall** 
 Talk abour reliability vs recall? -- take from Phuong's report. 
+
 
 
 
