@@ -73,7 +73,7 @@ The detector pinpoints where in the image you need to look - you'll then be clas
 
 Talk about how data needs to be manually qc'd because not perfect 100% of time 
 
-**Types of errors**
+***Types of errors*** 
 
 [Saul Greenberg](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf) highlights four types of errors to be on the look-out for when running an image recognition algorithm: 
 - *False positives*: The algorithm DOES detect an entity when there is NO entity (i.e., in an empty image)
@@ -81,13 +81,13 @@ Talk about how data needs to be manually qc'd because not perfect 100% of time
 - *Incorrect identification*: The algorithm DOES detect an entity when an entity is present, but incorrectly labels it (e.g., [simple detector] a person gets labelled as wildlife, or [classifier] a warthog gets labelled as a mongoose) 
 - *Amiguity*: The algorithm detects several overlapping and possibly conflicting detections
 
-**Reliability vs. recall** 
+***Reliability vs. recall***
 Talk abour reliability vs recall? -- take from Phuong's report. 
 
 
 
 
-You can read more about MegaDetector and check out the original documentation **here** *link*. 
+
 
 ## What MegaDetector does (fold in with above/below??) 
 
@@ -99,6 +99,7 @@ Trained on several hundred thousand bounding box images from a variety of ecosys
 
 These files can be ... integrated with ..., enabling the ... 
 
+You can read more about MegaDetector and check out the original documentation **here** *link*. 
 
 ## What we will do today 
 
