@@ -174,7 +174,9 @@ Hit 'return'. When Homebrew has finished downloading, type the following into yo
 brew install git 
 ```
 
-**(3) [Mac Users Only] Windows Emulator**: [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse/) (the image analyser that we will read our data in to) does not run on Macs (boo!). If you are working on a Mac, you will need to fire up a Windows emulator when we are ready to upload our AI predictions. 
+**(3) Timelapse Software**: FILL IN 
+
+**(4) [Mac Users Only] Windows Emulator**: [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse/) (the image analyser that we will read our data in to) does not run on Macs (boo!). If you are working on a Mac, you will need to fire up a Windows emulator when we are ready to upload our AI predictions. 
 
 *What is a Windows emulator?* An emulator allows one computer system (the "host", aka your Mac) to imitate the functions of another computer system (the "guest", aka Windows), enabling you to run software and programs that would otherwise only run on the guest system. 
 
