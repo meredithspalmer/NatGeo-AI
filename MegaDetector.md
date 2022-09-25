@@ -16,11 +16,11 @@
 
 MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. 
 
+Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone. 
+
 ![Alt Text](https://i.imgur.com/YHjuxaN.gif)
 
 Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](https://beerys.github.io/).
-
-Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone. 
 
 *Background:* Camera traps (rugged cameras deployed in the field that can remotely capture wildlife images) are increasingly being applied to ecological and wildlife conservation conundrums. Their improved reliability and continually decreasing cost has resulted in ballooning use of camera traps, and – concomitantly - exponential growth in the number of images they capture. 
 
