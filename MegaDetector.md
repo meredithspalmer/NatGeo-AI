@@ -36,7 +36,7 @@ While AI is not a perfect replacement for the human eye/brain, integrating AI al
 
 ### Image Recognition: Detectors vs. Classifiers
 
-MegaDetector is **not** an image classifier! When you run MegaDetector, you will not learn what type of animal is present in your camera trap image. Rather, MegaDetector is what we call an image *detector*, which tells you whether there is a thing in the image and where it is. 
+MegaDetector is **not** an image classifier! When you run MegaDetector, you will not learn what type of animal is present in your camera trap image. Rather, MegaDetector is a kind of AI that we call an image *detector*, which tells you whether there is a thing in the image and where it is. 
 
 From Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf):
 
