@@ -18,7 +18,7 @@ MegaDetector is a free, open-source image recognition system designed to detect 
 
 Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](https://beerys.github.io/).
 
-
+*Problem:* Camera traps are increasingly used to answer complex ecological questions. However, the rapidly growing number of images collected presents technical challenges. Each image must be classified to extract data, requiring significant labor, and potentially creating an information bottleneck. MORE HERE. ... We suggest that this tool could be integrated into existing camera trap workflows to accelerate research and application by alleviating data bottlenecks. 
 
 ### Image Recognition: Detectors vs. Classifiers
 
@@ -41,15 +41,15 @@ Classifiers need to be trained for specific target specis in specific system - t
 
 Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it - why is information from a detector useful? 
 
-1. Natural way to get rid of non-animal images: 
+1. Detectors are a natural way to get rid of non-animal images: 
 
-So many images in camera trap datases (up to >70% of dataset - link to Snapshot) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. 
+An obscene number of images in camera trap datases (up to >70% of dataset - link to Snapshot) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. 
 
 Some images might also capture people or vehicles -- typically not data interested in, but good to remove images of people before sharing data (e.g., on citizen science platform) for ethics reasons... 
 
-2. Makes classification a LOT easier
+2. Detectors make classification a LOT easier
 
-The detector pinpoints where in the image you need to look - you'll then be classifying an animal vs. classifying an animal and lots of noisy background.
+The detector pinpoints where in the image you need to look - you'll then be classifying an animal vs. classifying an animal and lots of noisy background. Studies have found that incorporating a image detector into a camera trap classification pipeline can [increase efficiency >500% over manual labelling](https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020).
 
 2b. This is also helpful information for AI classifiers - naturally handle multiple species in an image 
 
