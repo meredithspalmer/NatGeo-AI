@@ -123,9 +123,9 @@ You can read more about MegaDetector and check out the original documentation **
 2. Next, we will run a script that processes entire batches of images in one go. This script produces a JSON file that we will use to view and sort our images in a camera trap image analyser. 
 
 3. We will then be loading our resultant JSON files and camera trap images into [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse). This nifty program allows researchers to visualize and encode data, and has features that include: 
-- reading, organizing, and displaying images
-- automatically extracting information (dates, times, locations) from images
-- allowing you to create a custom interface for entering data specific to your project 
+   - reading, organizing, and displaying images
+   - automatically extracting information (dates, times, locations) from images
+   - allowing you to create a custom interface for entering data specific to your project 
 ... among many others! You can read more about Timelapse's functionality in their [QuickStart Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseQuickStartGuide.pdf). 
 
 Importantly for us, the MegaDetector team have collaborated with Timelapse to 
