@@ -41,7 +41,7 @@ Classifiers need to be trained for specific target specis in specific system - t
 
 ### So what?
 
-Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it?? - why is information from a detector useful? 
+Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it? - why is information from a detector useful? 
 
 1. Detectors can help eliminate non-animal images: 
 
@@ -53,6 +53,8 @@ An obscene number of images in camera trap datases (up to >70% of dataset - link
 agency has a privacy policy that requires those images to handled
 somewhat differently from other images, or when you have a different
 set of analysis criteria for people vs. animals.
+
+REVISIT PAPER FOR PHRASING 
 
 2. Detectors make classification a LOT easier
 
@@ -116,9 +118,11 @@ Importantly for us, Timelapse has ((worked with MegaDetector to integrate data))
 - The following instructions are for Windows and Mac machines: please follow the instructions particular to your operating system.  
 - We will be using Python, but no coding knowledge required! We'll navigate you to your terminal, into which you can copy and paste the commands listed here. It should be plug and chug, but I'll be there to help trouble-shoot any issues that arise! 
 
-**Want to learn more?** 
-Here are some additional MegaDetector tutorials that ... 
-- 
+**Want to learn more?**
+Here are some additional MegaDetector tutorials to step you through the MegaDetector pipeline: 
+- ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector) by Siyu Wang
+- ["How do I get started using Machine Learning for my camera traps?"](https://www.wildlabs.net/event/how-do-i-get-started-using-machine-learning-my-camera-traps) by Sara Beery
+- ["Camera Trapping Software"](https://www.youtube.com/watch?v=7B_sf7mnpkc) by Sara Beery
 
 **Need more help?** Contact Dan Morris (cameratraps@lila.science) to guide you through the MegaDetector process. 
 
