@@ -1,5 +1,9 @@
 **DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to set up and run MegaDetector and import data for review in Timelapse. The instructions presented are largely and gratefully taken from the original [MegaDetetctor documentation](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md), created and maintained by Sara Beery, Dan Morris, and Siyu Yang ([Efficiency Pipeline for Camera Trap Image Review](https://arxiv.org/abs/1907.06772), 2019). Modifications have been made to simplify the pipeline (e.g., using only the most up-to-date version of MegaDetector) and to add additional explanations or clarifications to aid understanding by a non-technical audience. 
 
+
+25-SEP-2022: THIS IS CURRENTLY A WORK IN PROGRESS
+
+
 ## Getting started with MegaDetector! 
 
 1. [What is MegaDetector](#what-is-megadetector)
