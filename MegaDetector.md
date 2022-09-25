@@ -97,6 +97,10 @@ Trained on several hundred thousand bounding box images from a variety of ecosys
 
 **Sidebar: What is a JSON file?** JSON stands for "JavaScript Object Notation" and is a text-based file format that stores simple data structures and objects. These files are Jlightweight, text-based, human-readable, can be edited using a text editor. 
 
+Ultimately, MegaDetector produces a file that tells you 
+
+Of course, running MegaDetector doesn't do anything useful by itself: it just produces a file that tells you which images MegaDetector thinks have animals/people/vehicles in them. You still need a way to use that file in a real image processing workflow. We've integrated with a variety of tools that camera trap researchers already use, to make it relatively painless to use our results in the context of a real workflow. Our most mature integration is with Timelapse, a fantastic open-source tool for reviewing camera trap images (very efficient even if you're not using AI!). Read more about how to use MegaDetector results with Timelapse here.
+
 These files can be ... integrated with ..., enabling the ... 
 
 You can read more about MegaDetector and check out the original documentation **here** *link*. 
@@ -113,7 +117,15 @@ You can read more about MegaDetector and check out the original documentation **
 - allowing you to create a custom interface for entering data specific to your project 
 ... among many others! You can read more about Timelapse's functionality in their [QuickStart Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseQuickStartGuide.pdf). 
 
-Importantly for us, Timelapse has ((worked with MegaDetector to integrate data)).  
+Importantly for us, the MegaDetector team have collaborated with Timelapse to 
+
+Timelapse is recommended as a ‘front-end’ for visualizing and using MegaDetector recognition data.
+
+Of course, running MegaDetector doesn't do anything useful by itself: it just produces a file that tells you which images MegaDetector thinks have animals/people/vehicles in them. You still need a way to use that file in a real image processing workflow. We've integrated with a variety of tools that camera trap researchers already use, to make it relatively painless to use our results in the context of a real workflow. Our most mature integration is with Timelapse, a fantastic open-source tool for reviewing camera trap images (very efficient even if you're not using AI!). Read more about how to use MegaDetector results with Timelapse here.
+
+We have somewhat-less-complete integrations with the eMammal desktop application and with dikiKam.
+
+We also have Python tools that use MegaDetector results to just separate a folder of images into folders containing images that are probably-empty, probably-animal, etc., preserving the original folder structure within these folders. Users often use this approach to just get rid of the images that MegaDetector is really sure are empty, then you can go about your workflow exactly as you did before, just with fewer empty images.
 
 **Important notes**: 
 - The following instructions are for Windows and Mac machines: please follow the instructions particular to your operating system.  
