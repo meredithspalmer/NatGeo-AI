@@ -57,22 +57,22 @@ Classifiers need to be trained for specific target specis in specific system - t
 
 Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it? - why is information from a detector useful? 
 
-1. Detectors can help eliminate empty images: 
+1. **Detectors can help eliminate empty images**: 
 
 An obscene number of images collected by camera traps ([up to >70%](https://hcjournal.org/index.php/jhc/article/view/123/1152021) of dataset in some cases) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. This might also occur when the camera is set to timelapse mode (i.e., taking photos every hour rather than waiting to be triggered). 
 
-2. Detectors can also be used to flag images containing people or vehicles:
+2. **Detectors can also be used to flag images containing people or vehicles**:
 
 If your dataset will be shared (such as with citizen scientists or collaborators), you should probably remove any issues captured of people to respect their privacy. While rarely their primary function, camera traps can be used to surveil people without their consent, raising a whole host of ethical issues. As with empty images, if data from images containing people or vehicles is not important to your analysis, you can eliminate them from the classification pile. 
 
 - For a great introduction to the ethics of conservation technology, check out the WILDLABS Tech Tutors discussion ["How do I use Conservation Tech Ethically?"](https://www.wildlabs.net/event/how-do-i-use-conservation-tech-ethically) and Koustubh Sharma's paper
 [Conservation and people: Towards an ethical code of conduct for the use of camera traps in wildlife research](https://besjournals.onlinelibrary.wiley.com/doi/10.1002/2688-8319.12033). 
 
-3. Detectors make manual classification a LOT easier: 
+3. **Detectors make manual classification a LOT easier**: 
 
 The detector pinpoints where in the image you need to look - you'll then be classifying an animal vs. classifying an animal and lots of noisy background. Studies have found that incorporating a image detector into a camera trap classification pipeline can [increase efficiency >500% over manual labelling](https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020) while still maintaining high accuracy and precision.
 
-4. Detectors make AI classification a little easier too:
+4. **Detectors make AI classification a little easier too**:
 
 The information provided by the bounding boxes (zeroing in on the wildlife in the image) is also helpful if AI classifiers are then applied to try and sort your data by species. By cropping images to individual animals, classifiers only need to worry about identifying the wildlife pixels, rather than trying to figure out backgorund pixels as well. It's also a way to introduce counting (how many bounding boxes are in each image?) and handle images that contain multiple species.
 
@@ -89,66 +89,48 @@ In a (greatly simplified) nutshell, the CNN applies a bunch of filters over an i
 <p align="center">
   <img src="https://i.imgur.com/CEfmAGd.jpg" width="600"/>
 </p>
-Image credit: Siyu Wang, from ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector) 
+
+Image credit: Siyu Wang, ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector) 
 
 Anyone with a real understanding of CNNs is probably crying at this point: to dig into the technical details, check out Sylvain Christin's excellent paper ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
 
 ### Important considerations 
 
-Robots are not taking our wildlife ecology jobs yet! Here are a few things to keep in mind when using a 'black box' AI such 
+Robots are not taking our wildlife ecology jobs yet! Here are a few things to keep in mind when deploying MegaDetector: 
 
-1. Productivity gain is small if not many non-empty images 
+1. **Productivity gain is small if not many non-empty images**: This might be self-obvious, but as a tool for alleviating manual labor for camera trap image processing, MegaDetector has a very particular goal. 
 
-2. AI is not perfect 
-
-Talk about how data needs to be manually qc'd because not perfect 100% of time 
-
-Challenges that are hard for humans (which produce the training data) are then hard for AI trained on those (mis)classifications! This can be particularly tricky for camera trap images, 
-
-However, learning to associate specific features with objects of interest - in this case, animal species - requires a substantial amount of labelled data. For example, the ImageNet computer vision challenge dataset contains 1,000 images per object class (Russakovsky, 2015). Real-world datasets are often highly imbalanced, dominated by images of common objects with few examples of rarer classes. As such, rare objects (species) are more difficult for algorithms to recognize (see results and discussion in Norouzzadeh, 2018). Camera trap images present additional challenges in the application of deep learning as animals in the images can be difficult to discern or distorted by occlusion, unusual perspectives, camouflage, and more (Beery, 2018).
+2. **Image recognition is not perfect**: There is a tendency for those not terribly familiar with AI to treat them as infallible 'black boxes' that produce high quality output every time. AI will make mistakes, even with the best training data available. Camera trap images are particularly tricky (for humans and AI!), particularly when animals are difficult to discern against their background or distorted by occlusion, unusual perspectives, camouflage, and more. 
 
 <p align="center">
   <img src="https://i.imgur.com/z386lxe.jpg" width="600"/>
 </p>
+
 [Sara Beery](https://beerys.github.io/) et al. 2018 ["Recognition in Terra Incognita"](https://openaccess.thecvf.com/content_ECCV_2018/papers/Beery_Recognition_in_Terra_ECCV_2018_paper.pdf)
 
+To learn more about situations under which image recognition works and where it can fail, you can check out ["Automated Image Recognition for Wildlife Camera Traps: Making it Work for You"](https://prism.ucalgary.ca/bitstream/handle/1880/112416/2020-08-Greenberg-ImageRecognitionCameraTraps.pdf?sequence=6) from Timelapse creator Saul Greenberg. 
 
 ## What MegaDetector does
 
-MegaDetector does ... adding a 'bounding box' (DEINFE) around objects of interest ... creating a JSON file that contains XX 
+MegaDetector produces a JSON recognition file that contains information on which images MegaDetector predicts contain objects of interest (animals, people, vehicles), where those objects are in the image, and the confidence that the algorithm has in its classification.  
 
-Trained on several hundred thousand bounding box images from a variety of ecosystems 
+***Sidebar: What is a JSON file?*** JSON stands for "JavaScript Object Notation" and is a text-based file format that stores simple data structures and objects. These files are Jlightweight, text-based, human-readable, can be edited using a text editor. 
 
-**Sidebar: What is a JSON file?** JSON stands for "JavaScript Object Notation" and is a text-based file format that stores simple data structures and objects. These files are Jlightweight, text-based, human-readable, can be edited using a text editor. 
-
-Ultimately, MegaDetector produces a file that tells you 
-
-Of course, running MegaDetector doesn't do anything useful by itself: it just produces a file that tells you which images MegaDetector thinks have animals/people/vehicles in them. You still need a way to use that file in a real image processing workflow. We've integrated with a variety of tools that camera trap researchers already use, to make it relatively painless to use our results in the context of a real workflow. Our most mature integration is with Timelapse, a fantastic open-source tool for reviewing camera trap images (very efficient even if you're not using AI!). Read more about how to use MegaDetector results with Timelapse here.
-
-These files can be ... integrated with ..., enabling the ... 
-
-### What MegaDetector does NOT do: 
-
-Introduce TIMELAPSE HERE 
-
-Timelapse](https://saul.cpsc.ucalgary.ca/timelapse). This nifty program allows researchers to visualize and encode data, and has features that include: 
+Hm, okay - how is this useful? We then need to integrate this information into a camera trap image processing pipeline. Here, we'll be interfacing with [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse), the recommended 'front-end' for visualizing and using MegaDetector recognition data. This nifty program allows researchers to visualize and encode data, and has features that include: 
    - reading, organizing, and displaying images
    - automatically extracting information (dates, times, locations) from images
    - allowing you to create a custom interface for entering data specific to your project 
 ... among many others! You can read more about Timelapse's functionality in their [QuickStart Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseQuickStartGuide.pdf). 
 
-Importantly for us, the MegaDetector team have collaborated with Timelapse to 
+Importantly for us, the MegaDetector team have collaborated with Timelapse to make it easy for us to upload our images and JSON predictions into Timelapse, and do things like visualize bounding boxes on camera trap images and filter images (based on model confidence level) to review only those that likely contain wildlife.
 
-Timelapse is recommended as a ‘front-end’ for visualizing and using MegaDetector recognition data.
+INSERT IMAGE OF TIMELAPSE HERE 
 
-Of course, running MegaDetector doesn't do anything useful by itself: it just produces a file that tells you which images MegaDetector thinks have animals/people/vehicles in them. You still need a way to use that file in a real image processing workflow. We've integrated with a variety of tools that camera trap researchers already use, to make it relatively painless to use our results in the context of a real workflow. Our most mature integration is with Timelapse, a fantastic open-source tool for reviewing camera trap images (very efficient even if you're not using AI!). Read more about how to use MegaDetector results with Timelapse here.
+### Other options 
 
-We have somewhat-less-complete integrations with the eMammal desktop application and with dikiKam.
+Not a fan of Timelapse? MegaDetector has (self-described) "somewhat-less-complete" integrations with the [eMammal desktop application](https://github.com/microsoft/CameraTraps/blob/master/api/batch_processing/integration/eMammal) and with open-source image organizer [dikiKam](https://github.com/microsoft/CameraTraps/tree/master/api/batch_processing/integration/digiKam). 
 
-We also have Python tools that use MegaDetector results to just separate a folder of images into folders containing images that are probably-empty, probably-animal, etc., preserving the original folder structure within these folders. Users often use this approach to just get rid of the images that MegaDetector is really sure are empty, then you can go about your workflow exactly as you did before, just with fewer empty images.
-
-You can read more about MegaDetector and check out the original documentation **here** *link*. 
-Link to Timelapse commentation 
+The MegaDetector team has also created [Python tools](https://github.com/microsoft/CameraTraps) that use MegaDetector results to sort images into different folders for "probably-empty", "probably-animal", "probably-human", and "probably-vehicle". This is a useful function to get rid of images that MegaDetector suspects are empty, allowing you to continue with your established camera trap classification pipeline with fewer blank images. 
 
 ## What we will do today 
 
@@ -158,7 +140,8 @@ Link to Timelapse commentation
 
 3. We will then be loading our resultant JSON files and camera trap images into [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse) for manual review and additional data extraction.  
 
-**Important notes**: 
+### Important notes
+
 - The following instructions are for Windows and Mac machines: please follow the instructions particular to your operating system.  
 - We will be using Python, but no coding knowledge required! We'll navigate you to your terminal, into which you can copy and paste the commands listed here. It should be plug and chug, but I'll be there to help trouble-shoot any issues that arise! 
 
@@ -166,11 +149,11 @@ Link to Timelapse commentation
 
 Before we can run MegaDetector, we need to install the following prerequisites: 
 
-**(1) Anaconda**: Anaconda is a free, open-source data science platform that helps users manage Python packages. You can download Anaconda [here](https://www.anaconda.com/products/individual).
+1. **Anaconda**: Anaconda is a free, open-source data science platform that helps users manage Python packages. You can download Anaconda [here](https://www.anaconda.com/products/individual).
 
 On Windows, Anaconda will create two different comand prompts: 'Anaconda Prompt (anaconda3)' and 'Anaconda Powershell Prompt (anaconda3)'. *Use the 'Anacdona Prompt (anaconda3)'* not the powershell prompt. For Macs, anaconda will run directly in your terminal. 
 
-**(2) Git**: Git is a free, open-source version control software, i.e., a program for coordinating among programmers by tracking changes in sets of files. 
+2. **Git**: Git is a free, open-source version control software, i.e., a program for coordinating among programmers by tracking changes in sets of files. 
 
 - For Windows: download [Git for Windows](https://www.git-scm.comd/download/win). 
 
@@ -186,11 +169,7 @@ Hit 'return'. When Homebrew has finished downloading, type the following into yo
 brew install git 
 ```
 
-**(3) Timelapse Software**: FILL IN 
-
-**(4) [Mac Users Only] Windows Emulator**: [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse/) (the image analyser that we will read our data in to) does not run on Macs (boo!). If you are working on a Mac, you will need to fire up a Windows emulator when we are ready to upload our AI predictions. 
-
-*What is a Windows emulator?* An emulator allows one computer system (the "host", aka your Mac) to imitate the functions of another computer system (the "guest", aka Windows), enabling you to run software and programs that would otherwise only run on the guest system. 
+3. **[Mac Users Only] Windows Emulator**: Unfortunately, Timelapse does not run on Macs (boo!). If you are working on a Mac, you will need to fire up a Windows emulator when we are ready to upload our AI predictions. An emulator allows one computer system (the "host", aka your Mac) to imitate the functions of another computer system (the "guest", aka Windows), enabling you to run software that would otherwise only run on the guest system. 
 
 If you do not already have a Windows emulator installed, you have several options: 
 
@@ -198,22 +177,28 @@ If you do not already have a Windows emulator installed, you have several option
 
 Apple's Boot Camp allows you to install Windows alongside macOS; this is a lot faster than running a virtual machine (see below). This program comes on your Mac free of charge. You will need to back up your Mac, have sufficient space on your hard drive to install Windows, and purchase a Windows license to use. However, only one operating system can run at a time, so you'll have to restart your Mac to switch between macOS and Windows. 
 
-More instructions on setting up your hard drive using Boot Camp can be found [here] (XXX). 
+More instructions on setting up your hard drive using Boot Camp can be found [here](https://support.apple.com/en-us/HT201468). 
 
 - Use **Wine** to run individual Windows programs
 
 [Wine](https://www.winehq.org/) is a compatability layer that allows Windows applications to run on other operating systems, which is a fancy way of saying that instead of booting up an entire new OS or creating a virtual machine, you can run individual applications from your macOS. This option does not require purchasing a Windows license. Once you install Wine, you can right-click on the .exe file for Timelapse and select 'Open With > Wine' to fire up the program. 
 
-More instructions on how to use Wine can be found [here]([XXX](https://macexpertguide.com/run-windows-applications-on-a-mac-with-wine/)); you can download the latest version of Wine [here](https://wiki.winehq.org/Download). 
+More instructions on how to use Wine can be found [here](https://macexpertguide.com/run-windows-applications-on-a-mac-with-wine/); you can download the latest version of Wine [here](https://wiki.winehq.org/Download). 
 
 However, **Wine does not run on macOS versions >12.5**; if your Mac is up-to-date, then this solution **will not work**. 
 
-- Create a virtual machine using **Parallels**, **VWMWare Fusion**, or **VirtualBox**. 
+- Create a virtual machine 
 
-A virtual machine is 
+Virtualization programs like **Parallels** or **VirtualBox** create a Virtual Machine that mimics the hardware of a Windows PC. This allows you to run Windows programs alongside Mac programs without rebooting. However, as both operating systems are running at the same time, this option can be a little slow, along with taking put a lot of memory and storage space. 
 
-I will be using Parallels to demonstrate how to upload your MegaDetector results into Timelapse; **for this workshop, I recommend downloading the free trial of Parallels** and exploring alternative options if this is a tool you will be using in the future. 
+There are a number of different virtualization options to choose from, including: 
+   - [Parallels](https://www.parallels.com/products/desktop/welcome-trial/): Easy to use, up to date with current Mac versions, but costly; however, you can get a free two-week trial to test it out! 
+   - [VWMWare Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html): Free for personal use, but hasn't been update in a while (may run into compatibility issues with newer macOS); less user-friendly than Parallels
+   - [VirtualBox](https://www.virtualbox.org/): Also free, and also not quite as easy to use as Parallels
 
+I will be using Parallels to demonstrate how to upload your MegaDetector results into Timelapse; **for this workshop, I recommend downloading the free trial of [Parallels](https://www.parallels.com/products/desktop/welcome-trial/)** and exploring alternative options if this is a tool you will be using in the future. 
+
+4. **Timelapse**: Download and install Timelapse according to the instructions on the [Timelapse website](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.Download2). 
 
 ## 1. Camera trap data
 
