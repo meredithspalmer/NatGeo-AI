@@ -33,6 +33,10 @@ Frustratingly, a huge proportion of the time wildlife ecologists and conservatio
 
 While AI is not a perfect replacement for the human eye/brain, integrating AI algorithms into camera trap workflows can massively accelerate research and conservation by alleviating data bottlenecks. 
 
+<p align="center">
+  <img src="https://i.imgur.com/o23m8HA.png" width="600"/>
+</p>
+
 ### Image Recognition: Detectors vs. Classifiers
 
 MegaDetector is **not** an image classifier! When you run MegaDetector, you will not learn what type of animal is present in your camera trap image. Rather, MegaDetector is a kind of AI that we call an image *detector*, which tells you whether there is a thing in the image and where it is. 
@@ -45,8 +49,7 @@ suspected detection, it:
    - locates it via **bounding box** coordinates, which can be used to draw a rectangle around the suspected entity
    - assigns a confidence value indicating the likelihood that it is correct
 
-- A *classifier* analyzes the sub-image contained by the detector's bounding box, where it performs a fine-grained classification chosen from a set
-of known categories. A classifier will typically produce a list of possible classifications for each detection. For example, wildlife classification, categories will be wildlife species (e.g., elk, wolf, bear, dog). The recognizer includes a probability value that very roughly indicates the likelihood that the classification is correct.
+- A *classifier* performs a fine-grained classification chosen from a set of known categories. A classifier will typically produce a list of possible classifications for each detection. For example, wildlife classification, categories will be wildlife species (e.g., elk, wolf, bear, dog). The recognizer includes a probability value that very roughly indicates the likelihood that the classification is correct.
 
 Classifiers need to be trained for specific target specis in specific system - there is no 'MegaClassifier' for all species in all systems! (although check out emerging tools like [Wildlife Insights](https://www.wildlifeinsights.org/) that are trained on global camera trap data sets). For more information on pre-trained classifiers, Dan Morris maintains a [GitHub repository](https://agentmorris.github.io/camera-trap-ml-survey/) of available tools and resources. 
 
@@ -83,12 +86,12 @@ So what kind of AI is MegaDetector? MegaDetector is an *Faster R-CNN* object det
 
 In a (greatly simplified) nutshell, the CNN applies a bunch of filters over an image in a process known as *convultion*. The convolution layers use these filters to pick out visual features in the image (e.g., colors, textures, shapes). What features the model focuses on are learned by the model, rather than prescribed by the researcher. During the training process, the algorithm is fed a bunch of images that already contain correct bounding boxes (the "ground truth"). After convolution, the model proposes regions it thinks contain an animal and provides a prediction score for how confident it is that an animal is present. After each prediction, the model goes and checks how well it did against the "ground truth" bounding box data. It then adjusts its parameters and tries again -- through this iterative process, the model gets better and better at drawing boxes around real animals. 
 
-<img src="https://i.imgur.com/CEfmAGd.jpg" width="600">
-Image credit: Siyu Wang, from ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector)
+<p align="center">
+  <img src="https://i.imgur.com/CEfmAGd.jpg" width="600"/>
+</p>
+Image credit: Siyu Wang, from ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector) 
 
-Anyone with a real understanding of CNNs is probably crying at this point: to dig into the technical details, check out Sylvain Christin's paper ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
-
-
+Anyone with a real understanding of CNNs is probably crying at this point: to dig into the technical details, check out Sylvain Christin's excellent paper ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
 
 ### Important considerations 
 
@@ -104,37 +107,10 @@ Challenges that are hard for humans (which produce the training data) are then h
 
 However, learning to associate specific features with objects of interest - in this case, animal species - requires a substantial amount of labelled data. For example, the ImageNet computer vision challenge dataset contains 1,000 images per object class (Russakovsky, 2015). Real-world datasets are often highly imbalanced, dominated by images of common objects with few examples of rarer classes. As such, rare objects (species) are more difficult for algorithms to recognize (see results and discussion in Norouzzadeh, 2018). Camera trap images present additional challenges in the application of deep learning as animals in the images can be difficult to discern or distorted by occlusion, unusual perspectives, camouflage, and more (Beery, 2018).
 
-
-<img src="https://i.imgur.com/z386lxe.jpg" width="600">
+<p align="center">
+  <img src="https://i.imgur.com/z386lxe.jpg" width="600"/>
+</p>
 [Sara Beery](https://beerys.github.io/) et al. 2018 ["Recognition in Terra Incognita"](https://openaccess.thecvf.com/content_ECCV_2018/papers/Beery_Recognition_in_Terra_ECCV_2018_paper.pdf)
-
-### Evaluating MegaDetector performance 
-
-While we will not do a deep-dive during this workshop into assessing MegaDetector's performance, here are some key metrics that can be used to evaluate how well the model works on your data. 
-
-***Types of errors*** 
-
-[Saul Greenberg](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf) highlights four types of errors to be on the look-out for when running an image recognition algorithm: 
-- *False positives*: The algorithm DOES detect an entity when there is NO entity (i.e., in an empty image)
-- *False negatives*: The algorithm DOES NOT detect an entity when the entity is present  
-- *Incorrect identification*: The algorithm DOES detect an entity when an entity is present, but incorrectly labels it (e.g., [simple detector] a person gets labelled as wildlife, or [classifier] a warthog gets labelled as a mongoose) 
-- *Amiguity*: The algorithm detects several overlapping and possibly conflicting detections
-
-***Confidence threshold***
-
-MegaDetector has an important parameter which is called "confidence threshold". The confidence threshold has continuous values ranging between 0 and 1; the higher the confidence threshold is, the more strictly the user wants the model to make a prediction. -- UPDATE
-
-***Accuracy metrics***
-
-There are three descriptive accuracy metrics that can be used to assess model performance: 
-
-**1. Overall accuracy** is calculated by dividing True predictions by the total number of predictions. This metrics quantifies the performance of the model over all species. For example, the model's overall accuracy of 0.7 means that for every 10 images, regardless of classes, the model is able to correctly classify 7 images.
-
-**2. Precision** is calculated by dividing True Positive by the total number of images that are classified as Positive. The result implies the data quality of each class classified by the model. For example, precision of Animal class is 0.7 implies that for every 10 images that are classified by the model as Animal, 7 of them are correct. 
-
-**3. Recall** is calculated by dividing True Positive by the total number of ground- truth Positive class. This statistic quantifies the ability of the model to detect each species. For example, recall of Owston's civet is 0.8 means that if there are 10 images of Owston's civet in the dataset, the model is able to detect 8. 
-
-While overall accuracy gives us an idea on how the model classifies Animal-Human-Blank, in general, precision warns us how much work we have to do to clean the model's predictions, and recall tells us how much data loss of each species we have to admit. In the context of conservation, however, recall is the most favored metrics to assess and tune the model because the most important goal of camera-trapping is to detect the most threatened species so that appropriate intervention is targeted. Threatened species are usually rare species, which makes every capture of them is valuable. Thus, in order to make the most of camera-trapping images, the model is expected to retrieve as many captures of threatened species as possible, which is reflected by recall. Nevertheless, most of the time, precision and recall are negatively correlated, i.e. if the model is tuned to increase recall, it will come at the expense of precision. This trade-off implies that more manual effort must be spent on verifying the model prediction for every increase of recall value. That said, this extra effort is several order of magnitude less than the effort spent without the model's help, so it is acceptable. -- UPDATE 
 
 
 ## What MegaDetector does
@@ -332,7 +308,37 @@ We additionally developed and deployed a human blurring program, which uses the 
 
 ## Applying MegaDetector in your reserach 
 
-**How many images can I get through?** 
+### Evaluating MegaDetector performance 
+
+While we will not do a deep-dive during this workshop into assessing MegaDetector's performance, here are some key metrics that can be used to evaluate how well the model works on your data. 
+
+***Types of errors*** 
+
+[Saul Greenberg](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf) highlights four types of errors to be on the look-out for when running an image recognition algorithm: 
+- *False positives*: The algorithm DOES detect an entity when there is NO entity (i.e., in an empty image)
+- *False negatives*: The algorithm DOES NOT detect an entity when the entity is present  
+- *Incorrect identification*: The algorithm DOES detect an entity when an entity is present, but incorrectly labels it (e.g., [simple detector] a person gets labelled as wildlife, or [classifier] a warthog gets labelled as a mongoose) 
+- *Amiguity*: The algorithm detects several overlapping and possibly conflicting detections
+
+***Confidence threshold***
+
+MegaDetector has an important parameter which is called "confidence threshold". The confidence threshold has continuous values ranging between 0 and 1; the higher the confidence threshold is, the more strictly the user wants the model to make a prediction. -- UPDATE
+
+***Accuracy metrics***
+
+There are three descriptive accuracy metrics that can be used to assess model performance: 
+
+**1. Overall accuracy** is calculated by dividing True predictions by the total number of predictions. This metrics quantifies the performance of the model over all species. For example, the model's overall accuracy of 0.7 means that for every 10 images, regardless of classes, the model is able to correctly classify 7 images.
+
+**2. Precision** is calculated by dividing True Positive by the total number of images that are classified as Positive. The result implies the data quality of each class classified by the model. For example, precision of Animal class is 0.7 implies that for every 10 images that are classified by the model as Animal, 7 of them are correct. 
+
+**3. Recall** is calculated by dividing True Positive by the total number of ground- truth Positive class. This statistic quantifies the ability of the model to detect each species. For example, recall of Owston's civet is 0.8 means that if there are 10 images of Owston's civet in the dataset, the model is able to detect 8. 
+
+While overall accuracy gives us an idea on how the model classifies Animal-Human-Blank, in general, precision warns us how much work we have to do to clean the model's predictions, and recall tells us how much data loss of each species we have to admit. In the context of conservation, however, recall is the most favored metrics to assess and tune the model because the most important goal of camera-trapping is to detect the most threatened species so that appropriate intervention is targeted. Threatened species are usually rare species, which makes every capture of them is valuable. Thus, in order to make the most of camera-trapping images, the model is expected to retrieve as many captures of threatened species as possible, which is reflected by recall. Nevertheless, most of the time, precision and recall are negatively correlated, i.e. if the model is tuned to increase recall, it will come at the expense of precision. This trade-off implies that more manual effort must be spent on verifying the model prediction for every increase of recall value. That said, this extra effort is several order of magnitude less than the effort spent without the model's help, so it is acceptable. -- UPDATE 
+
+### Batch processing camera trap data 
+
+You've just had a successful field season - hurrah! You return to home base with... terabytes and ... oh god, more terabytes ... of camera trap data. How quickly can MegaDetector plow through your images?  
 
 The number of images you can process in a single day depends on the computer resources you have available. Siyu Yang provices the following guidelines: 
 
@@ -340,7 +346,8 @@ The number of images you can process in a single day depends on the computer res
 - 100K images per day on a not-quite-top-of-the-line-but-pretty-decent GPU (i.e., a gaming computer or in the cloud) 
 - alternative, you can submit images to the MegaDetector team: they have 16 GPU and can process 1.6M images per day (*note: uploading the images to servers accessible to MegaDetector team can take a long time depending on the number of images and your internet connectivty) 
 
-**Want to learn more?**
+### Want to learn more?
+
 Here are some additional MegaDetector tutorials to step you through the MegaDetector pipeline: 
 - ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector) by Siyu Wang
 - ["How do I get started using Machine Learning for my camera traps?"](https://www.wildlabs.net/event/how-do-i-get-started-using-machine-learning-my-camera-traps) by Sara Beery
