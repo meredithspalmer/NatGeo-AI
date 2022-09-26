@@ -313,5 +313,7 @@ Here are some additional MegaDetector tutorials to step you through the MegaDete
 - ["How do I get started using Machine Learning for my camera traps?"](https://www.wildlabs.net/event/how-do-i-get-started-using-machine-learning-my-camera-traps) by Sara Beery
 - ["Camera Trapping Software"](https://www.youtube.com/watch?v=7B_sf7mnpkc) by Sara Beery
 
-**Need more help?** Contact Dan Morris (cameratraps@lila.science) to guide you through the MegaDetector process. 
+### Need more help?
+
+Contact Dan Morris (cameratraps@lila.science) to guide you through the MegaDetector process. 
 
