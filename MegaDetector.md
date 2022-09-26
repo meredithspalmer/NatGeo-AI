@@ -42,7 +42,7 @@ From Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucal
 - A *detector* detects whether something is in an image or not. For each
 suspected detection, it:
    - assigns a coarse identifying label to it (e.g., empty, animal, person, vehicle)
-   - locates it via bounding box coordinates, which can be used to draw a rectangle around the suspected entity
+   - locates it via **bounding box** coordinates, which can be used to draw a rectangle around the suspected entity
    - assigns a confidence value indicating the likelihood that it is correct
 
 - A *classifier* analyzes the sub-image contained by the detector's bounding box, where it performs a fine-grained classification chosen from a set
@@ -81,27 +81,14 @@ But wait - we're talking here about an image classifer. When Sara Beery and her 
 
 So what kind of AI is MegaDetector? MegaDetector is an *Faster R-CNN* object detection model. **CNN** stands for **"convolutional neural network"**, a type of artificial neural network used in image recognition and processing that is specifically designed to process pixel data. CNNs evaluate image data in a hierarchical fashion similar to the way mammalian brains process visual information. They are trained to identify objects of interest by learning how to associate raw inputs (i.e., pixel values) to labelled image data. CNNs are a powerful class of models because they are able to learn and extract complex visual features without direct supervision of a human expert. 
 
-training data - 
+In a (greatly simplified) nutshell, the CNN applies a bunch of filters over an image in a process known as *convultion*. The convolution layers use these filters to pick out visual features in the image (e.g., colors, textures, shapes). What features the model focuses on are learned by the model, rather than prescribed by the researcher. During the training process, the algorithm is fed a bunch of images that already contain correct bounding boxes (the "ground truth"). After convolution, the model proposes regions it thinks contain an animal and provides a prediction score for how confident it is that an animal is present. After each prediction, the model goes and checks how well it did against the "ground truth" bounding box data. It then adjusts its parameters and tries again -- through this iterative process, the model gets better and better at drawing boxes around real animals. 
 
-In a (greatly simplified) nutshell, the CNN applies a bunch of image filters over an image in a process known as *convultion*. The convolution layers use these filters to pick out visual features in theimage (e.g., colors, textures, shapes). What features the model focuses on are learned by the model, rather than prescribed by the researcher. The model then proposes regions it thinks don't belong to the background: it gives a prediction score for how confident it is that the region contains an animal. After each prediction, the model goes and checks it's prediction again the 'ground truth' data - this is the 
+<img src="https://i.imgur.com/CEfmAGd.jpg" width="600">
+Image credit: Siyu Wang, from ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector)
 
-Initially, the regions it proposes are random, and it predicts random boxes. 
-
-1. Faster R-CNN
-CNN --> applied bunch of image filters in process known as convolution; convolutional layers use filters to pick out visual features (colors, textures, shapes) --> learned rather than prescribed 
-2. Model than proposes regions that are likely non-background (gives score for each category --> prediction is score between 0-1, there confidence score comes from)
-
-initiatially starts with 'random weights' --> predicts random boxes
-but knows 'ground truth'; after each iteration, checks againsts ground truth
-then adjusts parameters, runs again, checks again --> iterative
+Anyone with a real understanding of CNNs is probably crying at this point: to dig into the technical details, check out Sylvain Christin's paper ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
 
 
-ADD IMAGE FROM SIYU'S TALK 
-
-ADD IMAGE FROM MIAO ET AL. 2019 
-
-<img scr="https://i.imgur.com/CEfmAGd.jpg" width="600">
-Image credit: Siyu Wang, from 
 
 ### Important considerations 
 
