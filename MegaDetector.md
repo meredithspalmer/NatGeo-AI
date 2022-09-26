@@ -49,7 +49,7 @@ suspected detection, it:
    - locates it via **bounding box** coordinates, which can be used to draw a rectangle around the suspected entity
    - assigns a confidence value indicating the likelihood that it is correct
 
-- A *classifier* performs a fine-grained classification chosen from a set of known categories. A classifier will typically produce a list of possible classifications for each detection. For example, wildlife classification, categories will be wildlife species (e.g., elk, wolf, bear, dog). The recognizer includes a probability value that very roughly indicates the likelihood that the classification is correct.
+- A *classifier* performs a fine-grained classification on an image by choosing a prediction from a set of known categories. A classifier will typically produce a list of possible classifications for each detection. For example, wildlife classification, categories will be wildlife species (e.g., elk, wolf, bear, dog). The recognizer includes a probability value that very roughly indicates the likelihood that the classification is correct.
 
 Classifiers need to be trained for specific target specis in specific system - there is no 'MegaClassifier' for all species in all systems! (although check out emerging tools like [Wildlife Insights](https://www.wildlifeinsights.org/) that are trained on global camera trap data sets). For more information on pre-trained classifiers, Dan Morris maintains a [GitHub repository](https://agentmorris.github.io/camera-trap-ml-survey/) of available tools and resources. 
 
