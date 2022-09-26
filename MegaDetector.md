@@ -25,13 +25,16 @@ Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](h
 
 ### Background
 
-Camera traps (rugged cameras deployed in the field that can remotely capture wildlife images) provide valuable data on animal occurrence and behavior patterns which can be applied to address novel ecological questions and wildlife conservation conundrums. The improved reliability and continually decreasing cost of camera traps has resulted in massive uptake of this technological tool, and – concomitantly - exponential growth in the number of images they capture. 
+**Camera traps** are rugged cameras, deployed in the field, which are automatically triggered by passing animals, unobtrusively collecting data on the abundance, distribution, and behavior of medium- and large-bodied vertebrates. The information collected by these devices can be applied to address novel ecological questions and wildlife conservation conundrums. The improved reliability and continually decreasing cost of camera traps has resulted in massive uptake of this technological tool, and, concomitantly, exponential growth in the number of images they capture. 
 
-Medium- to large-scale camera trap projects (~70 cameras or larger) now amass millions of photos every year. In fact, the rate at which we capture camera trap data now far exceeds our ability to process those images. The major bottleneck is transforming raw images (pictures) into the kinds of data that can be used in statistical analyses (numbers). Once collected, each image must be classified by species and, often, further classified into counts and characteristics (e.g., age, sex, behavior) of the animals captured. The time and labor required to annotate these images (sometimes, years pass!) can mean that survey results are less relevant to practitioners by the time analysis is complete.  
+Medium- to large-scale camera trap projects ([~78 cameras or larger](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/fee.1448) now amass millions of photos every year. In fact, the rate at which we capture camera trap data now [far exceeds](https://www.cambridge.org/core/journals/environmental-conservation/article/wildlife-insights-a-platform-to-maximize-the-potential-of-camera-trap-and-other-passive-sensor-wildlife-data-for-the-planet/98295387F86A977F2ECD96CCC5705CCC) our ability to process those images. The major bottleneck is transforming raw images (pictures) into the kinds of data that can be used in statistical analyses (numbers). Once collected, each image must be indentified to species and, often, further assessed for animal counts and characteristics (e.g., age, sex, behavior). The time and labor required to annotate these images - sometimes, years pass! - can mean that survey results are less relevant to practitioners by the time analysis is complete.  
 
-Frustratingly, a huge proportion of the time wildlife ecologists and conservation biologists invest in reviewing camera trap images is spent going through data they aren’t even interested in – that is, empty images with no wildlife or those containing people or vehicles. The good news is, artificial intelligence (AI) can help accelerate this process, removing these “noise” images and allowing biologists to spend their time on images that matter!   
+Frustratingly, a huge proportion of the time wildlife ecologists and conservation biologists invest in reviewing camera trap images is spent going through data they aren’t even interested in – that is, empty images with no wildlife or those containing people or vehicles. The good news is, **artificial intelligence (AI)** can help accelerate this process, removing these “noise” images and allowing biologists to spend their time on images that matter!   
 
 While AI is not a perfect replacement for the human eye/brain, integrating AI algorithms into camera trap workflows can massively accelerate research and conservation by alleviating data bottlenecks. 
+
+### THE TYPE OF AI USED HERE .... 
+FILL IN 
 
 
 ### Image Recognition: Detectors vs. Classifiers
@@ -51,39 +54,42 @@ of known categories. A classifier will typically produce a list of possible clas
 
 Classifiers need to be trained for specific target specis in specific system - there is no 'MegaClassifier' for all species in all systems! (although check out emerging tools like [Wildlife Insights](https://www.wildlifeinsights.org/) that are trained on global camera trap data sets). 
 
+- For more information on available classifiers, Dan Morris maintains a [GitHub repository](https://agentmorris.github.io/camera-trap-ml-survey/) of currently available tools 
+
 ### So what?
 
 Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it? - why is information from a detector useful? 
 
-1. Detectors can help eliminate non-animal images: 
+1. Detectors can help eliminate empty images: 
 
-An obscene number of images in camera trap datases (up to >70% of dataset - link to Snapshot) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. This might also occur when the camera is set to timelapse mode (i.e., taking photos every hour rather than waiting to be triggered). If your camera is set along a road or in an urban area, you may also collect volumes of vehicle data that are not important to your analysis. 
+An obscene number of images collected by camera traps [(up to >70%](https://hcjournal.org/index.php/jhc/article/view/123/1152021) of dataset in some cases) can contain *absolutely no animals at all!* Empty or 'blank' images can be triggered by waving vegetation, rain, excessive heat, or other environmental conditions that might cause your camera trap to go a little wonky. This might also occur when the camera is set to timelapse mode (i.e., taking photos every hour rather than waiting to be triggered). 
 
-- 1b. Some images might also capture people or vehicles -- typically not data interested in, but good to remove images of people before sharing data (e.g., on citizen science platform) for ethics reasons... 
+2. Detectors can also be used to flag images containing people or vehicles:
 
-• Identify images containing people. This is especially important if your
-agency has a privacy policy that requires those images to handled
-somewhat differently from other images, or when you have a different
-set of analysis criteria for people vs. animals.
+If your dataset will be shared (such as with citizen scientists or collaborators), you should probably remove any issues captured of people to respect their privacy. While rarely their primary function, camera traps can be used to surveil people without their consent, raising a whole host of ethical issues. As with empty images, if data from images containing people or vehicles is not important to your analysis, you can eliminate them from the classification pile. 
 
-REVISIT PAPER FOR PHRASING 
+- For a great introduction to the ethics of conservation technology, check out the WILDLABS Tech Tutors discussion ["How do I use Conservation Tech Ethically?"](https://www.wildlabs.net/event/how-do-i-use-conservation-tech-ethically) and Koustubh Sharma's paper
+[Conservation and people: Towards an ethical code of conduct for the use of camera traps in wildlife research](https://besjournals.onlinelibrary.wiley.com/doi/10.1002/2688-8319.12033). 
 
-2. Detectors make classification a LOT easier
+2. Detectors make manual classification a LOT easier: 
 
 The detector pinpoints where in the image you need to look - you'll then be classifying an animal vs. classifying an animal and lots of noisy background. Studies have found that incorporating a image detector into a camera trap classification pipeline can [increase efficiency >500% over manual labelling](https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020) while still maintaining high accuracy and precision.
 
-2b. This is also helpful information for AI classifiers - naturally handle multiple species in an image 
+3. Detectors make AI classification a little easier too:
 
-2c. Path to counting 
-
-
+The information provided by the bounding boxes (zeroing in on the wildlife in the image) is also helpful if AI classifiers are then applied to try and sort your data by species. It's also a way to introduce counting (how many bounding boxes are in each image?) and handle images that contain multiple species.
 
 
-
-
-### The falibility of AI: robots are not taking our wildlife ecology jobs yet!
+### Robots are not taking our wildlife ecology jobs yet! AI is not perfect 
 
 Talk about how data needs to be manually qc'd because not perfect 100% of time 
+
+Challenges that are hard for humans (which produce the training data) are then hard for AI trained on those (mis)classifications! This can be particularly tricky for camera trap images, 
+
+<img src="https://i.imgur.com/z386lxe.jpg" width="600">
+[Sara Beery](https://beerys.github.io/) et al. 2018 ["Recognition in Terra Incognita"](https://openaccess.thecvf.com/content_ECCV_2018/papers/Beery_Recognition_in_Terra_ECCV_2018_paper.pdf)
+
+
 
 ***Types of errors*** 
 
