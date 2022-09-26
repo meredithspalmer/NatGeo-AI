@@ -219,7 +219,7 @@ We'll be working with the latest version of MegaDetector (MDv5b) for this worksh
 
 The developers of MegaDetector have created three git repositories ('repos') - *cameratraps*, *ai4eutils*, and *yolov5* - that contain utilities and tools necessary to run the MegaDetector model. You can install these to your computer by doing the following: 
 
-**Instructions for Windows**
+### Instructions for Windows
 
 *First time*: open your Anacadona Prompt application and run the following code: 
 
@@ -243,51 +243,26 @@ This has created your MegaDetector environment! When running MegaDetector in the
 
 ```batch
 
+```
 
 
-**Instructions for Mac** 
-
-
-
-
-
-## Setting up MegaDetector: Mac
-
-## Setting up Timelapse: Mac 
-
-
-1. Open terminal
-
-2. Install homebrew by copy/pasting the following into your terminal and hitting 'enter': 
-
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-When installing homebrew, you will be asked to enter your computer password. The cursor will not show your type - this is okay! When done, hit 'enter'. 
-
-3. Install Wine packages using homebrew by copy/pasting the following into your terminal and hitting 'enter': 
-
-brew tap homebrew/cask-versions
-
-brew install --cask --no-quarantine wine-stable
-
-4. Go to your Timelapse folder
-5. Right-click 'Timelapse2.exe' and click 'Open' 
-6. If necessary, verify the Timelapse app by going to 'System Preferences' --> 'Security & Privacy' and click on 'Allow Anyway' 
-
-*add screenshots* 
-
-7. Now gow back to Timelapse folder, right-click 'Timelapse2.exe' and click 'Open' 
+### Instructions for Mac
 
 
 
 
 
+## 4. Setting up MegaDetector
 
-## Further Considations
+### Instructions for Windows 
 
-### Human anonymity 
+### Instructions for Mac
 
-We additionally developed and deployed a human blurring program, which uses the outputs from MegaDetector to obscure individual human identities (Fig. 1; see: https://github.com/WildCoLab/WildCo-FaceBlur). This tool uses the output file from MegaDetector, which provides classifications by category, bounding box coordinates around the detection, as well as a confidence value for each detection. Using this information, the blurring program applies a gaussian blur within bounding boxes classified as human above a user defined confidence threshold. Users interact with the program via an R (R Core Team, 2020) interface, which allows specification of a confidence threshold and a level of blurriness, while being familiar for many ecologists. The blurring process itself occurs via Python (Python Software Foundation, 2021) to maximize image handling speed, which is called from the R interface via the package reticulate (Ushey et al., 2021). from: https://www.sciencedirect.com/science/article/pii/S2351989422001068#:~:text=One%20such%20model%2C%20MegaDetector%2C%20is,2019a%2C%20Microsoft%2C%202020).
+
+## 5. Pulling data into Timelapse 
+
+
+
 
 
 
