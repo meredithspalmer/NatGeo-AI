@@ -106,7 +106,7 @@ Robots are not taking our wildlife ecology jobs yet! Here are a few things to ke
   <img src="https://i.imgur.com/z386lxe.jpg" width="600"/>
 </p>
 
-[Sara Beery](https://beerys.github.io/) et al. 2018 ["Recognition in Terra Incognita"](https://openaccess.thecvf.com/content_ECCV_2018/papers/Beery_Recognition_in_Terra_ECCV_2018_paper.pdf)
+Image credit: [Sara Beery](https://beerys.github.io/) et al. 2018 ["Recognition in Terra Incognita"](https://openaccess.thecvf.com/content_ECCV_2018/papers/Beery_Recognition_in_Terra_ECCV_2018_paper.pdf)
 
 To learn more about situations under which image recognition works and where it can fail, you can check out ["Automated Image Recognition for Wildlife Camera Traps: Making it Work for You"](https://prism.ucalgary.ca/bitstream/handle/1880/112416/2020-08-Greenberg-ImageRecognitionCameraTraps.pdf?sequence=6) from Timelapse creator Saul Greenberg. 
 
