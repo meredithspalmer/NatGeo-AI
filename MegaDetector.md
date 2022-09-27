@@ -124,7 +124,11 @@ Hm, okay - how is this useful? We then need to integrate this information into a
 
 Importantly for us, the MegaDetector team have collaborated with Timelapse to make it easy for us to upload our images and JSON predictions into Timelapse, and do things like visualize bounding boxes on camera trap images and filter images (based on model confidence level) to review only those that likely contain wildlife.
 
-INSERT IMAGE OF TIMELAPSE HERE 
+<p align="center">
+  <img src="https://i.imgur.com/2aRdnkN.png" width="600"/>
+</p>
+
+Image credit: Saul Greenberg
 
 ### Other options 
 
