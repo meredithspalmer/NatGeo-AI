@@ -42,6 +42,23 @@ Other types of tech-enabled sampling methods include passive acoustic monitors, 
 
 New sensors expand available data types for animal ecology. Sensor data provide a variety of perspectives to observe wildlife, monitor populations, and understand behavior. They allow the field to scale studies in space, time, and across the taxonomic tree and, thanks to open science projects (Table 2), to share data across parks, geographies, and the globe51. Sensors generate diverse data types, including imagery, soundscapes, and positional data (Fig. 3). They can be mobile or static, and can be deployed to collect information on individuals or species of interest (e.g., bio-loggers, drones), monitor activity in a particular location (e.g., camera traps and acoustic sensors), or document changes in habitats or landscapes over time (satellites, drones). Finally, they can also be opportunistic, as in the case of community science.
 
+Recent advances in sensor technologies are drastically
+increasing data collection capacity by reducing costs and
+expanding coverage relative to conventional methods (see the
+section “New sensors expand available data types for animal
+ecology”, below), thereby opening new avenues for ecological
+studies at scale (Fig. 1)18. Many previously inaccessible areas of
+conservation interest can now be studied through the use of highresolution remote sensing19, and large amounts of data are being
+collected non-invasively by digital devices such as camera traps20,
+consumer cameras21, and acoustic sensors22. New on-animal biologgers, including miniaturized tracking tags23,24 and sensor
+arrays featuring accelerometers, audiologgers, cameras, and other
+monitoring devices document the movement and behavior of
+animals in unprecedented detail25, enabling researchers to track
+individuals across hemispheres and over their entire lifetimes at
+high temporal resolution and thereby revolutionizing the study of
+animal movement (Fig. 1c) and migrations.
+
+
 <p align="center">
   <img src="https://i.imgur.com/w4FFuPD.png" width="600"/>
 </p>
@@ -64,24 +81,11 @@ Unlike camera traps, acoustic monitors are typically not triggered, but run cont
 
 ## Harnessing the power of "Big Data" 
 
-There is a mismatch between the ever-growing volume of raw measures (videos, images, audio recordings) acquired for ecological studies and our ability to process and analyze this multi-source data to derive conclusive ecological insights rapidly and at scale. Effectively, ecology has entered the age of big data
+> "There is a mismatch between the ever-growing volume of raw measures (videos, images, audio recordings) acquired for ecological studies and our ability to process and analyze this multi-source data to derive conclusive ecological insights rapidly and at scale. Effectively, ecology has entered the age of **big data**." (Tulia et al. 2022)
+
+What is Big Data? 
 
 
-Recent advances in sensor technologies are drastically
-increasing data collection capacity by reducing costs and
-expanding coverage relative to conventional methods (see the
-section “New sensors expand available data types for animal
-ecology”, below), thereby opening new avenues for ecological
-studies at scale (Fig. 1)18. Many previously inaccessible areas of
-conservation interest can now be studied through the use of highresolution remote sensing19, and large amounts of data are being
-collected non-invasively by digital devices such as camera traps20,
-consumer cameras21, and acoustic sensors22. New on-animal biologgers, including miniaturized tracking tags23,24 and sensor
-arrays featuring accelerometers, audiologgers, cameras, and other
-monitoring devices document the movement and behavior of
-animals in unprecedented detail25, enabling researchers to track
-individuals across hemispheres and over their entire lifetimes at
-high temporal resolution and thereby revolutionizing the study of
-animal movement (Fig. 1c) and migrations.
 
 **camera traps** Once collected by cameras, each image must be reviewed and classified by species, and may be further classified by characteristics of the individual(s) photographed (e.g. age, sex, and behavior). With many mid-to-large scale projects amassing millions of photos and reaching terabytes of data in less than a year, the time committed to processing these data becomes increasingly unmanageable, ballooning time and monetary budgets.
 ![image](https://user-images.githubusercontent.com/6107689/192573924-7c5d556e-8886-46ce-82dd-f99ca2b7c17d.png)
