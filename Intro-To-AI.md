@@ -1,4 +1,6 @@
-# Machine Learning for Wildlife Conservation 
+27-SEP-2022: THIS IS A WORK IN PROGRESS 
+
+# Artificial Intelligence for Wildlife Conservation 
 
 <p align="center">
   <img src="https://www.ft.com/__origami/service/image/v2/images/raw/http://prod-upp-image-read.ft.com/a6fcca88-112a-11ea-a7e6-62bf4f9e548a?source=next&fit=scale-down&quality=highest&width=1440" width="900"/>
@@ -26,6 +28,16 @@ wildlife biologists9. Finally, the physical and cognitive limitations
 of humans unavoidably constrain the number of individual animals that can be observed simultaneously, the temporal resolution and complexity of data that can be collected, and the extent
 of physical area that can be effectively monitored10,11
 
+
+ecological sensing data -- 
+
+Goal: understand animal occurrence, abundance, distribution, behavior and (mitigate) THREATS to animals and ecosystems (e.g., logging) 
+In the ongoing quest to better understand and conserve wildlife populations, technology-enabled sampling methods have become increasingly important (Zemanova, 2020).
+For example, annual ecological publications using camera traps – remote cameras that are triggered to take images of passing wildlife -- have grown 81-fold since 1994 (Delisle et al. 2021)
+Other types of tech-enabled sampling methods include passive acoustic monitors, wildlife collars, drone or aerial imagery
+![image](https://user-images.githubusercontent.com/6107689/192573639-c80b0388-55ad-4dec-802b-c4d9e535c916.png)
+
+
 ### Sensors
 
 New sensors expand available data types for animal ecology. Sensor data provide a variety of perspectives to observe wildlife, monitor populations, and understand behavior. They allow the field to scale studies in space, time, and across the taxonomic tree and, thanks to open science projects (Table 2), to share data across parks, geographies, and the globe51. Sensors generate diverse data types, including imagery, soundscapes, and positional data (Fig. 3). They can be mobile or static, and can be deployed to collect information on individuals or species of interest (e.g., bio-loggers, drones), monitor activity in a particular location (e.g., camera traps and acoustic sensors), or document changes in habitats or landscapes over time (satellites, drones). Finally, they can also be opportunistic, as in the case of community science.
@@ -39,13 +51,20 @@ Image credit: ["Perspectives in machine learning for wildlife conservation"](htt
 In this course, we'll be focusing on wildlife data collected from two sources: **camera traps** and **bioacoustic sensors**. 
 
 ***Camera traps*** are rugged cameras, deployed in the field, which are automatically triggered by passing animals, unobtrusively collecting data on medium- and large-bodied vertebrates. Camera traps are inexpensive, easy to use, and can provide a wide variety of information (e.g., species, sex, heath, age, behavior, ecological interactions) on entire ecology communities that can be used to assess occurrence, richness, distribution, density, and species interactions. More than a [million camera traps](https://www.nature.com/articles/s41467-022-27980-y) are currently used to monitor biodiversity worldwide. An average-sized camera trap survey ([~78 cameras](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/fee.1448)) can capture millions of photographs every year. 
+
+When a camera trap is triggered, a sequence of images (or a video) is taken. Every couple of weeks or months, researchers return to the cameras to download the camera memroy cards. Images are then manually sorted through by experts to classify species and remove empty images. While cameras enable the automatic collection of massive quantities of ecological data, the enormous amount of time required to sort through the images severely limits their application in conservation or management practice and reduces research productivity.
+
 - To learn more about camera trapping, check out WWF's comprehensive [Guide to Camera Trapping](https://www.wwf.org.uk/sites/default/files/2019-04/CameraTraps-WWF-guidelines.pdf)
 
-***Bioacoustic sensors*** (also known as ***acoustic monitors***) are similar to camera traps, except that they capture sound instead of images. These sensors are microphones or hydrophones (underwater microphones) that record animal vocalizations, which can be analyzed to detect what species are active in a given area, when they are active, and in some cases, what they are doing. Networks ofsensors can be used to derive the distribution, occupancy, density, and richness of vocalizing species. Inexpensive, open-source accoustic sensors such as the [AudioMoth](https://www.openacousticdevices.info/audiomoth) are making these types of studies increasingly popular. 
+***Bioacoustic sensors*** (also known as ***acoustic monitors***) are similar to camera traps, except that they capture sound instead of images. These sensors are microphones or hydrophones (underwater microphones) that record animal vocalizations, which can be analyzed to detect what species are active in a given area, when they are active, and in some cases, what they are doing. Networks of sensors can be used to derive the distribution, occupancy, density, and richness of vocalizing species. Inexpensive, open-source accoustic sensors such as the [AudioMoth](https://www.openacousticdevices.info/audiomoth) are making these types of studies increasingly popular. 
+
+Unlike camera traps, acoustic monitors are typically not triggered, but run continuously during pre-defined time periods (24/7, between the hours of dawn and dusk, for 30 minutes every hour, etc.). Researchers must then review the audio files to identify and classify calls or noises of interest. Hours, days, or weeks of audio can be collected during a single field deployment; multipled by tjhe number of acoustic sensors in your network, and this data becomes overwhelming. The substantial delay between data collection and when critical sounds are identified (i.e., gunshots of poachers), reduces their usefulness for conservation applications. 
 
 - WWF also has a great [Guide to Acoustic Monitoring](https://www.wwf.org.uk/sites/default/files/2019-04/Acousticmonitoring-WWF-guidelines.pdf)  
 
 ## Harnessing the power of "Big Data" 
+
+There is a mismatch between the ever-growing volume of raw measures (videos, images, audio recordings) acquired for ecological studies and our ability to process and analyze this multi-source data to derive conclusive ecological insights rapidly and at scale. Effectively, ecology has entered the age of big data
 
 
 Recent advances in sensor technologies are drastically
@@ -64,6 +83,15 @@ individuals across hemispheres and over their entire lifetimes at
 high temporal resolution and thereby revolutionizing the study of
 animal movement (Fig. 1c) and migrations.
 
+**camera traps** Once collected by cameras, each image must be reviewed and classified by species, and may be further classified by characteristics of the individual(s) photographed (e.g. age, sex, and behavior). With many mid-to-large scale projects amassing millions of photos and reaching terabytes of data in less than a year, the time committed to processing these data becomes increasingly unmanageable, ballooning time and monetary budgets.
+![image](https://user-images.githubusercontent.com/6107689/192573924-7c5d556e-8886-46ce-82dd-f99ca2b7c17d.png)
+
+Camera traps are a tool used by conservationists to study and monitor a wide range of ecologies while limiting human interference. However, they also generate a vast amount of data that quickly exceeds the capacity of humans to sift through. That's where machine learning can help! Advances in computer vision can help automate tasks like species detection and identification, so that humans can spend more time learning from and protecting these ecologies![image](https://user-images.githubusercontent.com/6107689/192574131-94201a55-3a5a-4c3c-992c-f1e098db0e6a.png)
+
+However, with the number of camera trap images quickly outgrowing the capacity of the labelers, ecologists are unable to keep up with the wealth of data they are obtaining. Using computer vision, we can automatically generate labels for new camera trap images at the rate that they are being obtained, allowing ecologists to uncover ecological and biological information at a scale previously not possible. 
+![image](https://user-images.githubusercontent.com/6107689/192574619-993699bb-9d71-425b-91b5-50bb04e67585.png)
+
+
 There is a mismatch between the ever-growing volume of raw
 measures (videos, images, audio recordings) acquired for ecological
 studies and our ability to process and analyze this multi-source
@@ -79,6 +107,15 @@ The sensor data described in the previous section has the
 potential to unlock ecological understanding on a scale difficult to
 imagine in the recent past. But to do so, it must be interpreted
 and converted to usable information for ecological research. 
+
+
+Lots of data but it's not being used for conservation – why?
+Too much data (manual data processing doesn’t scale) 
+For example, one two-year study resulting 2.6 million images from 98,189 detections (McShea et al., 2016) across six states in the eastern USA.
+![image](https://user-images.githubusercontent.com/6107689/192573739-4d900470-9b21-431c-984e-382efd9ece4b.png)
+
+image from sara beery
+
 
 
 owever, problems related to lack of generality across geographies, day/night acquisition, or sensors are still major obstacles to production-ready accurate systems55. The increased scale of available data due to de-siloing efforts from organizations like Wildlife Insights (www.wildlifeinsights.org) and LILA.science (www.lila.science) will help increase ML accuracy and robustness across regions and taxa. 
@@ -178,33 +215,64 @@ For the examples above, this is 2 * .8 * .66 / (.8 + .66), or 72%.
 ADD SENSOR PICTURE 
 
 
-## MegaDetector 
+## What will we do today? 
 
-ADD MEGADETTECTOR PICTURE 
+Today, we'll cover how to use pre-trained models for classifying camera trap images (**MegaDetector**), how to build your own models for processing audio data (**Edge Impulse**), and discuss how high-quality data can make AI more useful and successful in your work. Below is a brief overview of the algorithms/programs we'll be working with: 
 
-## Edge Impuse 
+### MegaDetector 
 
-ADD EDGE IMPULSE PICTURE 
+MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone by identifying which images do not contain wildlife. 
 
+<p align="center">
+  <img src="https://i.imgur.com/e9A9boY.png" width="600"/>
+</p>
+
+Image credit: [Sara Beery](https://beerys.github.io/)
+
+### Edge Impuse 
+
+Edge Impulse is a platform for developing machine learning algorithms, specifically those designed to work on "edge" devices (e.g., on sensors, processing data as it is collected in the field). We will use the Edge Impulse interface to train an algorithm which can detect gunshots from passive acoustic monitors - this type of algorithm could then be deployed onto a passive acoustic sensor and be used to alert rangers or park managers to illegal poaching incidents. 
+
+<p align="center">
+  <img src="https://i.imgur.com/Bo9GXW9.png" width="600"/>
+</p>
+
+Image credit: [Edge Impulse](https://www.edgeimpulse.com/)
 
 ## Other opportunities and future directions 
-- list some 
-- for discussion, see ["Perspectives in machine learning for wildlife conservation"](https://www.nature.com/articles/s41467-022-27980-y)
+
+Previously inaccessible areas of ecological and conservation interest can now be studied in intense detail thanks to new break-throughs in remote sensing and conservation technology. In addition to camera traps and acoustic sensors, ML can be employed to help process and analyse data from: 
+- On-animal sensors (e.g., GPS trackers, accelerometers, microphones, video cameras, heart-rate monitors)
+- Remote sensing footage (e.g., unmanned aerial vehicles (UAVS) or drones, satellites)
+- Crowd-sourced data (e.g., images collected by iNaturalist) 
+   - As a note, crowdsourcing classifications through platforms such as the [Zooniverse](https://zooniverse.org) can help produce the [massive labeled image datasets](https://www.nature.com/articles/sdata201526?origin=app) necessary to train AI algorithms 
+
+AI are also becoming more sophisticated, extracting more different kinds of information from Big Data. For instance, camera trap image recognition algorithsm are not only getting better at detecting and classifying species, but now are being trained to extract trickier metrics, such as: 
+- Counts (how many animals are there?)
+- Behavior (what are they doing?)
+- Multiple species (classifying >1 species per image) 
+- Individual re-identification (recognizing specific individuals) 
+- 3D recovery of animal pose (what is the animal doing) 
+- 3D reconstructions of the environment (what is the animal navigating) 
+
+For a more in-depth discussion, check out ["Perspectives in machine learning for wildlife conservation"](https://www.nature.com/articles/s41467-022-27980-y). 
 
 ## Definitions: 
 - **Artificial Intelligence (AI)**: A discipline concerned with the designing of computers that make predictions and decisions.
 - **Machine Learning**: A branch of AI where programs build models that they can use to make decisions based on the data given to them by programmers.
 - **Computer Vision**: A branch of AI that works on computer’s ability to understand visual information like pictures or video
 -	**Algorithm**: A sequence of instructions to a computer, like a recipe on how to process some information
-●	Pixel: The smallest, indivisible unit comprising an image, like a tiny square (really tiny if you have a high-resolution screen).
-●	Metadata: Information about a picture - where it was taken, when, etc.
-●	Neural Network: Several connected functions that collectively recognize patterns and answer questions
-●	Convolutional Neural Network: A neural network that looks at overlapping sections of an image to identify things about the image
-●	Processor: The part of your computer that does the “computing.” The main processor on your computer is called the CPU, but other parts might be used for processing other things.
-●	GPU: Graphics Processing Unit - a computer that is specialized for dealing with Graphics.
-●	Library: A group of programming functions that might be useful together so other programmers don’t have to re-write them.
-●	Data preprocessing: The program cannot always work with all the data that comes in. Preprocessing ensures none of the data is out of range or unreadable, or has any other problems for the program.
-●	Weight: How important each part of information is in deciding what the whole means
-
-
-True/false negatives
+- **Pixel**: The smallest, indivisible unit comprising an image, like a tiny square (really tiny if you have a high-resolution screen).
+-	**Metadata**: Information about a picture - where it was taken, when, etc.
+-	**Neural Network**: Several connected functions that collectively recognize patterns and answer questions
+-	**Convolutional Neural Network**: A neural network that looks at overlapping sections of an image to identify things about the image
+-	**Processor**: The part of your computer that does the “computing.” The main processor on your computer is called the CPU, but other parts might be used for processing other things.
+- **GPU**: Graphics Processing Unit - a computer that is specialized for dealing with Graphics.
+- **Library**: A group of programming functions that might be useful together so other programmers don’t have to re-write them.
+- **Data preprocessing**: The program cannot always work with all the data that comes in. Preprocessing ensures none of the data is out of range or unreadable, or has any other problems for the program.
+-	**Weight**: How important each part of information is in deciding what the whole means
+- **True negative**: 
+- **False negative**: 
+- Recall
+- Accuracy
+- 
