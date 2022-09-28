@@ -99,12 +99,54 @@ IMAGE
 
 > # YOU DID IT!  ## MAKE THIS AN IMAGE INTEAD 
 
-Congrats, you've trained your first machine learning model! 
+Congratulationss, you've trained your first machine learning model! 
 
-## Okay, but what does this mean? 
+## Okay, but, um, what now? 
 
-Congratulations, you've trained a neural network with Edge Impulse! But what do all these numbers mean?
-At the start of training, 20% of the training data is set aside for validation. This means that instead of being used to train the model, it is used to evaluate how the model is performing. The Last training performance panel displays the results of this validation, providing some vital information about your model and how well it is working. Bear in mind that your exact numbers may differ from the ones in this tutorial.
-On the left hand side of the panel, Accuracy refers to the percentage of windows of audio that were correctly classified. The higher number the better, although an accuracy approaching 100% is unlikely, and is often a sign that your model has overfit the training data. You will find out whether this is true in the next stage, during model testing. For many applications, an accuracy above 80% can be considered very good.
-The Confusion matrix is a table showing the balance of correctly versus incorrectly classified windows. To understand it, compare the values in each row. For example, in the above screenshot, all of the faucet audio windows were classified as faucet, but a few noise windows were misclassified. This appears to be a great result though.
-The On-device performance region shows statistics about how the model is likely to run on-device. Inferencing time is an estimate of how long the model will take to analyze one second of data on a typical microcontroller (here: an Arm Cortex-M4F running at 80MHz). Peak memory usage gives an idea of how much RAM will be required to run the model on-device.
+Training data (20%) 
+
+Run on training data to validate model/evaluate how well model is performing; the **Last training performance panel** displays the results of this validation, providing some vital information about your model and how well it is working.
+
+On the left hand side of the panel, **Accuracy** refers to the percentage of data samples that were correctly classified. The higher number the better, although an accuracy approaching 100% is unlikely, and is often a sign that your model has overfit the training data. -- EXPLAIN -- For many applications, an accuracy above 80% can be considered very good.
+
+The **Confusion matrix** is a table showing the balance of correctly versus incorrectly classified windows. EXPLAIN 
+
+## Classifying new data
+
+The numbers we just interpreted tell us how well the model works on training data; next, we need to test the model on data it has never seen before to ensure that the model is not overfit to the training data. 
+
+To capture live data from your  device and immediately attempt to classify it. To try it out, click on **Live classification** in the left hand menu. Your device should show up in the **'Classify new data'** panel. Capture 5 seconds of background noise by clicking **Start sampling**:
+
+IMAGE
+
+The sample will be captured, uploaded, and classified. Once this has happened, you'll see a breakdown of the results:
+
+IMAGE 
+
+Once the sample is uploaded, it is split into windows–in this case, a total of 41. These windows are then classified. As you can see, our model classified all 41 windows of the captured audio as noise. This is a great result! Our model has correctly identified that the audio was background noise, even though this is new data that was not part of its training set.
+
+## Model testing 
+
+Next phase is ... you got it, more testing! That's where the **Model testing** tab comes in. If you open it up, you'll see the sample we just captured listed in the Test data panel:
+
+IMAGE 
+
+In addition to its training data, every Edge Impulse project also has a test dataset. To use the sample we've just captured for testing, we should correctly set its expected outcome. Click the ⋮ icon and select Edit expected outcome, then enter noise. Now, select the sample using the checkbox to the left of the table and click Classify selected:
+
+IMAGE?? 
+
+Ideally, you'll want to collect a test set that contains a minimum of 25% the amount of data of your training set. So, if you've collected 10 minutes of training data, you should collect at least 2.5 minutes of test data. You should make sure this test data represents a wide range of possible conditions, so that it evaluates how the model performs with many different types of inputs. For example, collecting test audio for several different faucets is a good idea.
+
+You can use the Data acquisition tab to manage your test data. Open the tab, and then click Test data at the top. Then, use the Record new data panel to capture a few minutes of test data, including audio for both background noise and faucet. Make sure the samples are labelled correctly. Once you're done, head back to the Model testing tab, select all the samples, and click Classify selected:
+
+^ have this already split -- get from Coursera 
+
+The screenshot shows classification results from a large number of test samples (there are more on the page than would fit in the screenshot). The panel shows that our model is performing at 85% accuracy, which is 5% less than how it performed on validation data. It's normal for a model to perform less well on entirely fresh data, so this is a successful result. Our model is working well!
+
+For each test sample, the panel shows a breakdown of its individual performance. For example, one of the samples was classified with only 62% accuracy. Samples that contain a lot of misclassifications are valuable, since they have examples of types of audio that our model does not currently fit. It's often worth adding these to your training data, which you can do by clicking the ⋮ icon and selecting Move to training set. If you do this, you should add some new test data to make up for the loss!
+
+Testing your model helps confirm that it works in real life, and it's something you should do after every change. However, if you often make tweaks to your model to try to improve its performance on the test dataset, your model may gradually start to overfit to the test dataset, and it will lose its value as a metric. To avoid this, continually add fresh data to your test dataset.
+
+## Model troubleshooting
+
+## Deploying to your device 
