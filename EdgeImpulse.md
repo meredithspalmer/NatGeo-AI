@@ -45,7 +45,7 @@ An **impulse** is a WHAT does several things:
 2. then, it uses *signal processing blocks* to extract features from those audio
 3. next, it uses a *learning block* to classify new data
 
-Don't worry if this sounds confusing, we'll explain this process in more detail below. We'll then pass this simplified audio data into a Neural Network block, which will learn to distinguish between the two classes of audio (faucet and noise).
+Don't worry if this sounds confusing, we'll explain this process in more detail below. 
 
 ### Raw data block
 
@@ -53,13 +53,58 @@ Go to the **Create impulse** tab. You'll then see a raw data block, like shown b
 
 PICTURE 
 
-To expand the amound of audio data used to train the model, Edge Impulse will chop 
+To expand the amound of audio data used to train the model, Edge Impulse will chop the raw data up into many little samples. **Window size** tells Edge Impulse how long each slide should be in milliseconds. Here, set the window size to **1000 ms**, or one second. This should be long enough for the algorithm to determine whether the sound is a gunshot or background noises. To maximize the number of samples from each piece of raw data, windows can overlap. **Window increase** controls how long after the first window the subsequent window starts. Set this value to **100 ms**. While overlapping windows will contain similar data, each window is still a unique audio sample. 
 
-As mentioned above, Edge Impulse slices up the raw samples into windows that are fed into the machine learning model during training. The Window size field controls how long, in milliseconds, each window of data should be. A one second audio sample will be enough to determine whether a faucet is running or not, so you should make sure Window size is set to 1000 ms. You can either drag the slider or type a new value directly.
-Each raw sample is sliced into multiple windows, and the Window increase field controls the offset of each subsequent window from the first. For example, a Window increase value of 1000 ms would result in each window starting 1 second after the start of the previous one.
-By setting a Window increase that is smaller than the Window size, we can create windows that overlap. This is actually a great idea. Although they may contain similar data, each overlapping window is still a unique example of audio that represents the sample's label. By using overlapping windows, we can make the most of our training data. For example, with a Window size of 1000 ms and a Window increase of 100 ms, we can extract 10 unique windows from only 2 seconds of data.
-Make sure the Window increase field is set to 300 ms. The Raw data block should match the screenshot above.
+### Processing block
 
+Click **Add a processing block** and choose the **'MFE' block**. 
 
-   - Here, we'll use the "MFE" signal processing block. MFE stands for Mel Frequency Energy. This sounds scary, but it's basically just a way of turning raw audio—which contains a large amount of redundant information—into simplified form
+MFE stands for Mel Frequency Energy: this is just a way of turning raw audio—which contains a large amount of redundant information—into simplified form. 
 
+### Learning block
+
+Next, click **Add a learning block** and choose the **'Classification (Keras)'** block. 
+
+WHY?? 
+
+Click **Save impulse**! Your impulse should look like this: 
+
+PICTURE 
+
+## Configure the impulse
+
+Next, we can start tweaking the individual blocks to optimise the model. Let's start with the **Processing block**. Click on the MFE tab in the left hand navigation menu. You'll see a page that looks like this:
+
+IMAGE
+
+The processing block transforms each audio sample into **spectrogram**, which can be seen in on the righthand side of the page. A spectrogram is a visual way of representing how the frequencies of an audio signal vary through time. Rather than "listening" to the audio files, the machine learning algorithm we are training is rather trying to distinguish visual patterns between spectrograms. As Edge Impulse provides pretty sensible starting parameters, we can leave the default settings and start generating the spectrograms on which we'll train our algorithm. To do this, click the **'Generate features'** button at the top of the page, then click the green **'Generate features'** button. This process can take a little while to complete. 
+
+When the files have been processed, we can now use the feature explorer to visualize our dataset. By mapping the features into 3D space, we can see how well our different classes separate (which, if so, bodes well for training our ML classifier!). 
+
+## Configure the neural network 
+
+Our algorithm will take the spectrograms produced by the MFE as input, and try to map this to one of two classes: 'gunshot' or 'background'. The input will go through layers of virtual 'neurons', which filter and transform the input data to extract distinguishing features. Ultimately, the algorithm will procude two values: the probability that the input represents a gunshot and the probability that the input represents background nature noises.
+
+During the **training phase**, the state of these 'neurons' are tweaked and refined so that they layers ultimately transform the input into the correct output. This is an iterative process, where the model is fed samples of training data, outputs are evaluated, adjustments are made, and the process is repeated thousands and thousands of times until the correct answers are produced (or you give up - sometimes, there are problems that can't be solved by ML!). 
+
+How the 'neurons' are arranged into layers is called an **architecture**. There are many different kinds of ML architectures that have been developed for different kinds of tasks. Here, we'll stick with Edge Impulse's defualt architecture. 
+
+In the left hand menu, click on **'NN Classifier'**. You should see the following: 
+
+IMAGE 
+
+Click **'Start training'**; the process may take a few minutes. When it's complete, you'll see the **Model panel** appear at the right side of the page:
+
+IMAGE 
+
+> # YOU DID IT!  ## MAKE THIS AN IMAGE INTEAD 
+
+Congrats, you've trained your first machine learning model! 
+
+## Okay, but what does this mean? 
+
+Congratulations, you've trained a neural network with Edge Impulse! But what do all these numbers mean?
+At the start of training, 20% of the training data is set aside for validation. This means that instead of being used to train the model, it is used to evaluate how the model is performing. The Last training performance panel displays the results of this validation, providing some vital information about your model and how well it is working. Bear in mind that your exact numbers may differ from the ones in this tutorial.
+On the left hand side of the panel, Accuracy refers to the percentage of windows of audio that were correctly classified. The higher number the better, although an accuracy approaching 100% is unlikely, and is often a sign that your model has overfit the training data. You will find out whether this is true in the next stage, during model testing. For many applications, an accuracy above 80% can be considered very good.
+The Confusion matrix is a table showing the balance of correctly versus incorrectly classified windows. To understand it, compare the values in each row. For example, in the above screenshot, all of the faucet audio windows were classified as faucet, but a few noise windows were misclassified. This appears to be a great result though.
+The On-device performance region shows statistics about how the model is likely to run on-device. Inferencing time is an estimate of how long the model will take to analyze one second of data on a typical microcontroller (here: an Arm Cortex-M4F running at 80MHz). Peak memory usage gives an idea of how much RAM will be required to run the model on-device.
