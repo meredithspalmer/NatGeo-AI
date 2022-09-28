@@ -135,6 +135,101 @@ Image credit: Stefanie Hoffman
 
 So what exactly is Artificial Intelligence? At its core, Artificial Intelligence (AI) is an advanced software-based technology that combines sophisticated computer programming with elements of human intelligence in various combinations to complete a wide range of functions previously thought only possible by humans.
 
+(https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
+Machine learning in general refers to a category of algorithms that can automatically generate predictive models by detecting patterns in data. These tools are interesting for ecologists because they can analyse complex nonlinear data, with interactions and missing data, which are frequently encountered in ecology (Olden et al., 2008). Machine learning has already been successfully applied in ecology to perform tasks such as classification (Cutler et al., 2007), ecological modelling (Recknagel, 2001) or studying animal behaviour (Valletta, Torney, Kings, Thornton, & Madden, 2017). 
+
+What makes deep learning algorithms different and so powerful resides in the way they can learn features from data. First, learning can occur without supervision, where computers automatically discover patterns and similarities in unlabelled data. With this method, no specific output is expected, and this is often used as an exploratory tool to detect features in data, reduce its dimensions, or cluster groups of similar data (Valletta et al., 2017). Second, learning can also be done with supervised training. A labelled dataset with the target objects is first given to the computers so they can train to associate the labels to the examples. They can then recognize and identify these objects in other datasets (LeCun, Bengio, & Hinton, 2015). However, in conventional machine learning, providing only the labels is insufficient. The user also needs to specify in the algorithm what to look for (Olden et al., 2008). For instance to detect giraffes in images, the algorithm requires specific properties of giraffes (e.g. shape, colour, size, patterning) to be explicitly stated in terms of patterns of pixels. This can hamper non-specialists of machine learning because it usually requires a deep knowledge of the studied system and good programming skills. In contrast, deep learning methods skip such a step. Using general learning procedures, deep learning algorithms are able to automatically detect and extract features from data. This means that we only need to tell a deep learning algorithm whether a giraffe is present in a picture and, given enough examples, it will be able to figure out by itself what a giraffe looks like. Such an automated learning procedure is made possible by decomposing the data into multiple layers, each with different levels of abstraction, that allow the algorithm to learn complex features representing the data.
+
+From a technical standpoint, deep learning algorithms are multilayered neural networks. Neural networks are models that process information in a way inspired by biological processes, with highly interconnected processing units called neurons working together to solve problems (Olden et al., 2008) (Figure 1). Neural networks have three main parts: (a) an input layer that receives the data, (b) an output layer that gives the result of the model, and (c) the processing core that contains one or more hidden layers. What differentiates a conventional neural network from a deep one is the number of hidden layers, which represents the depth of the network. Unfortunately, there is no consensus on how many hidden layers are required to differentiate a shallow from a deep neural network (Schmidhuber, 2015).
+
+Two of the most common questions encountered is why use deep learning instead of ‘traditional’ machine learning and how is it different. The main difference with other methods lies in the way features are extracted from data. With traditional machine learning algorithms, feature extraction requires human supervision, whereas deep learning tools can learn by themselves very complex representations of data due to their multilayered nature. They are therefore easier to use when the users have limited knowledge about the features to detect. The record-breaking accuracy results achieved in identification and classification tasks (e.g. Krizhevsky et al., 2012; Joly et al., 2018) also leads to one of the main reasons to use deep learning: performance. However, these results depend on the existence of a sizeable labelled dataset that can be used to train the algorithms to extract the desired features from the data. The training process can be more time consuming and require a lot more computer power than traditional methods. Deep learning is thus especially appropriate when analysing large amounts of data, and it performs particularly well for complex tasks such as image classification or speech/sound recognition.
+
+
+Machine learning
+The rising availability of computers around the 1980s allowed not only more refined
+numerical solutions for classical statistical methods, but also the development of alternative
+modelling approaches for data analysis and predictions that we collectively refer to as
+“machine learning”. Although these approaches differ in detail, we see their communality in
+the realization that abandoning the data-generating model (connected to the ability to
+calculate p-values, CIs and all that) in favor of generic algorithmic structures that can be
+trained to data often achieves lower errors for predictive tasks (for general ML principles, see
+Box 1) (Breiman, 2001b; Shmueli, 2010). Examples of early ML algorithms are neural networks
+(McCulloch & Pitts, 1943), random forest (Breiman, 2001a), and boosted regression trees
+(Friedman, 2001) (more on these in the section ‘Important ML Algorithms in more detail’).
+
+General objective of ML
+The objective of ML is to build a good predictive model. By “good”, we mean that the model should predict
+well to new data. Sometimes ML models make almost no errors on the data they are trained on but fail for
+new data (we say the model overfits). A more complex and flexible model has a higher risk of overfitting. The
+trade-off between complexity and flexibility can be depicted by the bias-variance tradeoff (see Fig. 3a). The
+general ideal of ML algorithms is thus to take a certain algorithmic structure and then adjust their parameters
+to the data (training), while simultaneously adapt its complexity by optimizing the bias-variance trade-off so
+that the fitted model generalizes well to new data.
+Training the models
+Training a model consists of two steps. The first step is the definition of a loss function, which measures the
+current score (performance) of the algorithm in solving a certain task. The second component is the optimizer,
+which updates parameters of the algorithm with the goal to increase its performance.
+Model classes and architectures
+In principle, any algorithm that makes predictions for a certain task can be used for ML. In practice, model
+classes and architectures that are commonly used can broadly be divided into neural networks, which mimic
+the functioning of a brain, regression and classification trees, and distance-based method.
+Tasks and learning situations
+In ML, the different use cases for the algorithms are called tasks. In supervised learning, there are examples
+for the “correct” prediction of the task, and the objective functions report the error between the predicted
+and observed response. Here, the common tasks are classification (e.g. labeling of images) and regression
+(prediction of a numeric variable). These tasks are performed in different learning situations. Unsupervised
+learning are tasks where the response are unknown (e.g. genomic species delimitation, see Derkarabetian et
+al., 2019). Finally, in Reinforcement learning, the ML algorithm is trained by interacting with a (virtual)
+environment. Reinforcement learning is used in tasks in which the learning depends on executed actions and
+their produced consequences, for instance, playing strategy computer games such as DOTA (OpenAI et al.,
+2019) or Starcraft (Vinyals et al., 2019).
+
+Deep learning
+The co-evolution of computational resources and ML algorithms experienced a final peak with
+the emergence of DL algorithms in the last decade. DL algorithms are neural networks
+(McCulloch & Pitts, 1943) that differ from classical artificial neural networks mainly by their
+size. While many algorithms and network architectures that are used today were already
+described in the ‘80s and ‘90s (e.g. Fukushima, 1980; Lecun et al., 1998), their practical
+application was prevented by the lack of computing power at the time. This changed with the
+emergence of graphical processing units (GPU) in the ‘90s (Fig. 1). Although GPUs were
+originally developed for computer games or other graphical rendering tasks, it was quickly
+realized that they are often far more efficient than CPUs for certain numeric and linear algebra
+tasks. Krizhevsky et al., 2012 ushered in the new era of DL when they demonstrated that their
+competition-winning neural network could be trained within hours on a GPU instead of days
+or weeks using a CPU. Today, large DL models trained on GPUs with hundreds of millions
+parameters dominate the competition for many complex ML tasks, and their behavior often
+differs markedly from simple ML algorithms (see section “Why ML works”)
+
+Deep learning
+DL models represent the latest methodological advance in machine. DL algorithms are neural
+networks, with the difference that they include a large number of hidden layers (Borowiec et
+al., 2022; LeCun et al., 2015) and that the arrangement of the hidden layers (= architecture)
+is often different from the simple, fully connected ANN. Complex task-specific architectures,
+often with millions of parameters and specific structures, evolved over the years(for example
+residual neural networks (He et al., 2016), see also Table 1).
+Neural networks
+Possibly the most iconic ML architecture is a neural network, which is inspired by the
+architecture of our brains. The first fully functioning artificial neural network (ANN) was
+described by Rosenblatt, 1958. This “perceptron algorithm” was a binary classifier that
+connected the input neurons (one for each input variable = feature) to an output neuron
+(response). If the signal in the output crossed a certain threshold (activation function), the
+predicted class changed (e.g. from ‘0’ to ‘1’). However, because of its limited flexibility, and
+particularly its inability to represent nonlinear relationships, the perceptron fell into oblivion
+for many years until it was discovered that additional layers between the input and outout
+neurons (so-called ‘hidden’ layers) made it possible to fit any type of function shape (see
+subsection “deep learning”). The added flexibility is achieved by the hidden layers in
+conjunction with the non-linear activation function: as in the brain, a hidden neuron will only
+‘fire’ if the accumulated signals of the previous layers surpass a certain threshold. This
+structure allows ANNs to flexibly approximate practically any functional shape. The potential
+of ANNs for ecological applications was early recognized (e.g. Foody, 1995; Simpson et al.,
+1992; Tilman, 1977), although to today they have largely been replaced by the more advanced
+Deep Neural Networks in E&E (see section “Deep Learning”).
+
+
+
+
+There are several ways to describe what artificial neural networks are and how they are used as inference tools. Although the most obvious biological analogy is limited, it is helpful to visualize neural networks as computer algorithms inspired by the brain: composed of interconnected layers of nodes (‘neurons’) and connections (‘synapses’) capable of learning by changing how easy it is for neurons to fire and how strong the connections are (Box 1). Computers represent these layers and connections as matrices of numbers manipulated through linear algebra operations, ensuring that neural networks can be used with virtually any input that can be represented numerically (Figure 1). In a mathematical sense, neural networks are simply a function mapping input onto a desired output. 
+
 
 
 Machine learning (ML, see glossary in Supplementary Table 1)
@@ -214,9 +309,24 @@ o Formula: 2 * precision * recall / (precision + recall)
 For the examples above, this is 2 * .8 * .66 / (.8 + .66), or 72%.
 
 
+<p align="center">
+  <img src="https://i.imgur.com/TNDF3fR.png" width="600"/>
+</p>
 
+Image credit: [McClure et al. 2020](https://www.sciencedirect.com/science/article/pii/S2666389920301434)
 
-ADD SENSOR PICTURE 
+file:///Users/meredithpalmer/Desktop/Seeing_biodiversity_perspectives_in_machine_learni.pdf
+Data acquisition in animal ecology is rapidly accelerating due to
+inexpensive and accessible sensors such as smartphones, drones,
+satellites, audio recorders and bio-logging devices. These new
+technologies and the data they generate hold great potential for
+large-scale environmental monitoring and understanding, but
+are limited by current data processing approaches which are
+inefficient in how they ingest, digest, and distill data into relevant information. We argue that machine learning, and especially deep learning approaches, can meet this analytic challenge to enhance our understanding, monitoring capacity, and
+conservation of wildlife species. Incorporating machine learning into ecological workflows could improve inputs for population and behavior models and eventually lead to integrated
+hybrid modeling tools, with ecological models acting as constraints for machine learning models and the latter providing
+data-supported insights. In essence, by combining new machine learning approaches with ecological domain knowledge,
+animal ecologists can capitalize on the abundance of data generated by modern sensor technologies in order to reliably estimate population abundances, study animal behavior and mitigate human/wildlife conflicts.
 
 
 ## What will we do today? 
@@ -248,7 +358,7 @@ Image credit: [Edge Impulse](https://www.edgeimpulse.com/)
 Previously inaccessible areas of ecological and conservation interest can now be studied in intense detail thanks to new break-throughs in remote sensing and conservation technology. In addition to camera traps and acoustic sensors, ML can be employed to help process and analyse data from: 
 - On-animal sensors (e.g., GPS trackers, accelerometers, microphones, video cameras, heart-rate monitors)
 - Remote sensing footage (e.g., unmanned aerial vehicles (UAVS) or drones, satellites)
-- Crowd-sourced data (e.g., images collected by iNaturalist) 
+- Crowd-sourced data (e.g., data from iPhones, images collected by iNaturalist) 
    - As a note, crowdsourcing classifications through platforms such as the [Zooniverse](https://zooniverse.org) can help produce the [massive labeled image datasets](https://www.nature.com/articles/sdata201526?origin=app) necessary to train AI algorithms 
 
 AI are also becoming more sophisticated, extracting more different kinds of information from Big Data. For instance, camera trap image recognition algorithsm are not only getting better at detecting and classifying species, but now are being trained to extract trickier metrics, such as: 
@@ -259,7 +369,7 @@ AI are also becoming more sophisticated, extracting more different kinds of info
 - 3D recovery of animal pose (what is the animal doing) 
 - 3D reconstructions of the environment (what is the animal navigating) 
 
-For a more in-depth discussion, check out ["Perspectives in machine learning for wildlife conservation"](https://www.nature.com/articles/s41467-022-27980-y). 
+For a more in-depth discussion, check out ["Perspectives in machine learning for wildlife conservation"](https://www.nature.com/articles/s41467-022-27980-y) and ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256).  
 
 ## Definitions: 
 - **Artificial Intelligence (AI)**: A discipline concerned with the designing of computers that make predictions and decisions.
