@@ -15,6 +15,16 @@
 ## What is Edge Impulse?
 
 
+### What is embedded AI? 
+
+Recent advances in microprocessor architecture and algorithm design have made it possible to run sophisticated machine learning workloads on even the smallest of microcontrollers. Embedded machine learning, also known as TinyML, is the field of machine learning when applied to embedded systems such as these.
+There are some major advantages to deploying ML on embedded devices. The key advantages are neatly expressed in the unfortunate acronym BLERP, coined by Jeff Bier. They are:
+Bandwidth—ML algorithms on edge devices can extract meaningful information from data that would otherwise be inaccessible due to bandwidth constraints.
+Latency—On-device ML models can respond in real-time to inputs, enabling applications such as autonomous vehicles, which would not be viable if dependent on network latency.
+Economics—By processing data on-device, embedded ML systems avoid the costs of transmitting data over a network and processing it in the cloud.
+Reliability—Systems controlled by on-device models are inherently more reliable than those which depend on a connection to the cloud.
+Privacy—When data is processed on an embedded system and is never transmitted to the cloud, user privacy is protected and there is less chance of abuse.
+
 ## What we will do today 
 
 In this tutorial, you'll use machine learning to build a system that can recognize when a particular sound is happening—a task known as audio classification. The system you create will be able to recognize the sound of water running from a faucet, even in the presence of other background noise.
