@@ -280,6 +280,8 @@ export PYTHONPATH="$PYTHONPATH:$HOME/git/cameratraps:$HOME/git/ai4eutils:$HOME/g
 
 ## 4. Testing testing testing 
 
+Note: all the scripts we will be using have already been downloaded when you set up your environment!
+
 Let's start out by running a script ([run_detector.py](https://github.com/Microsoft/CameraTraps/blob/master/detection/run_detector.py)) that puts bounding boxes around animals detected in a single image at a time. This is not a good method for going through large batches of images! Rather, we're using this script to test whether everything has been set up correctly. 
 
 For both operating systems, decided what image in your **cameratrap_images** folder you'll be using to test the MegaDetctor. In the following script, replace **some_image_file.jpg** with the name and extension of that image.
@@ -290,7 +292,7 @@ Into your Anaconda prompt, type the following:
 
 ```batch
 cd c:\git\cameratraps
-python detection\run_detector.py "c:\Desktop\megadetector\md_v5a.0.0.pt" --image_file "c:\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
+python detection\run_detector.py "c:\Desktop\megadetector\md_v5b.0.0.pt" --image_file "c:\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
 ``` 
 
 Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg", which should (!) have boxes around the objects of interest.
@@ -301,21 +303,94 @@ Into your terminal, type the following:
 
 ```batch 
 cd ~/git/cameratraps
-python detection/run_detector.py "$HOME/Desktop/megadetector/md_v5a.0.0.pt" --image_file "some_image_file.jpg" --threshold 0.1
+python detection/run_detector.py "$HOME/Desktop/megadetector/md_v5b.0.0.pt" --image_file "some_image_file.jpg" --threshold 0.1
 ```
 
 Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg", which should (!) have boxes around the objects of interest.
 
 ## 5. Running MegaDetector 
 
-Now we're reading to dive in with some batch processing!  
+Now we're reading to dive in with some batch processing! Here, we'll be using a different script, [run_detector_batch.py](https://github.com/Microsoft/CameraTraps/blob/master/detection/run_detector_batch.py). This doesn't create bounding boxes on your images; rather, it outputs a JSON file with information on predictions (what is in the image) and locations (where is it in the image) that can be read into Timelapse. 
+
+### Instructions for Windows 
+
+```batch
+cd c:\git\cameratraps
+python detection\run_detector_batch.py "c:\Desktop\megadetector\md_v5b.0.0.pt" "c:\Desktop\cameratrap_images" "c:\Desktop\megadetector\test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
+```
+
+This will produce a file called "c:\Desktop\megadetector\test_output.json"
+
+### Instructions for Mac
+
+```batch
+cd ~/git/cameratraps
+python detection/run_detector_batch.py "$HOME/Desktop/megadetector/md_v5b.0.0.pt" "$HOME/Desktop/cameratrap_images" "$HOME/Desktop/megadetector/test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
+```
+
+This will produce a file called "c:/Desktop/megadetector/test_output.json"
+
+## 6. Reading data into Timelapse
+
+The following instructions come from Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf), which you should consult for more information (and troubleshooting tips)! 
+
+To import recognition data (try this with the image recognition practice set):
+• place the .json file into the same folder as your .tdb file; ???? 
+• start Timelapse and load your image set as normal;
+• import the .json file by selecting File|Import image recognition data for
+this image set.
+
+### Displaying data 
+
+Timelapse uses the data in the JSON file to display each detected entity as a colored bounding box drawn atop each image. Each box:
+- is labeled with what it thinks the entity is (e.g., person, animal)
+- is colored to distinguish the detection category (e.g., red for person, blue for animal)
+- includes a confidence value of correctness ranging from 1 (high confidence) down to 0 (low confidence)
+
+<p align="center">
+  <img src="https://i.imgur.com/X096AP7.png" width="600"/>
+</p>
+
+
+can set a threshold where Timelapse will display bounding boxes
+only for detections above that threshold
+
+The right image also correctly classifies the detected animal as a deer,
+except this time with a much lower probability value (.5). Because of its low
+probability, a drop down menu is included that lists alternate possibilities of
+lesser probabilities, in this case an elk at .49. When multiple classifications
+appear, the bounding box label displays the highest probability prediction.
+If no classifications are available, then the label only shows the recognized
+detection category (e.g., Person, Animal, Empty). 
+
+https://i.imgur.com/jIRWzaJ.png
 
 
 
+**Sidebar: the meaning of confidence levels** Confidence is best seen as a very rough indicator of how likely it is that a detection or classification is correct. The catch is that the reliability of a particular confidence value can vary greatly from dataset to dataset. 
+
+Various image recognition capabilities are available once recognition data
+has been imported. This includes the previously discussed bounding boxes
+overlaid atop the image you are viewing, and a recognition panel in the
+Select | Custom select dialog
+
+### Image recognition prefernences 
+
+You can customize how and when your bounding box appears in the preferences dialog (or just accept the reasonable defaults).
+- select Option > Preferences and go to the **Automated Image Recognition** panel
+- click the **Annotate bounding box** checkbox to either include or exclude the recognition labels atop the bounding box
+- if you have color blindness issues, the **Use color-blind friendly colors** will adjust the bounding box colors accordingly
+- use the slider to adjust the confidence threshold, where bounding boxes are displayed only for recognitions whose confidence is above that threshold or higher will be displayed
+
+Confidence of detections vs. classifications. Each detection has a single
+confidence value indicating its relative likelihood that it is a correct
+detection. Classifications differ. As the classifier produces 1 or more predictions per detection, it assigns each classification with a relative probability
+of being correct, all summing to 1. The classification probability is used
+as a rough indicator of confidence, i.e., how likely it is that the entity was
+correctly recognized. 
 
 
-
-## Applying MegaDetector in your reserach 
+## Applying MegaDetector in your research 
 
 ### Evaluating MegaDetector performance 
 
