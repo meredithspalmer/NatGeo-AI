@@ -1,17 +1,19 @@
-
-25-SEP-2022: THIS IS CURRENTLY A WORK IN PROGRESS
-
-
 # Getting started with MegaDetector! 
 
-**DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to set up and run MegaDetector and import data for review in Timelapse. The instructions presented are largely and gratefully taken from the original [MegaDetetctor documentation](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md), created and maintained by [Sara Beery](https://beerys.github.io/), [Dan Morris](http://dmorris.net/), and [Siyu Yang](https://twitter.com/yangsiyu_) ([Efficiency Pipeline for Camera Trap Image Review](https://arxiv.org/abs/1907.06772), 2019). Modifications have been made to simplify the pipeline (e.g., using only the most up-to-date version of MegaDetector) and to add additional explanations or clarifications to aid understanding by a non-technical audience. We have also drawn heavily on the documentation and background provided in Saul Greenberg's excellent [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf). We strongly recommend that you consult these original sources for additional information. 
+**DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to set up and run MegaDetector and import data for review in Timelapse. The instructions presented are largely and gratefully taken from the original [MegaDetetctor documentation](https://github.com/microsoft/CameraTraps/blob/main/megadetector.md), created and maintained by [Sara Beery](https://beerys.github.io/), [Dan Morris](http://dmorris.net/), and [Siyu Yang](https://twitter.com/yangsiyu_) ([Efficiency Pipeline for Camera Trap Image Review](https://arxiv.org/abs/1907.06772), 2019). Modifications have been made to simplify the pipeline (e.g., using only the most up-to-date version of MegaDetector) and to add additional explanations or clarifications to aid understanding by a non-technical audience. We have also drawn heavily on the documentation and background provided in Saul Greenberg's excellent [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf). We strongly recommend that you consult these original sources for more information. 
 
 ## Table of Contents 
 
 1. [What is MegaDetector](#what-is-megadetector)
 2. [What MegaDetector does](#what-megadetector-does) 
 3. [What we will do today](#what-we-will-do-today)
-4. [Before we begin](#0-before-we-begin) 
+4. [Before we begin](#before-we-begin) 
+5. [Camera trap data](#1-camera-trap-data) 
+6. [Download MegaDetector](#2-download-megadetector) 
+7. [Clone git files](#3-clone-git-files) 
+8. [Testing testing testing](#4-testing-testing-testing) 
+9. [Running MegaDetector](#5-running-megadetector)
+
 
 ## What is MegaDetector?
 
@@ -19,17 +21,19 @@ MegaDetector is a free, open-source image recognition system designed to detect 
 
 Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone. 
 
-![Alt Text](https://i.imgur.com/YHjuxaN.gif)
+<p align="center">
+  <img src="https://i.imgur.com/YHjuxaN.gif" width="600"/>
+</p>
 
 Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](https://beerys.github.io/).
 
 ### Background
 
-**Camera traps** are rugged cameras, deployed in the field, which are automatically triggered by passing animals, unobtrusively collecting data on the abundance, distribution, and behavior of medium- and large-bodied vertebrates. The information collected by these devices can be applied to address novel ecological questions and wildlife conservation conundrums. The improved reliability and continually decreasing cost of camera traps has resulted in massive uptake of this technological tool, and, concomitantly, exponential growth in the number of images they capture. 
+**Camera traps** are rugged cameras, deployed in the field, which are automatically triggered by passing animals, unobtrusively collecting data on the abundance, distribution, and behavior of medium- and large-bodied vertebrates. Data from camera traps can be used to address ecological questions and tackled conservation conundrums. The improved reliability and continually decreasing cost of camera traps has resulted in their enthusiastic uptake by the ecological community - and, concommitantly, an exponential increase in the amount of camera trap footage gathered every year. 
 
-Medium- to large-scale camera trap projects ([~78 cameras or larger](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/fee.1448)) now amass millions of photos every year. In fact, the rate at which we capture camera trap data now [far exceeds](https://www.cambridge.org/core/journals/environmental-conservation/article/wildlife-insights-a-platform-to-maximize-the-potential-of-camera-trap-and-other-passive-sensor-wildlife-data-for-the-planet/98295387F86A977F2ECD96CCC5705CCC) our ability to process those images. The major bottleneck is transforming raw images (pictures) into the kinds of data that can be used in statistical analyses (numbers). Once collected, each image must be indentified to species and, often, further assessed for animal counts and characteristics (e.g., age, sex, behavior). The time and labor required to annotate these images - sometimes, years pass! - can mean that survey results are less relevant to practitioners by the time analysis is complete.  
+Once collected, the images need to be transformed into the kinds of data that can be used in statistical analyses (numbers). Each picture must be manually reviewed to classify what species it contains, and often, how many individuals there are, their characteristics (e.g., age, sex, health), and their behavior. Unfortunately, with average-sixed camera trap projects ([~78 cameras or larger](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/fee.1448)) now amassing millions of photos annually, the rate at which we capture data now [far exceeds](https://www.cambridge.org/core/journals/environmental-conservation/article/wildlife-insights-a-platform-to-maximize-the-potential-of-camera-trap-and-other-passive-sensor-wildlife-data-for-the-planet/98295387F86A977F2ECD96CCC5705CCC) our ability to process those images. The time and labor required to annotate these images - sometimes, years pass! - can mean that survey results are less relevant to practitioners by the time analysis is complete.  
 
-Frustratingly, a huge proportion of the time wildlife ecologists and conservation biologists invest in reviewing camera trap images is spent going through data they aren’t even interested in – that is, empty images with no wildlife or those containing people or vehicles. The good news is, **artificial intelligence (AI)** can help accelerate this process, removing these “noise” images and allowing biologists to spend their time on images that matter!   
+Frustratingly, a huge proportion of the time wildlife ecologists and conservation biologists invest in reviewing camera trap images is spent going through data they aren’t even interested in – that is, empty images with no wildlife or those containing non-focal species, like people or vehicles. The good news is, **artificial intelligence (AI)** can help accelerate this process, removing these “noise” images and allowing biologists to spend their time on images that matter!   
 
 While AI is not a perfect replacement for the human eye/brain, integrating AI algorithms into camera trap workflows can massively accelerate research and conservation by alleviating data bottlenecks. 
 
@@ -37,9 +41,11 @@ While AI is not a perfect replacement for the human eye/brain, integrating AI al
   <img src="https://i.imgur.com/o23m8HA.png" width="600"/>
 </p>
 
+## What MegaDetector does 
+
 ### Image Recognition: Detectors vs. Classifiers
 
-MegaDetector is **not** an image classifier! When you run MegaDetector, you will not learn what type of animal is present in your camera trap image. Rather, MegaDetector is a kind of AI that we call an image *detector*, which tells you whether there is a thing in the image and where it is. 
+MegaDetector is **not** an image classifier! When you run MegaDetector, you will not learn what type of animal is present in your camera trap image (other than the broad classification of 'wildlife', 'human', or 'vehicle'). Rather, MegaDetector is a kind of AI that we call an image *detector*, which tells you whether there is a thing in the image and where it is. 
 
 From Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf):
 
@@ -53,7 +59,7 @@ suspected detection, it:
 
 Classifiers need to be trained for specific target specis in specific system - there is no 'MegaClassifier' for all species in all systems! (although check out emerging tools like [Wildlife Insights](https://www.wildlifeinsights.org/) that are trained on global camera trap data sets). For more information on pre-trained classifiers, Dan Morris maintains a [GitHub repository](https://agentmorris.github.io/camera-trap-ml-survey/) of available tools and resources. 
 
-### So what?
+### How does this help? 
 
 Ugh, we will still have to go through all the images and identify each species, what a scam! Or is it? - why is information from a detector useful? 
 
@@ -63,7 +69,7 @@ An obscene number of images collected by camera traps ([up to >70%](https://hcjo
 
 2. **Detectors can also be used to flag images containing people or vehicles**:
 
-If your dataset will be shared (such as with citizen scientists or collaborators), you should probably remove any issues captured of people to respect their privacy. While rarely their primary function, camera traps can be used to surveil people without their consent, raising a whole host of ethical issues. As with empty images, if data from images containing people or vehicles is not important to your analysis, you can eliminate them from the classification pile. 
+If your dataset will be shared (such as with [citizen scientists](www.zooniverse.org) or [collaborators](www.lila.science), you should probably remove any issues captured of people to respect their privacy. While rarely their primary function, camera traps can be used to surveil people without their consent, raising a whole host of ethical issues. As with empty images, if data from images containing people or vehicles is not important to your analysis, you can eliminate them from the classification pile. 
 
 - For a great introduction to the ethics of conservation technology, check out the WILDLABS Tech Tutors discussion ["How do I use Conservation Tech Ethically?"](https://www.wildlabs.net/event/how-do-i-use-conservation-tech-ethically) and Koustubh Sharma's paper
 [Conservation and people: Towards an ethical code of conduct for the use of camera traps in wildlife research](https://besjournals.onlinelibrary.wiley.com/doi/10.1002/2688-8319.12033). 
@@ -84,15 +90,13 @@ But wait - we're talking here about an image classifer. When Sara Beery and her 
 
 So what kind of AI is MegaDetector? MegaDetector is an *Faster R-CNN* object detection model. **CNN** stands for **"convolutional neural network"**, a type of artificial neural network used in image recognition and processing that is specifically designed to process pixel data. CNNs evaluate image data in a hierarchical fashion similar to the way mammalian brains process visual information. They are trained to identify objects of interest by learning how to associate raw inputs (i.e., pixel values) to labelled image data. CNNs are a powerful class of models because they are able to learn and extract complex visual features without direct supervision of a human expert. 
 
-In a (greatly simplified) nutshell, the CNN applies a bunch of filters over an image in a process known as *convultion*. The convolution layers use these filters to pick out visual features in the image (e.g., colors, textures, shapes). What features the model focuses on are learned by the model, rather than prescribed by the researcher. During the training process, the algorithm is fed a bunch of images that already contain correct bounding boxes (the "ground truth"). After convolution, the model proposes regions it thinks contain an animal and provides a prediction score for how confident it is that an animal is present. After each prediction, the model goes and checks how well it did against the "ground truth" bounding box data. It then adjusts its parameters and tries again -- through this iterative process, the model gets better and better at drawing boxes around real animals. 
-
 <p align="center">
   <img src="https://i.imgur.com/CEfmAGd.jpg" width="600"/>
 </p>
 
 Image credit: Siyu Wang, ["How do I get started with MegaDetector?"](https://www.wildlabs.net/event/how-do-i-get-started-megadetector) 
 
-Anyone with a real understanding of CNNs is probably crying at this point: to dig into the technical details, check out Sylvain Christin's excellent paper ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
+For more information on how artificial neural networks are trained, visit our **Intro to AI packet**. To dig into more technical details about CNNs and deep learning models, check out Sylvain Christin's excellent paper ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
 
 ### Important considerations 
 
@@ -110,9 +114,11 @@ Image credit: [Sara Beery](https://beerys.github.io/) et al. 2018 ["Recognition 
 
 To learn more about situations under which image recognition works and where it can fail, you can check out ["Automated Image Recognition for Wildlife Camera Traps: Making it Work for You"](https://prism.ucalgary.ca/bitstream/handle/1880/112416/2020-08-Greenberg-ImageRecognitionCameraTraps.pdf?sequence=6) from Timelapse creator Saul Greenberg. 
 
-## What MegaDetector does
+## What we will do today
 
-MegaDetector produces a JSON recognition file that contains information on which images MegaDetector predicts contain objects of interest (animals, people, vehicles), where those objects are in the image, and the confidence that the algorithm has in its classification.  
+### Image classification pipeline
+
+When you run MegaDetector, the program produces a JSON recognition file that contains information on which images MegaDetector predicts contain objects of interest (animals, people, vehicles), where those objects are in the image, and the confidence that the algorithm has in its classification.  
 
 ***Sidebar: What is a JSON file?*** JSON stands for "JavaScript Object Notation" and is a text-based file format that stores simple data structures and objects. These files are Jlightweight, text-based, human-readable, can be edited using a text editor. 
 
@@ -130,32 +136,28 @@ Importantly for us, the MegaDetector team have collaborated with Timelapse to ma
 
 Image credit: Saul Greenberg
 
-### Other options 
+***Sidebar: Other options*** Not a fan of Timelapse? MegaDetector has (self-described) "somewhat-less-complete" integrations with the [eMammal desktop application](https://github.com/microsoft/CameraTraps/blob/master/api/batch_processing/integration/eMammal) and with open-source image organizer [dikiKam](https://github.com/microsoft/CameraTraps/tree/master/api/batch_processing/integration/digiKam). The MegaDetector team has also created [Python tools](https://github.com/microsoft/CameraTraps) that use MegaDetector results to sort images into different folders for "probably-empty", "probably-animal", "probably-human", and "probably-vehicle". This is a useful function to get rid of images that MegaDetector suspects are empty, allowing you to continue with your established camera trap classification pipeline with fewer blank images. 
 
-Not a fan of Timelapse? MegaDetector has (self-described) "somewhat-less-complete" integrations with the [eMammal desktop application](https://github.com/microsoft/CameraTraps/blob/master/api/batch_processing/integration/eMammal) and with open-source image organizer [dikiKam](https://github.com/microsoft/CameraTraps/tree/master/api/batch_processing/integration/digiKam). 
+### Plan of attack: 
 
-The MegaDetector team has also created [Python tools](https://github.com/microsoft/CameraTraps) that use MegaDetector results to sort images into different folders for "probably-empty", "probably-animal", "probably-human", and "probably-vehicle". This is a useful function to get rid of images that MegaDetector suspects are empty, allowing you to continue with your established camera trap classification pipeline with fewer blank images. 
-
-## What we will do today 
-
-1. First, we will run a simple script that will process one camera trap image: the AI will attempt to locate the object of interest (wildlife, human, or car) in a camera trap image and add a bounding box around the area it predicts the object to be located. This is neat to see, but running through images one at a time is not particularly useful! Rather, we will use this as a test to make sure that your environment is set up correctly. 
+1. First, we will run a simple script that will process one camera trap image: the AI will attempt to locate the object of interest and add a bounding box around the area it predicts the object to be located. This is pretty neat to see, but running through images one at a time is not particularly useful! Rather, we will use this as a test to make sure that your environment is set up correctly. 
 
 2. Next, we will run a script that processes entire batches of images in one go. This script produces a JSON file that we will use to view and sort our images in a camera trap image analyser. 
 
-3. We will then be loading our resultant JSON files and camera trap images into [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse) for manual review and additional data extraction.  
+3. We will then be loading our resultant JSON files and camera trap images into [Timelapse](https://saul.cpsc.ucalgary.ca/timelapse) for manual review of important images and additional data extraction.  
 
 ### Important notes
 
 - The following instructions are for Windows and Mac machines: please follow the instructions particular to your operating system.  
 - We will be using Python, but no coding knowledge required! We'll navigate you to your terminal, into which you can copy and paste the commands listed here. It should be plug and chug, but I'll be there to help trouble-shoot any issues that arise! 
 
-## 0. Before we begin... 
+## Before we begin... 
 
 Before we can run MegaDetector, we need to install the following prerequisites: 
 
 1. **Anaconda**: Anaconda is a free, open-source data science platform that helps users manage Python packages. You can download Anaconda [here](https://www.anaconda.com/products/individual).
 
-On Windows, Anaconda will create two different comand prompts: 'Anaconda Prompt (anaconda3)' and 'Anaconda Powershell Prompt (anaconda3)'. *Use the 'Anacdona Prompt (anaconda3)'* not the powershell prompt. For Macs, anaconda will run directly in your terminal. 
+On Windows, Anaconda will create two different comand prompts: 'Anaconda Prompt (anaconda3)' and 'Anaconda Powershell Prompt (anaconda3)'. **Use the 'Anacdona Prompt (anaconda3)' prompt** not the powershell prompt. For Macs, anaconda will run directly in your terminal. 
 
 2. **Git**: Git is a free, open-source version control software, i.e., a program for coordinating among programmers by tracking changes in sets of files. 
 
@@ -200,24 +202,21 @@ There are a number of different virtualization options to choose from, including
    - [VWMWare Fusion](https://www.vmware.com/products/fusion/fusion-evaluation.html): Free for personal use, but hasn't been update in a while (may run into compatibility issues with newer macOS); less user-friendly than Parallels
    - [VirtualBox](https://www.virtualbox.org/): Also free, and also not quite as easy to use as Parallels
 
-I will be using Parallels to demonstrate how to upload your MegaDetector results into Timelapse; **for this workshop, I recommend downloading the free trial of [Parallels](https://www.parallels.com/products/desktop/welcome-trial/)** and exploring alternative options if this is a tool you will be using in the future. 
+**For this workshop, I recommend downloading the free trial of [Parallels](https://www.parallels.com/products/desktop/welcome-trial/)** and exploring alternative options if this is a tool you will be using in the future. 
 
 4. **Timelapse**: Download and install Timelapse according to the instructions on the [Timelapse website](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.Download2). 
 
 ## 1. Camera trap data
 
-A sample of camera trap image data can be found here ... store on your computer WHERE 
-Use your own data if also store HOW 
+Download and extract **this zipped file**. Store the images in a folder on your Desktop called "cameratrap_images". 
 
-If interested in playing around with more camera trap data, you can find public repositiories at LILA SCIENCE --> link 
-
+Feel free to use your own camera trap data if you have it! For purposes of this demonstration, we recommend using <50 images (for fast processing time). Either copy a sample of your data to a folder on your Desktop as per above or be sure to update the file directory structure in the following code to point the program to where your files are stored.
 
 ## 2. Download MegaDetector 
 
 We'll be working with the latest version of MegaDetector (MDv5b) for this workshop. 
 - Create a folder on your Desktop called 'megadetector' 
 - Download [MDv5b](https://github.com/microsoft/CameraTraps/releases/download/v5.0/md_v5b.0.0.pt) to this folder 
-
 
 ## 3. Clone git files 
 
@@ -246,24 +245,70 @@ cd c:\git\cameratraps
 This has created your MegaDetector environment! When running MegaDetector in the future, you only need to run: 
 
 ```batch
-
+cd c:\git\cameratraps
+conda activate cameratraps-detector
+set PYTHONPATH=%PYTHONPATH%;c:\git\cameratraps;c:\git\ai4eutils;c:\git\yolov5
 ```
-
 
 ### Instructions for Mac
 
+Open up your terminal; you should see "(base)" at your command prompt. Now run: 
 
+```batch
+mkdir ~/git
+cd ~/git
+git clone https://github.com/Microsoft/cameratraps
+git clone https://github.com/Microsoft/ai4eutils
+cd ~/git/cameratraps
+conda env create --file environment-detector-mac.yml
+conda activate cameratraps-detector
+export PYTHONPATH="$PYTHONPATH:$HOME/git/cameratraps:$HOME/git/ai4eutils:$HOME/git/yolov5"
+cd ~/git
+git clone https://github.com/ultralytics/yolov5/
+cd ~/git/yolov5
+git checkout c23a441c9df7ca9b1f275e8c8719c949269160d1
+cd ~/git/cameratraps
+``` 
 
+This has created your MegaDetector environment! When running MegaDetector in the future, you only need to run: 
 
+```batch
+cd ~/git/cameratraps
+conda activate cameratraps-detector
+export PYTHONPATH="$PYTHONPATH:$HOME/git/cameratraps:$HOME/git/ai4eutils:$HOME/git/yolov5"
+``` 
 
-## 4. Setting up MegaDetector
+## 4. Testing testing testing 
+
+Let's start out by running a script ([run_detector.py](https://github.com/Microsoft/CameraTraps/blob/master/detection/run_detector.py)) that puts bounding boxes around animals detected in a single image at a time. This is not a good method for going through large batches of images! Rather, we're using this script to test whether everything has been set up correctly. 
+
+For both operating systems, decided what image in your **cameratrap_images** folder you'll be using to test the MegaDetctor. In the following script, replace **some_image_file.jpg** with the name and extension of that image.
 
 ### Instructions for Windows 
 
+Into your Anaconda prompt, type the following: 
+
+```batch
+cd c:\git\cameratraps
+python detection\run_detector.py "c:\Desktop\megadetector\md_v5a.0.0.pt" --image_file "c:\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
+``` 
+
+Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg", which should (!) have boxes around the objects of interest.
+
 ### Instructions for Mac
 
+Into your terminal, type the following: 
 
-## 5. Pulling data into Timelapse 
+```batch 
+cd ~/git/cameratraps
+python detection/run_detector.py "$HOME/Desktop/megadetector/md_v5a.0.0.pt" --image_file "some_image_file.jpg" --threshold 0.1
+```
+
+Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg", which should (!) have boxes around the objects of interest.
+
+## 5. Running MegaDetector 
+
+Now we're reading to dive in with some batch processing!  
 
 
 
