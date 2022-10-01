@@ -212,7 +212,7 @@ There are a number of different virtualization options to choose from, including
 
 ## 1. Camera trap data
 
-Download and extract **[this zipped file](https://drive.google.com/file/d/14Z72gCNshxs-qQZWkYA8bx1gCnWKiI5V/view?usp=sharing)**. Store the images in a folder on your Desktop called "cameratrap_images". The images in this folder are taken from the Timelapse [Practice Image Set](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.UserGuide). 
+Download and extract **[this zipped file](https://drive.google.com/file/d/14Z72gCNshxs-qQZWkYA8bx1gCnWKiI5V/view?usp=sharing)**. Store the images in a folder on your Desktop called "cameratrap_images". (Image attribution: [Saul Greenberg](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.UserGuide)). 
 
 Feel free to use your own camera trap data if you have it! For purposes of this demonstration, we recommend using <50 images (for fast processing time). Either copy a sample of your data to a folder on your Desktop as per above or be sure to update the file directory structure in the following code to point the program to where your files are stored.
 
