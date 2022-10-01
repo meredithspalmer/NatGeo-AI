@@ -14,16 +14,47 @@
 
 ## What is Edge Impulse?
 
+[Edge Impulse](https://www.edgeimpulse.com/) is a tool for training artificial intellgience models, specifically those that are optimized to perform on edge devices (**tinyML**; more on this below!). By using Edge Impulse, you can build a sophisticated AI algorithm without having to do a deep-dive into the underlying framwork for machine learning or become an expert in Python or Tensorflow. Edge Impulse allows you to create a model pipeline (called an **"impulse"**), train and test your model, and deploy it to your device. 
 
-### What is embedded AI? 
+<p align="center">
+  <img src="https://miro.medium.com/max/1400/1*3_WTRShh3TTQXEzfdcEUEA.png" width="900"/>
+</p>
 
-Recent advances in microprocessor architecture and algorithm design have made it possible to run sophisticated machine learning workloads on even the smallest of microcontrollers. Embedded machine learning, also known as TinyML, is the field of machine learning when applied to embedded systems such as these.
-There are some major advantages to deploying ML on embedded devices. The key advantages are neatly expressed in the unfortunate acronym BLERP, coined by Jeff Bier. They are:
-Bandwidth—ML algorithms on edge devices can extract meaningful information from data that would otherwise be inaccessible due to bandwidth constraints.
-Latency—On-device ML models can respond in real-time to inputs, enabling applications such as autonomous vehicles, which would not be viable if dependent on network latency.
-Economics—By processing data on-device, embedded ML systems avoid the costs of transmitting data over a network and processing it in the cloud.
-Reliability—Systems controlled by on-device models are inherently more reliable than those which depend on a connection to the cloud.
-Privacy—When data is processed on an embedded system and is never transmitted to the cloud, user privacy is protected and there is less chance of abuse.
+### What is tinyML? 
+
+Rather than just running complex neural networks and other algorithms on giant computers, we can now run them on smaller, more power efficient devices. An **embedded system** is any computer system that is contained or embedded inside of another larger mechanical or electrical system. This is opposed to things like desktops, laptops, phones, and servers. Single board computers like this Raspberry Pi can be considered embedded systems if they're implanted into some other device like a robot. Similarly, microcontrollers like the one on this Arduino board, are generally considered embedded systems as well as they're often used to control physical or electrical devices with little or no human interaction. **Embedded machine learning**, also known as **tinyML**, is the field of machine learning when applied to embedded systems such as these.  -- UPDATE 
+
+### Why optimize for tinyML? 
+
+Traditionally
+
+There are several key applications for tinyML in the conservation biology and wildlife ecology fields
+
+The key advantages are neatly expressed in the unfortunate acronym **BLERP**, coined by Jeff Bier. They are:
+- **Bandwidth**: ML algorithms on edge devices can extract meaningful information from data that would otherwise be inaccessible due to bandwidth constraints
+- **Latency—On-device**: ML models can respond in real-time to inputs, enabling applications such as autonomous vehicles, which would not be viable if dependent on network latency
+- **Economics**: By processing data on-device, embedded ML systems avoid the costs of transmitting data over a network and processing it in the cloud
+- **Reliability**: Systems controlled by on-device models are inherently more reliable than those which depend on a connection to the cloud
+- **Privacy**: When data is processed on an embedded system and is never transmitted to the cloud, user privacy is protected and there is less chance of abuse
+
+Some of the key applications in the conservation biology and wildlife ecology fields include. .. 
+- small cheap efficient hardware (low hardware cost)
+- low energy use, huge battery life
+- no need for communications (no need to send to server)
+- potentially, aboslute privacy (avoid collecting data don't want, i.e., on people)
+
+
+tinyML: 
+on-device machine learning applications include detecting and responding to 
+- vibration and motion (e.g., acceleromoter, pressure, speed)
+- voice and sound (e.g., keyword spotting, speech/sound recognition)
+- images and video (e.g., face unlock, object detection/classification)
+
+why optimize for tinyML? 
+- power constraints: extend battery life of edge devices by reducing awake time
+- cycle contstraints: meet real time latency constraints 
+
+
 
 ## What we will do today 
 
