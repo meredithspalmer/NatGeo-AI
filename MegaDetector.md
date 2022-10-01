@@ -13,6 +13,8 @@
 7. [Clone git files](#3-clone-git-files) 
 8. [Testing testing testing](#4-testing-testing-testing) 
 9. [Running MegaDetector](#5-running-megadetector)
+10. [Reading data into Timelapse](#6-reading-data-into-timelapse) 
+11. [Applying MegaDetector in your research](#applying-megadetector-in-your-research) 
 
 
 ## What is MegaDetector?
@@ -40,6 +42,8 @@ While AI is not a perfect replacement for the human eye/brain, integrating AI al
 <p align="center">
   <img src="https://i.imgur.com/o23m8HA.png" width="600"/>
 </p>
+
+Image credit: [Meredith Palmer](https://www.meredithspalmer.weebly.com) / [Snapshot Serengeti](https//www.snapshotserengeti.org) 
 
 ## What MegaDetector does 
 
@@ -86,7 +90,7 @@ The information provided by the bounding boxes (zeroing in on the wildlife in th
 
 Typically, we would not recommend using an 'off-the-shelf' AI algorithm that hadn't been trained on your specific data - the huge variability in terms of species, geography, background, etc. can mean that even an algorithm that works exceptionally well for the camera trap images it is trained on might perform poorly even on new location within the very same system! 
 
-But wait - we're talking here about an image classifer. When Sara Beery and her team took [millions of labeled camera trap images from around the world](https://lila.science), they found that an animal detector not only performed on species and sites used in the training data, but also generalized exceptionally well to animals and place that it had never 'seen' before. Thus, MegaDetector was born. 
+But wait - we're talking now about an image classifer. When Sara Beery and her team took [millions of labeled camera trap images from around the world](https://lila.science), they found that an animal ***detector*** not only performed on species and sites used in the training data, but also generalized exceptionally well to animals and place that it had never 'seen' before. Thus, MegaDetector was born. 
 
 So what kind of AI is MegaDetector? MegaDetector is an *Faster R-CNN* object detection model. **CNN** stands for **"convolutional neural network"**, a type of artificial neural network used in image recognition and processing that is specifically designed to process pixel data. CNNs evaluate image data in a hierarchical fashion similar to the way mammalian brains process visual information. They are trained to identify objects of interest by learning how to associate raw inputs (i.e., pixel values) to labelled image data. CNNs are a powerful class of models because they are able to learn and extract complex visual features without direct supervision of a human expert. 
 
@@ -208,7 +212,7 @@ There are a number of different virtualization options to choose from, including
 
 ## 1. Camera trap data
 
-Download and extract **this zipped file**. Store the images in a folder on your Desktop called "cameratrap_images". 
+Download and extract **[this zipped file](https://drive.google.com/file/d/14Z72gCNshxs-qQZWkYA8bx1gCnWKiI5V/view?usp=sharing)**. Store the images in a folder on your Desktop called "cameratrap_images". The images in this folder are taken from the Timelapse [Practice Image Set](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.UserGuide). 
 
 Feel free to use your own camera trap data if you have it! For purposes of this demonstration, we recommend using <50 images (for fast processing time). Either copy a sample of your data to a folder on your Desktop as per above or be sure to update the file directory structure in the following code to point the program to where your files are stored.
 
@@ -236,7 +240,7 @@ conda env create --file environment-detector.yml
 conda activate cameratraps-detector
 set PYTHONPATH=%PYTHONPATH%;c:\git\cameratraps;c:\git\ai4eutils;c:\git\yolov5
 cd c:\git
-git clone https://github.com/ultralytics/yolov5/
+git clone https://github.com/ultralytics/yolov5/ 
 cd c:\git\yolov5
 git checkout c23a441c9df7ca9b1f275e8c8719c949269160d1
 cd c:\git\cameratraps
@@ -252,7 +256,7 @@ set PYTHONPATH=%PYTHONPATH%;c:\git\cameratraps;c:\git\ai4eutils;c:\git\yolov5
 
 ### Instructions for Mac
 
-Open up your terminal; you should see "(base)" at your command prompt. Now run: 
+*First time*: open up your terminal; you should see "(base)" at your command prompt. Now run: 
 
 ```batch
 mkdir ~/git
@@ -295,7 +299,9 @@ cd c:\git\cameratraps
 python detection\run_detector.py "c:\Desktop\megadetector\md_v5b.0.0.pt" --image_file "c:\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
 ``` 
 
-Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg", which should (!) have boxes around the objects of interest.
+Note: You may need a longer path name to get to your Desktop. To check, right click on your Desktop > Properties. For my computer, I need to update "c:\Desktop\" in the code below to "c:\Users\MPalmer\Desktop".
+
+Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg" with bounding boxes around the objects of interest! 
 
 ### Instructions for Mac
 
@@ -306,7 +312,7 @@ cd ~/git/cameratraps
 python detection/run_detector.py "$HOME/Desktop/megadetector/md_v5b.0.0.pt" --image_file "some_image_file.jpg" --threshold 0.1
 ```
 
-Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg", which should (!) have boxes around the objects of interest.
+Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg" with bounding boxes around the objects of interest! 
 
 ## 5. Running MegaDetector 
 
@@ -316,81 +322,61 @@ Now we're reading to dive in with some batch processing! Here, we'll be using a 
 
 ```batch
 cd c:\git\cameratraps
-python detection\run_detector_batch.py "c:\Desktop\megadetector\md_v5b.0.0.pt" "c:\Desktop\cameratrap_images" "c:\Desktop\megadetector\test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
+python detection\run_detector_batch.py "c:\Desktop\megadetector\md_v5b.0.0.pt" "c:\Desktop\cameratrap_images" "c:\Desktop\cameratrap_images\test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
 ```
 
-This will produce a file called "c:\Desktop\megadetector\test_output.json"
+Again, don't forget to update the paths to your Desktop if necessary! 
+
+This will produce a file called "c:\Desktop\cameratrap_images\test_output.json"
 
 ### Instructions for Mac
 
 ```batch
 cd ~/git/cameratraps
-python detection/run_detector_batch.py "$HOME/Desktop/megadetector/md_v5b.0.0.pt" "$HOME/Desktop/cameratrap_images" "$HOME/Desktop/megadetector/test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
+python detection/run_detector_batch.py "$HOME/Desktop/megadetector/md_v5b.0.0.pt" "$HOME/Desktop/cameratrap_images" "$HOME/Desktop/cameratrap_images/test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
 ```
 
-This will produce a file called "c:/Desktop/megadetector/test_output.json"
+This will produce a file called "c:/Desktop/cameratrap_images/test_output.json"
 
 ## 6. Reading data into Timelapse
 
-The following instructions come from Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf), which you should consult for more information (and troubleshooting tips)! 
+The following instructions come from Saul Greenberg's [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf), which you should consult for more information and troubleshooting tips! 
 
-To import recognition data (try this with the image recognition practice set):
-• place the .json file into the same folder as your .tdb file; ???? 
-• start Timelapse and load your image set as normal;
-• import the .json file by selecting File|Import image recognition data for
-this image set.
+The sample camera trap data comes with a file called "TimelapseTemplate.tdb". This is a file that specifies what data fields will be displayed in the Timelapse interface. You can check out the [Timelapse Image Recognition Guide](https://saul.cpsc.ucalgary.ca/timelapse/uploads/Guides/TimelapseImageRecognitionGuide.pdf) for information on how to create your own template (e.g., with fields for collecting the specific data you are interested in). 
 
-### Displaying data 
+Make sure that this file and the JSON file are in the same folder as your camera trap image data (**cameratrap_images**). 
 
-Timelapse uses the data in the JSON file to display each detected entity as a colored bounding box drawn atop each image. Each box:
-- is labeled with what it thinks the entity is (e.g., person, animal)
-- is colored to distinguish the detection category (e.g., red for person, blue for animal)
-- includes a confidence value of correctness ranging from 1 (high confidence) down to 0 (low confidence)
+### Importing the image data 
+
+Remember, Timelapse can only be run on a **Windows OS**: if you are using a Mac, now is the time to fire up your Windows emulator. 
+
+To open Timelapse, go to the downloaded and extracted **'Timelapse2-Executables > Timelapse'** folder and double-click on the **Timelapse2.exe** file. 
+
+This will open up the Timelapse interface. To load the image data, select **'File > Load templates, images, and video files'**. Navigate to your **cameratrap_images** folder and select the **TimelapseTemplate.tdb** file. The images will appear in your Timelapse interface. 
+
+### Importing the MegaDetector data
+
+Select **'File > Import image recognition data'**; navigate to your **cameratrap_images** folder and select the **test_output.json** file. Hurrah! You should now see the bounding boxes appear around the entities detected in your camera trap images. 
 
 <p align="center">
   <img src="https://i.imgur.com/X096AP7.png" width="600"/>
 </p>
 
+The bounding boxes are color-coded to distinguish the detection category (e.g., red for person, blue for animal); the boxes are also labeled with what MegaDetector predicts the entity to be (e.g., person, animal) and its confidence in that prediction (ranging from 0 [low confidence] to 1 [high confidence]). 
 
-can set a threshold where Timelapse will display bounding boxes
-only for detections above that threshold
+Use the left and right arrow keys to flip between your files, noting the accuracy of the predictions. In some images, bounding boxes may appear where there are no animals (*false positives*); in other cases, animals in the image may have escaped detection (*false negatives*). 
 
-The right image also correctly classifies the detected animal as a deer,
-except this time with a much lower probability value (.5). Because of its low
-probability, a drop down menu is included that lists alternate possibilities of
-lesser probabilities, in this case an elk at .49. When multiple classifications
-appear, the bounding box label displays the highest probability prediction.
-If no classifications are available, then the label only shows the recognized
-detection category (e.g., Person, Animal, Empty). 
+<p align="center">
+  <img src="https://i.imgur.com/96F22PK.png" width="600"/>
+</p>
 
-https://i.imgur.com/jIRWzaJ.png
-
-
-
-**Sidebar: the meaning of confidence levels** Confidence is best seen as a very rough indicator of how likely it is that a detection or classification is correct. The catch is that the reliability of a particular confidence value can vary greatly from dataset to dataset. 
-
-Various image recognition capabilities are available once recognition data
-has been imported. This includes the previously discussed bounding boxes
-overlaid atop the image you are viewing, and a recognition panel in the
-Select | Custom select dialog
-
-### Image recognition prefernences 
-
-You can customize how and when your bounding box appears in the preferences dialog (or just accept the reasonable defaults).
-- select Option > Preferences and go to the **Automated Image Recognition** panel
-- click the **Annotate bounding box** checkbox to either include or exclude the recognition labels atop the bounding box
-- if you have color blindness issues, the **Use color-blind friendly colors** will adjust the bounding box colors accordingly
-- use the slider to adjust the confidence threshold, where bounding boxes are displayed only for recognitions whose confidence is above that threshold or higher will be displayed
-
-Confidence of detections vs. classifications. Each detection has a single
-confidence value indicating its relative likelihood that it is a correct
-detection. Classifications differ. As the classifier produces 1 or more predictions per detection, it assigns each classification with a relative probability
-of being correct, all summing to 1. The classification probability is used
-as a rough indicator of confidence, i.e., how likely it is that the entity was
-correctly recognized. 
-
+One thing you can do is play around with the **confidence threshold** over which Timelapse displays bounding boxes (i.e., only assign a classification when the algorithm is >0.8 confidence) - for different image sets, the value you set here may differ. But remember! AI algorithms will never be 100% perfect, hence the need for quick, manual review in programs like Timelapse.
 
 ## Applying MegaDetector in your research 
+
+### Timelapse functionality 
+
+[Timelapse](http://saul.cpsc.ucalgary.ca/timelapse/) has an incredibly degree of functionality, enabling you to automatically pull MegaDetector classifications into a spreadsheet, extract additional image exif data, record or update classifications, and quickly through the review of large quanities of images very quickly. We won't go into this process here, but be sure to check out the Timelapse [QuickStart Guide](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.UserGuide) and accomanpying [video tutorials](https://saul.cpsc.ucalgary.ca/timelapse/pmwiki.php?n=Main.Videos) for easy-to-follow instructions on setting up your image classification pipeline! 
 
 ### Evaluating MegaDetector performance 
 
@@ -404,21 +390,15 @@ While we will not do a deep-dive during this workshop into assessing MegaDetecto
 - *Incorrect identification*: The algorithm DOES detect an entity when an entity is present, but incorrectly labels it (e.g., [simple detector] a person gets labelled as wildlife, or [classifier] a warthog gets labelled as a mongoose) 
 - *Amiguity*: The algorithm detects several overlapping and possibly conflicting detections
 
-***Confidence threshold***
-
-MegaDetector has an important parameter which is called "confidence threshold". The confidence threshold has continuous values ranging between 0 and 1; the higher the confidence threshold is, the more strictly the user wants the model to make a prediction. -- UPDATE
-
 ***Accuracy metrics***
 
 There are three descriptive accuracy metrics that can be used to assess model performance: 
 
-**1. Overall accuracy** is calculated by dividing True predictions by the total number of predictions. This metrics quantifies the performance of the model over all species. For example, the model's overall accuracy of 0.7 means that for every 10 images, regardless of classes, the model is able to correctly classify 7 images.
+**1. Overall accuracy** is calculated by dividing number of true predictions by the total number of predictions. This metrics quantifies the performance of the model over all species. For example, an overall model accuracy of 0.7 means that for every 10 images - regardless of classes - the model can correctly classify 7 images.
 
-**2. Precision** is calculated by dividing True Positive by the total number of images that are classified as Positive. The result implies the data quality of each class classified by the model. For example, precision of Animal class is 0.7 implies that for every 10 images that are classified by the model as Animal, 7 of them are correct. 
+**2. Precision** is calculated by dividing the number of true positives by the total number of images that are classified as positive (i.e., containing an entity). This result tells you about the data quality of each class classified by the model. For example, precision of 0.7 for 'animal' class implies that for every 10 images that are classified by the model as 'animal', 7 of them are correct. 
 
-**3. Recall** is calculated by dividing True Positive by the total number of ground- truth Positive class. This statistic quantifies the ability of the model to detect each species. For example, recall of Owston's civet is 0.8 means that if there are 10 images of Owston's civet in the dataset, the model is able to detect 8. 
-
-While overall accuracy gives us an idea on how the model classifies Animal-Human-Blank, in general, precision warns us how much work we have to do to clean the model's predictions, and recall tells us how much data loss of each species we have to admit. In the context of conservation, however, recall is the most favored metrics to assess and tune the model because the most important goal of camera-trapping is to detect the most threatened species so that appropriate intervention is targeted. Threatened species are usually rare species, which makes every capture of them is valuable. Thus, in order to make the most of camera-trapping images, the model is expected to retrieve as many captures of threatened species as possible, which is reflected by recall. Nevertheless, most of the time, precision and recall are negatively correlated, i.e. if the model is tuned to increase recall, it will come at the expense of precision. This trade-off implies that more manual effort must be spent on verifying the model prediction for every increase of recall value. That said, this extra effort is several order of magnitude less than the effort spent without the model's help, so it is acceptable. -- UPDATE 
+**3. Recall** is calculated by dividing the number of true positives by the total number of ground-truth positive images. This statistic quantifies the ability of the model to detect each species. For example, recall of 0.8 for elk means that if there are 10 images of elk in the dataset, the model is able to detect 8. 
 
 ### Batch processing camera trap data 
 
