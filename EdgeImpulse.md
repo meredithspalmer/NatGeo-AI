@@ -11,6 +11,7 @@
 2. [What Edge Impulse does](#what-edge-impulse-does) 
 3. [What we will do today](#what-we-will-do-today)
 4. [Before we begin](#0-before-we-begin) 
+5. [The data](#the-data) 
 
 ## What is Edge Impulse?
 
@@ -26,51 +27,43 @@ Rather than just running complex neural networks and other algorithms on giant c
 
 ### Why optimize for tinyML? 
 
-Traditionally
+TinyML is transforming the way we use sensor data. Traditionally, wildlife ecologists and conservation biologists collect data by deploying devices (like camera traps, acoustic monitors, or tracking collars) in the field; waiting a few months for data to accumulate; and then going back out, collecting those data, and - at long last! - processing that information to draw inference on their system. 
 
-There are several key applications for tinyML in the conservation biology and wildlife ecology fields
+But what if you need to know immediately if, say, a poacher's gun goes off, or if an elephant starts heading out of the reserve towards a neighboring village? You can't take action to capture the poacher or divert the elephant if you only find out about the event several months later. Ideally, you would want the ability to process the incoming data as it is received and take immediate action based on what was detected. 
 
-The key advantages are neatly expressed in the unfortunate acronym **BLERP**, coined by Jeff Bier. They are:
-- **Bandwidth**: ML algorithms on edge devices can extract meaningful information from data that would otherwise be inaccessible due to bandwidth constraints
-- **Latency—On-device**: ML models can respond in real-time to inputs, enabling applications such as autonomous vehicles, which would not be viable if dependent on network latency
-- **Economics**: By processing data on-device, embedded ML systems avoid the costs of transmitting data over a network and processing it in the cloud
-- **Reliability**: Systems controlled by on-device models are inherently more reliable than those which depend on a connection to the cloud
-- **Privacy**: When data is processed on an embedded system and is never transmitted to the cloud, user privacy is protected and there is less chance of abuse
+TinyML algorithms can run inference directly on field sensors (edge devices), transforming the way computers interact with the real world. These algorithms can be trained to detect and respond to input such as: 
+- Vibration and motion (e.g., acceleromoter, pressure, speed)
+- Voice and sound (e.g., keyword spotting, speech/sound recognition)
+- Images and video (e.g., face unlock, object detection/classification)
+allowing researchers to do WHAT 
 
-Some of the key applications in the conservation biology and wildlife ecology fields include. .. 
-- small cheap efficient hardware (low hardware cost)
-- low energy use, huge battery life
-- no need for communications (no need to send to server)
-- potentially, aboslute privacy (avoid collecting data don't want, i.e., on people)
+In addition to being able to react to the world in real-time, this type of machine learning has other benefits that make them particularly apt for field research: 
+- They can be deployed on small, cheap hardware
+- They consume little energy, massively extending their battery life (and, consequentially, deployment length)
+- They can work without a network connection (no need to send data to a server, so can work without a cellphone, WiFi, or other kind of network) 
 
-
-tinyML: 
-on-device machine learning applications include detecting and responding to 
-- vibration and motion (e.g., acceleromoter, pressure, speed)
-- voice and sound (e.g., keyword spotting, speech/sound recognition)
-- images and video (e.g., face unlock, object detection/classification)
-
-why optimize for tinyML? 
-- power constraints: extend battery life of edge devices by reducing awake time
-- cycle contstraints: meet real time latency constraints 
-
-
+### WHAT KIND OF AI IS THIS?? 
 
 ## What we will do today 
 
-In this tutorial, you'll use machine learning to build a system that can recognize when a particular sound is happening—a task known as audio classification. The system you create will be able to recognize the sound of water running from a faucet, even in the presence of other background noise.
-You'll learn how to collect audio data from microphones, use signal processing to extract the most important information, and train a deep neural network that can tell you whether the sound of running water can be heard in a given clip of audio. Finally, you'll deploy the system to an embedded device and evaluate how well it works.
+Today, we'll be building and training a deep neural network that can perform an audio classification task, specificallly, recogniziing the sound of a gunshot. Hypothetically, this kind of algorithm could be deployed to a passive acoustic detector and used to send an alert to anti-poaching teams if suspicious activity is detected.
+
+<p align="center">
+  <img src="https://i.imgur.com/mlj8bfA.png" width="600"/>
+</p>
+
+Image credit: [Hack the Poacher](https://www.hackthepoacher.com/) -- UPDATE THIS 
 
 ## Before we begin 
 
-1. Register for an Edge Impulse account. EXPLAIN 
-4. If you want to deploy and test them odel we build, you'll need a supported device: any [mobile smartphone](https://docs.edgeimpulse.com/docs/development-platforms/using-your-mobile-phone) should work.
+1. [Register](https://studio.edgeimpulse.com/login) for a free Edge Impulse account.
+2. If you want to deploy and test the model we build, you'll need a supported device: for this workshop, any [mobile smartphone](https://docs.edgeimpulse.com/docs/development-platforms/using-your-mobile-phone) should work.
 
 ## The data 
 
-If you were training an algorithm to deploy in the field, you would first want to collect audio data yourself, preferably under field conditions and using the same device that will the be listening for new data and running inference. Unfortunately, we won't be shipping everyone to the African bush today to record our target audio - instead, use this library we've compiled for you. 
+If you were training an algorithm to deploy in the field, you would first want to collect audio data yourself - preferably under field conditions and using the same device that will the be listening for new data and running inference. Unfortunately, we won't be shipping everyone to the African bush today to record our target audio (boo!). Instead, download **this library** we've compiled for you. 
 
-This is a balanced dataset (see Introduction), containing HOW MUCH AUDIO divided eveningly among the two classes we want the algorithm to discriminate between:
+This is a balanced dataset (see **Intro to AI**), containing HOW MUCH AUDIO divided eveningly among the two classes we want the algorithm to discriminate between:
 
 1. Gunshots
 2. Background noises (i.e., "everything else") 
