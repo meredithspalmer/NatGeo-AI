@@ -81,6 +81,12 @@ Unlike camera traps, acoustic monitors are typically not triggered, but run cont
 
 ## Harnessing the power of "Big Data" 
 
+<p align="center">
+  <img src="https://basis.net/wp-content/uploads/2019/02/Intro-to-AI.jpg" width="600"/>
+</p>
+
+Image credit: Stefanie Hoffman 
+
 > "There is a mismatch between the ever-growing volume of raw measures (videos, images, audio recordings) acquired for ecological studies and our ability to process and analyze this multi-source data to derive conclusive ecological insights rapidly and at scale. Effectively, ecology has entered the age of **big data**." (Tulia et al. 2022)
 
 What is Big Data? 
@@ -127,102 +133,7 @@ owever, problems related to lack of generality across geographies, day/night acq
 
  Handling and analyzing these datasets efficiently requires access to advanced computing infrastructure and solutions. Second, the inherent complexity of soundscapes requires noise-robust algorithms that generalize well and can separate and identify many animal sounds of interest from confounding natural and anthropogenic signals in a wide variety of acoustic environments62. The third challenge is the lack of large and diverse labeled datasets. As for camera trap images, species- or regionspecific characteristics (e.g., regional dialects63) affect algorithm performance. Robust, large-scale datasets have begun to be curated for some animal groups (e.g., www.macaulaylibrary.org and www.xeno-canto.org for birds), but for many animal groups as well as relevant biological and non-biological confounding signals, such data is still nonexistent.
  
- 
-## What is artificial intelligence? .
-
-<p align="center">
-  <img src="https://basis.net/wp-content/uploads/2019/02/Intro-to-AI.jpg" width="600"/>
-</p>
-
-Image credit: Stefanie Hoffman 
-
-### Terms and definitions 
-
-So what exactly is **Artificial intelligence (AI)**? AI is intelligent software-based technology that receives information from the environment and then takes actions based on that information that affect the environment. At it's core, AI is the ability for machines to simulate and enhance human intelligence. 
-
-A subset of AI is **machine learning**. Machine learning algorithms are a collection of mathematical and statistical models that learn representations from the underlying training data. Basically, machine learning algorithms extract patterns from input data in order to come up with the rules and the parameters of these models, so that they can make smart predictions and decisions. 
-
-A subset of machine learning is **deep learning**. Deep learning models are basically very complex machine learning models. They learn representations successively in layers.
-
-<p align="center">
-  <img src="https://i.imgur.com/TNDF3fR.png" width="600"/>
-</p>
-
-Image credit: [McClure et al. 2020](https://www.sciencedirect.com/science/article/pii/S2666389920301434)
-
-## How machine learning works 
-
-How do machine learning algorithms differ from "traditional" data science algorithms? 
-
-[Alexander Fred-Ojala](XXX) explains... 
-
->Traditional algorithms rely on parameters and rules defined by humans; data are then processed according to these rules to produce results.
-
-<p align="center">
-  <img src="https://i.imgur.com/07d7iPV.png" width="300"/>
-</p>
-
->Machine learning algorithms, on the other hand, extract rules from data; parameter values and rules are decided during the training process (described in WHERE). In order to train a supervised machine learning algorithm, you only have to provide it with answers together with input data and out would come the rules. These rules can then be used in order to predict answers and outputs on data that it hasn't been trained on before. 
-
-<p align="center">
-  <img src="https://i.imgur.com/Es57Hm3.png" width="370"/>
-</p>
-
-### Types of machine learning 
-
-There are three main categories of machine learning algorithms. 
-
-The first two relate to **supervised machine learning**. Supervised machine learning is all about trying to find a function that can map some input data to some output that could be a prediction or a classification. In supervised machine learning, you need to provide data during the training of these machine learning algorithms that are correct input and output pairs. You need to have the true outputs or the true labels associated with your training data in order for you to train these algorithms. Supervised machine learning algorithms could be regression models. They predict a continuous outcome variable, or it could be classification algorithms and models, and they predict or classify a certain set of categories or labels. 
-
-We also have **unsupervised machine learning**. For unsupervised machine learning models, we don't provide any correct labels or outputs on the training data. Instead, we try to extract and parse patterns so that we, for example, could carry out clustering, dimensionality reduction, outlier detection, segmentation, et cetera.
-
-<p align="center">
-  <img src="https://i.imgur.com/jb4UVfX.jpg" width="600"/>
-</p>
-
-Image credit: Alexander Fred-Ojala
-
-Today, we'll focus on the 'classification' aspect of AI and how we can apply that to tackle ecological and conservation data. 
-
-
-## Training a machine learning algorithm 
-
-### Process 
-
-training, test
-
-Data is randomly divided into a training set, a validation set, and a test set. The training set and associated labels will be used to update the parameters in the machine learning model. EXPLAIN MORE. The validation set is then used to test the model's performance on data it has never seen before. If the model performs poorly on the validation set, we can go back, tweak and retrain the model. The new model will then be tested on the validation set, and the entire process repeatsed. Only when when we are happy with how the model performs on the validation set do we turn to the test set that was set aside at the very begiinning. The performance metrics we get when we finally evaluate the model on the trst set tell us how good the model is at accomplish its task. We have separate validation and test sets because the model will start to learn some of the characteristics of the validation set every time it is retrained to perform better o nthe validation set.  
-
-
-The reason we have separate validation and test sets is because the model will begin to learn some of the characteristics of the validation set every time we update the hyperparameters to make the model perform better on the validation set. The test set unlike the validation set will never have been used on the model. If the validation set performs well, but the test set performs poorly, it likely means your model has been overfit to the input data, which includes the validation set. 
-
-<p align="center">
-  <img src="https://meredithspalmer.weebly.com/uploads/1/1/8/5/118542972/holdoutmethod_orig.png" width="600"/>
-</p>
-
-Image credit: Edge Impulse ['Introduction to Embedded Machine Learning'](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/lecture/fARmQ/data-collection)
-
-
-### Representative training data (or, 'garbage in-garbage out') 
-
-When collecting data, be thinking about what you are trying to classify and whether the data truly represents that class. From Edge Impulse's ['Introduction to Embedded Machine Learning'](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/lecture/fARmQ/data-collection): 
-
-
-
-> For example, let's say we are trying to create a model that classifies pictures of dogs, and we feed it a bunch of pictures of poodles as our training data. We then test the model with an image of a Welsh Corgi. Do you think that the model will be able to classify this as a dog or not? And the answer is, it depends. Maybe the model generalizes enough to pick out common features like eyes, a snout, round nose, and so on. However, what you'll likely find is that the model trained on features unique to what we gave it in the training data. Such as, curly fur, and floppy ears. We'll have a hard time classifying new images that do not have these features. Most modern machine learning algorithms are terrible at generalizing. And we must take great care to ensure that the data they learn from represents the data we ultimately want them to work with. 
-
-> There are a number of problems with this set. The first is that they all have dark backgrounds, so a classifier might think any photo with a dark background is a dog. Second, they only contain the faces of the dogs. If you showed the trained classifier a picture of a dog's full body, there's a chance it would miss it. And if you showed it the back of a dog's head, it might also misclassify that image. The lesson here is to really think about your end application and the training data needed to represent how your model will be used when deployed. If you feed your model bad training data, you will likely get a bad model, even if you have the greatest machine learning model in the world. 
-
-> Getting more data will always help. If we don't have access to lots more images, we can balance the data set. That means adjusting the number of samples in each class to be about equal. For our two class problem, that might mean a 50,50 split. For 4 classes aim to get about 25% of samples for each class. While this might not be representative of how often we expect to see the target class, which is a dog in this case, balancing your data set often helps create a better classifier.
-
-
-
-
-TALK ABOUT MODELS BEING OVERFIT 
-
-
-
-------- 
+ ------- 
 
 
 (https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
@@ -414,13 +325,143 @@ data-supported insights. In essence, by combining new machine learning approache
 animal ecologists can capitalize on the abundance of data generated by modern sensor technologies in order to reliably estimate population abundances, study animal behavior and mitigate human/wildlife conflicts.
 
 
+ 
+ 
+ 
+## What is artificial intelligence?
+
+So what exactly is **artificial intelligence (AI)**? AI is intelligent software-based technology that receives information from the environment and then takes actions based on that information that affect the environment. At it's core, AI is the ability for machines to simulate and enhance human intelligence. 
+
+A subset of AI is **machine learning (ML)**. Machine learning algorithms are a collection of mathematical and statistical models that learn representations from the underlying training data. Basically, machine learning algorithms extract patterns from input data in order to come up with the rules and the parameters of these models, so that they can make smart predictions and decisions. 
+
+A subset of machine learning is **deep learning**. Deep learning models are basically very complex machine learning models. They learn representations successively in layers.
+
+We'll be working primarily with deep learning models today, but may use these terms interchangeably. 
+
+<p align="center">
+  <img src="https://i.imgur.com/TNDF3fR.png" width="600"/>
+</p>
+
+Image credit: [McClure et al. 2020](https://www.sciencedirect.com/science/article/pii/S2666389920301434)
+
+### Key terms
+
+There are a few important definitions to keep in mind as we go through this workshop: 
+
+-	**Algorithm**: A sequence of instructions to a computer, like a recipe on how to process information
+- **Model**: An artifact you get after feeding data into a machine learning algorithm (feed inputs, get output)
+- **Inference**: The process of running inference is feeding the input data through the model to get output (i.e., some kind of prediction) 
+
+## How machine learning works 
+
+How do machine learning algorithms differ from "traditional" data science algorithms? 
+
+[Alexander Fred-Ojala](XXX) explains... 
+
+>Traditional algorithms rely on parameters and rules defined by humans; data are then processed according to these rules to produce results.
+
+<p align="center">
+  <img src="https://i.imgur.com/07d7iPV.png" width="300"/>
+</p>
+
+>Machine learning algorithms, on the other hand, extract rules from data; parameter values and rules are decided during the training process (described in WHERE). In order to train a supervised machine learning algorithm, you only have to provide it with answers together with input data and out would come the rules. These rules can then be used in order to predict answers and outputs on data that it hasn't been trained on before. 
+
+<p align="center">
+  <img src="https://i.imgur.com/Es57Hm3.png" width="370"/>
+</p>
+
+### When is machine learning useful? 
+
+Before you begin, it is worth thinking aout what can and cannot be addressed using machine learning. Machine learning is not always the right tool for the you! Machine learning is a good approach when you have: 
+
+- Lots of clean, labelled data
+- A tightly scoped problem 
+- Some margin of error is okay 
+
+Maybe consider an alternative option to machine learning if: 
+- Conditions vary beyond original dataset
+- There is no data readily available
+- There is no tolerability of error 
+
+### Type of data you can use 
+
+Many kinds of data can be fed into machine learning algorithsm. For those thinking about using AI for wildlife ecology and conservation applications, you 
+
+TAKE SCREENSHOT FROM DAN'S TALK 
+-images, audio, time series sensor data (vibration, temp, aceerlation), positional data (GPS), combos of these
+
+PUT SOME IMAGES HERE 
+
+
+## Types of machine learning 
+
+There are three main categories of machine learning algorithms. 
+
+The first two relate to **supervised machine learning**. Supervised machine learning is all about trying to find a function that can map some input data to some output that could be a prediction or a classification. In supervised machine learning, you need to provide data during the training of these machine learning algorithms that are correct input and output pairs. You need to have the true outputs or the true labels associated with your training data in order for you to train these algorithms. Supervised machine learning algorithms could be regression models. They predict a continuous outcome variable, or it could be classification algorithms and models, and they predict or classify a certain set of categories or labels. 
+
+We also have **unsupervised machine learning**. For unsupervised machine learning models, we don't provide any correct labels or outputs on the training data. Instead, we try to extract and parse patterns so that we, for example, could carry out clustering, dimensionality reduction, outlier detection, segmentation, et cetera.
+
+<p align="center">
+  <img src="https://i.imgur.com/jb4UVfX.jpg" width="600"/>
+</p>
+
+Image credit: Alexander Fred-Ojala
+
+Today, we'll focus on the 'classification' aspect of supervised machine learning and how we can apply that to tackle ecological and conservation data. 
+
+## Machine learning workflow:  
+
+1. Formulate your question in terms of what is observed and what answer you want the model to predict
+2. Obtain a clean, representative dataset for training 
+3. Train your model (an interative process) 
+4. You have a model! (or you gave up)
+5. Monitor your model periodically to make sure it is working 
+
+Below, we'll dive deeper into putting together a dataset and training your model: 
+
+### Obtain a clean, representative dataset 
+
+***Labeled data***: ML problems start with data for which you already know the target answer - what we call **"labeled data"**. In supervised ML, the algorithm teaches itself to learn from the labeled examples that we provide. 
+
+Each example/observation in your data must contain two elements:
+- The answer that you want to predict. You provide data that is labeled with the correct answer to the ML algorithm to learn from. Then, you will use the trained ML model to predict this answer on data for which you do not know the correct answer.
+- Variables/features: Attributes that can be used to identify patterns to predict the correct answer. If the classes that you are trying to use ML to distinguish do not differ, you may have problems running inference using your model. 
+
+***Representative data***: When collecting data, be thinking about what you are trying to classify and whether the data truly represents that class. From Edge Impulse's ['Introduction to Embedded Machine Learning'](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/lecture/fARmQ/data-collection): 
+
+<p align="center">
+  <img src="https://i.imgur.com/DEsftmt.jpg" width="600"/>
+</p>
+
+> For example, let's say we are trying to create a model that classifies pictures of dogs, and we feed it a bunch of pictures of poodles as our training data. We then test the model with an image of a Welsh Corgi. Do you think that the model will be able to classify this as a dog or not? And the answer is, it depends. Maybe the model generalizes enough to pick out common features like eyes, a snout, round nose, and so on. However, what you'll likely find is that the model trained on features unique to what we gave it in the training data. Such as, curly fur, and floppy ears. We'll have a hard time classifying new images that do not have these features. Most modern machine learning algorithms are terrible at generalizing and we must take great care to ensure that the data they learn from represents the data we ultimately want them to work with. 
+
+Note also that your model needs to be exposed to all the things you want it to understand: if your model is trained to distinguish different breeds of dogs and you show it an image of a cat, it will attempt to classify the cat as one of the dog breeds. 
+
+***Balanced data***: In addition to having data from multiple difference classess, the data across classes should be **balanaced**. That means having approximately equal numbers of samples in each class. For example, if you have four classes you want to distinguish, you should have ~25% of samples for each class. Note: the balance of data in your training set may not reflect the distribution of data in the real world! You may not expect to encounter one of your classes very frequently in the real world; however, your classifier will perform poorly on this class if it is trained on fewer samples of this class than of the other classes. 
+
+### 3. Train your model 
+
+Data is randomly divided into a **training set**, a **validation set**, and a **test set**.
+
+During training, the training set and associated labels will be used to update the parameters in the machine learning model as the model figures out how to associate labels and data. 
+
+The model's performance is then evaluated on the validation set, which is data that - until now - it has never seen before. If the model performs poorly on the validation set, we can go back, tweak, and retrain the model. The new model will again be tested on the validation set, and the entire process repeated until weare happy with how the model performs. 
+
+Only now do we run the model on the test set. The performance metrics we get when running the model on the test set tell us how good the model is at accomplishing its task. We keep the test set separate from the validation step because every time we iteratively retain and test the model on the validation data, it learns some of the characteristics of the validation dataset. The test data is a check - the model could perform very well on the validation data but poorly on the test data if it has been "overfit" to the input data, i.e., has memorized the data it has been exposed to and is unable to generalize to unseen examples. 
+
+<p align="center">
+  <img src="https://meredithspalmer.weebly.com/uploads/1/1/8/5/118542972/holdoutmethod_orig.png" width="600"/>
+</p>
+
+Image credit: Edge Impulse ['Introduction to Embedded Machine Learning'](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/lecture/fARmQ/data-collection)
+
 ## What will we do today? 
 
 Today, we'll cover how to use pre-trained models for classifying camera trap images (**MegaDetector**), how to build your own models for processing audio data (**Edge Impulse**), and discuss how high-quality data can make AI more useful and successful in your work. Below is a brief overview of the algorithms/programs we'll be working with: 
 
 ### MegaDetector 
 
-MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone by identifying which images do not contain wildlife. 
+MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. Created by Microsoft and trained on millions of images from afround the world, this deep learning algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone by identifying which images do not contain wildlife. 
 
 <p align="center">
   <img src="https://i.imgur.com/e9A9boY.png" width="600"/>
@@ -457,21 +498,28 @@ AI are also becoming more sophisticated, extracting more different kinds of info
 For a more in-depth discussion, check out ["Perspectives in machine learning for wildlife conservation"](https://www.nature.com/articles/s41467-022-27980-y) and ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256).  
 
 ## Definitions: 
-- **Artificial Intelligence (AI)**: A discipline concerned with the designing of computers that make predictions and decisions.
-- **Machine Learning**: A branch of AI where programs build models that they can use to make decisions based on the data given to them by programmers.
-- **Computer Vision**: A branch of AI that works on computer’s ability to understand visual information like pictures or video
 -	**Algorithm**: A sequence of instructions to a computer, like a recipe on how to process some information
+-	**Application**: An application figures what inputs to feed into the model and determines output (i.e., the code running on device)
+- **Artificial Intelligence (AI)**: A discipline concerned with the designing of computers that make predictions and decisions
+- **Computer Vision**: A branch of AI that works on computer’s ability to understand visual information like pictures or video
+- **Convolutional Neural Network**: A neural network that looks at overlapping sections of an image to identify things about the image
+- **Data preprocessing**: The program cannot always work with all the data that comes in. Preprocessing ensures none of the data is out of range or unreadable, or has any other problems for the program.
+- **Datasets**: Data have collected about thing want to understand and labelled with 'ground-truthed' classifications 
+- **GPU**: Graphics Processing Unit - a computer that is specialized for dealing with Graphics
+- **Inference**: Taking input and feeding it through the model to get output with some kind of prediction 
+- **Library**: A group of programming functions that might be useful together so other programmers don’t have to re-write them
+- **Machine Learning**: A branch of AI where programs build models that they can use to make decisions based on the data given to them by programmers
+- **Model**: An artifact you get after feeding data into ML algorithm (feed inputs, get output)
 - **Pixel**: The smallest, indivisible unit comprising an image, like a tiny square (really tiny if you have a high-resolution screen).
 -	**Metadata**: Information about a picture - where it was taken, when, etc.
 -	**Neural Network**: Several connected functions that collectively recognize patterns and answer questions
--	**Convolutional Neural Network**: A neural network that looks at overlapping sections of an image to identify things about the image
 -	**Processor**: The part of your computer that does the “computing.” The main processor on your computer is called the CPU, but other parts might be used for processing other things.
-- **GPU**: Graphics Processing Unit - a computer that is specialized for dealing with Graphics.
-- **Library**: A group of programming functions that might be useful together so other programmers don’t have to re-write them.
-- **Data preprocessing**: The program cannot always work with all the data that comes in. Preprocessing ensures none of the data is out of range or unreadable, or has any other problems for the program.
+- **Training**: The process of feeding data into model and having it learn how to discern classes 
 -	**Weight**: How important each part of information is in deciding what the whole means
+
 - **True negative**: 
 - **False negative**: 
 - Recall
 - Accuracy
-- 
+
+
