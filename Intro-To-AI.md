@@ -96,133 +96,26 @@ Box 1) (Breiman, 2001b; Shmueli, 2010). Examples of early ML algorithms are neur
 (Friedman, 2001) (more on these in the section ‘Important ML Algorithms in more detail’).
 
 General objective of ML
-The objective of ML is to build a good predictive model. By “good”, we mean that the model should predict
-well to new data. Sometimes ML models make almost no errors on the data they are trained on but fail for
-new data (we say the model overfits). A more complex and flexible model has a higher risk of overfitting. The
-trade-off between complexity and flexibility can be depicted by the bias-variance tradeoff (see Fig. 3a). The
-general ideal of ML algorithms is thus to take a certain algorithmic structure and then adjust their parameters
-to the data (training), while simultaneously adapt its complexity by optimizing the bias-variance trade-off so
-that the fitted model generalizes well to new data.
+The objective of ML is to build a good predictive model. By “good”, we mean that the model should predict well to new data. Sometimes ML models make almost no errors on the data they are trained on but fail for new data (we say the model overfits). A more complex and flexible model has a higher risk of overfitting. The trade-off between complexity and flexibility can be depicted by the bias-variance tradeoff (see Fig. 3a). The general ideal of ML algorithms is thus to take a certain algorithmic structure and then adjust their parameters to the data (training), while simultaneously adapt its complexity by optimizing the bias-variance trade-off so that the fitted model generalizes well to new data.
+
 Training the models
-Training a model consists of two steps. The first step is the definition of a loss function, which measures the
-current score (performance) of the algorithm in solving a certain task. The second component is the optimizer,
-which updates parameters of the algorithm with the goal to increase its performance.
+Training a model consists of two steps. The first step is the definition of a loss function, which measures the current score (performance) of the algorithm in solving a certain task. The second component is the optimizer, which updates parameters of the algorithm with the goal to increase its performance.
+
 Model classes and architectures
-In principle, any algorithm that makes predictions for a certain task can be used for ML. In practice, model
-classes and architectures that are commonly used can broadly be divided into neural networks, which mimic
-the functioning of a brain, regression and classification trees, and distance-based method.
+In principle, any algorithm that makes predictions for a certain task can be used for ML. In practice, model classes and architectures that are commonly used can broadly be divided into neural networks, which mimic the functioning of a brain, regression and classification trees, and distance-based method.
+
 Tasks and learning situations
-In ML, the different use cases for the algorithms are called tasks. In supervised learning, there are examples
-for the “correct” prediction of the task, and the objective functions report the error between the predicted
-and observed response. Here, the common tasks are classification (e.g. labeling of images) and regression
-(prediction of a numeric variable). These tasks are performed in different learning situations. Unsupervised
-learning are tasks where the response are unknown (e.g. genomic species delimitation, see Derkarabetian et
-al., 2019). Finally, in Reinforcement learning, the ML algorithm is trained by interacting with a (virtual)
-environment. Reinforcement learning is used in tasks in which the learning depends on executed actions and
-their produced consequences, for instance, playing strategy computer games such as DOTA (OpenAI et al.,
-2019) or Starcraft (Vinyals et al., 2019).
-
-Deep learning
-The co-evolution of computational resources and ML algorithms experienced a final peak with
-the emergence of DL algorithms in the last decade. DL algorithms are neural networks
-(McCulloch & Pitts, 1943) that differ from classical artificial neural networks mainly by their
-size. While many algorithms and network architectures that are used today were already
-described in the ‘80s and ‘90s (e.g. Fukushima, 1980; Lecun et al., 1998), their practical
-application was prevented by the lack of computing power at the time. This changed with the
-emergence of graphical processing units (GPU) in the ‘90s (Fig. 1). Although GPUs were
-originally developed for computer games or other graphical rendering tasks, it was quickly
-realized that they are often far more efficient than CPUs for certain numeric and linear algebra
-tasks. Krizhevsky et al., 2012 ushered in the new era of DL when they demonstrated that their
-competition-winning neural network could be trained within hours on a GPU instead of days
-or weeks using a CPU. Today, large DL models trained on GPUs with hundreds of millions
-parameters dominate the competition for many complex ML tasks, and their behavior often
-differs markedly from simple ML algorithms (see section “Why ML works”)
-
-Deep learning
-DL models represent the latest methodological advance in machine. DL algorithms are neural
-networks, with the difference that they include a large number of hidden layers (Borowiec et
-al., 2022; LeCun et al., 2015) and that the arrangement of the hidden layers (= architecture)
-is often different from the simple, fully connected ANN. Complex task-specific architectures,
-often with millions of parameters and specific structures, evolved over the years(for example
-residual neural networks (He et al., 2016), see also Table 1).
-Neural networks
-Possibly the most iconic ML architecture is a neural network, which is inspired by the
-architecture of our brains. The first fully functioning artificial neural network (ANN) was
-described by Rosenblatt, 1958. This “perceptron algorithm” was a binary classifier that
-connected the input neurons (one for each input variable = feature) to an output neuron
-(response). If the signal in the output crossed a certain threshold (activation function), the
-predicted class changed (e.g. from ‘0’ to ‘1’). However, because of its limited flexibility, and
-particularly its inability to represent nonlinear relationships, the perceptron fell into oblivion
-for many years until it was discovered that additional layers between the input and outout
-neurons (so-called ‘hidden’ layers) made it possible to fit any type of function shape (see
-subsection “deep learning”). The added flexibility is achieved by the hidden layers in
-conjunction with the non-linear activation function: as in the brain, a hidden neuron will only
-‘fire’ if the accumulated signals of the previous layers surpass a certain threshold. This
-structure allows ANNs to flexibly approximate practically any functional shape. The potential
-of ANNs for ecological applications was early recognized (e.g. Foody, 1995; Simpson et al.,
-1992; Tilman, 1977), although to today they have largely been replaced by the more advanced
-Deep Neural Networks in E&E (see section “Deep Learning”).
+In ML, the different use cases for the algorithms are called tasks. In supervised learning, there are examples for the “correct” prediction of the task, and the objective functions report the error between the predicted and observed response. Here, the common tasks are classification (e.g. labeling of images) and regression (prediction of a numeric variable). These tasks are performed in different learning situations. Unsupervised learning are tasks where the response are unknown (e.g. genomic species delimitation, see Derkarabetian et al., 2019). Finally, in Reinforcement learning, the ML algorithm is trained by interacting with a (virtual) environment. Reinforcement learning is used in tasks in which the learning depends on executed actions and their produced consequences, for instance, playing strategy computer games such as DOTA (OpenAI et al., 2019) or Starcraft (Vinyals et al., 2019).
 
 
-
-
-There are several ways to describe what artificial neural networks are and how they are used as inference tools. Although the most obvious biological analogy is limited, it is helpful to visualize neural networks as computer algorithms inspired by the brain: composed of interconnected layers of nodes (‘neurons’) and connections (‘synapses’) capable of learning by changing how easy it is for neurons to fire and how strong the connections are (Box 1). Computers represent these layers and connections as matrices of numbers manipulated through linear algebra operations, ensuring that neural networks can be used with virtually any input that can be represented numerically (Figure 1). In a mathematical sense, neural networks are simply a function mapping input onto a desired output. 
-
-
-
-Machine learning (ML, see glossary in Supplementary Table 1)
-deals with learning patterns from data28. Presented with large
-quantities of inputs (e.g., images) and corresponding expected
-outcomes, or labels (e.g., the species depicted in each image), a
-supervised ML algorithm learns a mathematical function leading
-to the correct outcome prediction when confronted with new,
-unseen inputs. When the expected outcomes are absent, the (this
-time unsupervised) ML algorithm will use solely the inputs to
-extract groups of data points corresponding to typical patterns in
-the data. ML has emerged as a promising means of connecting the
-dots between big data and actionable ecological insights29 and is
-an increasingly popular approach in ecology30,31. A significant
-share of this success can be attributed to deep learning (DL32), a
-family of highly versatile ML models based on artificial neural
-networks that have shown superior performance across the
-majority of ML use cases (see Table 1 and Supplementary
-Table 2). Significant error reduction of ML and DL with respect to
-traditional generalized regression models has been reported routinely for species richness and diversity estimation33,34. Likewise,
-detection and counting pipelines moved from rough rule of thumb
-extrapolations from visual counts in national parks to ML-based
-methods with high detection rates. Initially, these methods proposed many false positives which required further human
-review35, but recent methods have been shown to maintain high
-detection rates with significantly fewer false positives36. As an
-example, large mammal detection in the Kuzikus reserve in 2014
-was improved significantly by improving the detection methodologies, from a recall rate of 20%35 to 80%37 (for a common
-75% precision rate). Finally, studies involving human operators
-demonstrated that ML enabled massive speedups in complex tasks
-such as individual and species recognition38,39 and large-scale
-tasks such as animal detection in drone surveys40. Recent advances
-in ML methodology could accelerate and enhance various stages
-of the traditional ecological research pipeline (see Fig. 2), from
-targeted data acquisition to image retrieval and semi-automated
-population surveys.
-
-
-
-Deep learning, a subclass of machine learning, uses artificial neural networks to process information (Lamba et al., 2019). 
-
-Artificial neural networks are based on the neural layout seen in biological systems, allowing computer-based algorithms to “learn” based on training data, in order to accurately process similar yet distinct data at a later time. 
-
-A rapidly expanding subfield of this technology is computer vision, where a multilayered model is trained on a large number of previously classified images, and then applied to new images in order to assign classifications without human interaction (Weinstein, 2018).![image](https://user-images.githubusercontent.com/6107689/192487662-2144ed6f-c8d7-4bad-a5db-af903b7d0e56.png)
-
-
- 
- 
  
 ## What is artificial intelligence?
 
 So what exactly is **artificial intelligence (AI)**? AI is intelligent software-based technology that receives information from the environment and then takes actions based on that information that affect the environment. At it's core, AI is the ability for machines to simulate and enhance human intelligence. 
 
-A subset of AI is **machine learning (ML)**. Machine learning algorithms are a collection of mathematical and statistical models that learn representations from the underlying training data. Basically, machine learning algorithms extract patterns from input data in order to come up with the rules and the parameters of these models, so that they can make smart predictions and decisions. 
+A subset of AI is **machine learning (ML)**. Machine learning algorithms are a collection of mathematical and statistical models that learn representations from the underlying training data. Basically, machine learning algorithms extract patterns from input data in order to come up with the rules and the parameters of these models, so that they can make smart predictions and decisions when confronted with new, unseen inputs. 
 
-A subset of machine learning is **deep learning**. Deep learning models are basically very complex machine learning models. They learn representations successively in layers.
+A subset of machine learning is **deep learning**. Deep learning models are basically very complex, highly versatile machine learning models which use artificial neural networks to process information. **Artificial neural networks** are inspired by the architechture of our brains. It is helpful to visualize neural networks as interconnecter layers of nodes ('neurons') and connections ('synapses') capable of learning by changing how easy it is for neurons to fire and how strong the connections are. In a mathematical sense, neural networks are simply a function mapping input onto a desired output. They allow computer-based algorithms to “learn” based on training data, in order to accurately process similar yet distinct data at a later time.  
 
 We'll be working primarily with deep learning models today, but may use these terms interchangeably. 
 
