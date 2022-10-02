@@ -128,12 +128,102 @@ owever, problems related to lack of generality across geographies, day/night acq
  Handling and analyzing these datasets efficiently requires access to advanced computing infrastructure and solutions. Second, the inherent complexity of soundscapes requires noise-robust algorithms that generalize well and can separate and identify many animal sounds of interest from confounding natural and anthropogenic signals in a wide variety of acoustic environments62. The third challenge is the lack of large and diverse labeled datasets. As for camera trap images, species- or regionspecific characteristics (e.g., regional dialects63) affect algorithm performance. Robust, large-scale datasets have begun to be curated for some animal groups (e.g., www.macaulaylibrary.org and www.xeno-canto.org for birds), but for many animal groups as well as relevant biological and non-biological confounding signals, such data is still nonexistent.
  
  
-## What is machine learning? .
+## What is artificial intelligence? .
 
-https://basis.net/wp-content/uploads/2019/02/Intro-to-AI.jpg
+<p align="center">
+  <img src="https://basis.net/wp-content/uploads/2019/02/Intro-to-AI.jpg" width="600"/>
+</p>
+
 Image credit: Stefanie Hoffman 
 
-So what exactly is Artificial Intelligence? At its core, Artificial Intelligence (AI) is an advanced software-based technology that combines sophisticated computer programming with elements of human intelligence in various combinations to complete a wide range of functions previously thought only possible by humans.
+### Terms and definitions 
+
+So what exactly is **Artificial intelligence (AI)**? AI is intelligent software-based technology that receives information from the environment and then takes actions based on that information that affect the environment. At it's core, AI is the ability for machines to simulate and enhance human intelligence. 
+
+A subset of AI is **machine learning**. Machine learning algorithms are a collection of mathematical and statistical models that learn representations from the underlying training data. Basically, machine learning algorithms extract patterns from input data in order to come up with the rules and the parameters of these models, so that they can make smart predictions and decisions. 
+
+A subset of machine learning is **deep learning**. Deep learning models are basically very complex machine learning models. They learn representations successively in layers.
+
+<p align="center">
+  <img src="https://i.imgur.com/TNDF3fR.png" width="600"/>
+</p>
+
+Image credit: [McClure et al. 2020](https://www.sciencedirect.com/science/article/pii/S2666389920301434)
+
+## How machine learning works 
+
+How do machine learning algorithms differ from "traditional" data science algorithms? 
+
+[Alexander Fred-Ojala](XXX) explains... 
+
+>Traditional algorithms rely on parameters and rules defined by humans; data are then processed according to these rules to produce results.
+
+<p align="center">
+  <img src="https://i.imgur.com/07d7iPV.png" width="300"/>
+</p>
+
+>Machine learning algorithms, on the other hand, extract rules from data; parameter values and rules are decided during the training process (described in WHERE). In order to train a supervised machine learning algorithm, you only have to provide it with answers together with input data and out would come the rules. These rules can then be used in order to predict answers and outputs on data that it hasn't been trained on before. 
+
+<p align="center">
+  <img src="https://i.imgur.com/Es57Hm3.png" width="370"/>
+</p>
+
+### Types of machine learning 
+
+There are three main categories of machine learning algorithms. 
+
+The first two relate to **supervised machine learning**. Supervised machine learning is all about trying to find a function that can map some input data to some output that could be a prediction or a classification. In supervised machine learning, you need to provide data during the training of these machine learning algorithms that are correct input and output pairs. You need to have the true outputs or the true labels associated with your training data in order for you to train these algorithms. Supervised machine learning algorithms could be regression models. They predict a continuous outcome variable, or it could be classification algorithms and models, and they predict or classify a certain set of categories or labels. 
+
+We also have **unsupervised machine learning**. For unsupervised machine learning models, we don't provide any correct labels or outputs on the training data. Instead, we try to extract and parse patterns so that we, for example, could carry out clustering, dimensionality reduction, outlier detection, segmentation, et cetera.
+
+<p align="center">
+  <img src="https://i.imgur.com/jb4UVfX.jpg" width="600"/>
+</p>
+
+Image credit: Alexander Fred-Ojala
+
+Today, we'll focus on the 'classification' aspect of AI and how we can apply that to tackle ecological and conservation data. 
+
+
+## Training a machine learning algorithm 
+
+### Process 
+
+training, test
+
+Data is randomly divided into a training set, a validation set, and a test set. The training set and associated labels will be used to update the parameters in the machine learning model. EXPLAIN MORE. The validation set is then used to test the model's performance on data it has never seen before. If the model performs poorly on the validation set, we can go back, tweak and retrain the model. The new model will then be tested on the validation set, and the entire process repeatsed. Only when when we are happy with how the model performs on the validation set do we turn to the test set that was set aside at the very begiinning. The performance metrics we get when we finally evaluate the model on the trst set tell us how good the model is at accomplish its task. We have separate validation and test sets because the model will begin to learn some  
+
+
+The reason we have separate validation and test sets is because the model will begin to learn some of the characteristics of the validation set every time we update the hyperparameters to make the model perform better on the validation set. The test set unlike the validation set will never have been used on the model. If the validation set performs well, but the test set performs poorly, it likely means your model has been overfit to the input data, which includes the validation set. 
+
+<p align="center">
+  <img src="https://meredithspalmer.weebly.com/uploads/1/1/8/5/118542972/holdoutmethod_orig.png" width="600"/>
+</p>
+
+Image credit: Edge Impulse ['Introduction to Embedded Machine Learning'](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/lecture/fARmQ/data-collection)
+
+
+### Representative training data (or, 'garbage in-garbage out') 
+
+When collecting data, be thinking about what you are trying to classify and whether the data truly represents that class. From Edge Impulse's ['Introduction to Embedded Machine Learning'](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/lecture/fARmQ/data-collection): 
+
+
+
+> For example, let's say we are trying to create a model that classifies pictures of dogs, and we feed it a bunch of pictures of poodles as our training data. We then test the model with an image of a Welsh Corgi. Do you think that the model will be able to classify this as a dog or not? And the answer is, it depends. Maybe the model generalizes enough to pick out common features like eyes, a snout, round nose, and so on. However, what you'll likely find is that the model trained on features unique to what we gave it in the training data. Such as, curly fur, and floppy ears. We'll have a hard time classifying new images that do not have these features. Most modern machine learning algorithms are terrible at generalizing. And we must take great care to ensure that the data they learn from represents the data we ultimately want them to work with. 
+
+> There are a number of problems with this set. The first is that they all have dark backgrounds, so a classifier might think any photo with a dark background is a dog. Second, they only contain the faces of the dogs. If you showed the trained classifier a picture of a dog's full body, there's a chance it would miss it. And if you showed it the back of a dog's head, it might also misclassify that image. The lesson here is to really think about your end application and the training data needed to represent how your model will be used when deployed. If you feed your model bad training data, you will likely get a bad model, even if you have the greatest machine learning model in the world. 
+
+> Getting more data will always help. If we don't have access to lots more images, we can balance the data set. That means adjusting the number of samples in each class to be about equal. For our two class problem, that might mean a 50,50 split. For 4 classes aim to get about 25% of samples for each class. While this might not be representative of how often we expect to see the target class, which is a dog in this case, balancing your data set often helps create a better classifier.
+
+
+
+
+TALK ABOUT MODELS BEING OVERFIT 
+
+
+
+------- 
+
 
 (https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256)
 Machine learning in general refers to a category of algorithms that can automatically generate predictive models by detecting patterns in data. These tools are interesting for ecologists because they can analyse complex nonlinear data, with interactions and missing data, which are frequently encountered in ecology (Olden et al., 2008). Machine learning has already been successfully applied in ecology to perform tasks such as classification (Cutler et al., 2007), ecological modelling (Recknagel, 2001) or studying animal behaviour (Valletta, Torney, Kings, Thornton, & Madden, 2017). 
@@ -309,11 +399,6 @@ o Formula: 2 * precision * recall / (precision + recall)
 For the examples above, this is 2 * .8 * .66 / (.8 + .66), or 72%.
 
 
-<p align="center">
-  <img src="https://i.imgur.com/TNDF3fR.png" width="600"/>
-</p>
-
-Image credit: [McClure et al. 2020](https://www.sciencedirect.com/science/article/pii/S2666389920301434)
 
 file:///Users/meredithpalmer/Desktop/Seeing_biodiversity_perspectives_in_machine_learni.pdf
 Data acquisition in animal ecology is rapidly accelerating due to
