@@ -1,6 +1,3 @@
-28-SEP-2022: THIS IS CURRENTLY A WORK IN PROGRESS
-
-
 # Getting started with Edge Impulse! 
 
 **DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to create a audio classifier through the online [Edge Impulse](https://www.edgeimpulse.com/) platform. The instructions presented are based strongly on the accessible and comprehensive [Edge Impulse documentation](https://docs.edgeimpulse.com/docs/tutorials/audio-classification), including their Coursera series ["Introduction to Embedded Machine Learning"](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/home/week/1). Modifications have been made to simplify the pipeline and to add additional explanations or clarifications to aid understanding by a non-technical audience. Dan Situnayake's Tech Tutors epsiode, ["How do I train my first machine learning model"](https://www.wildlabs.net/event/how-do-i-train-my-first-machine-learning-model), is another amazing resource. We strongly recommend that you consult these original sources for more information. 
@@ -11,7 +8,12 @@
 2. [What we will do today](#what-we-will-do-today)
 3. [Before we begin](#before-we-begin) 
 4. [The data](#the-data) 
-5. [Designing an impulse](#designing-an-impulse) 
+5. [Create an audio project](#create-an-audio-project)
+6. [Upload your data](#upload-your-data)
+7. [Designing an impulse](#designing-an-impulse) 
+8. [Configure the impulse](#configure-the-impulse) 
+9. [Train the neural network](#train-the-neural-network)
+10. [Deploying the model](#deploying-the-model) 
 
 ## What is Edge Impulse?
 
@@ -223,7 +225,7 @@ There are many options for tweaking and updating the performance of your model. 
 
 For now, we're going to move ahead to model deployment, and classify some data "live in the field". 
 
-## Deploying to your device 
+### Deploying to your device 
 
 Click on the **Deployment** tabe at the bottom of the left-hand panel and scroll down to **Run your impulse directly**. Note that we're passing by options to package your model into a library or a binary that can be deployed onto a development board. 
 
@@ -241,7 +243,7 @@ This should pop up a QR code which you can scan using your phone. This will take
 
 The classification being assigned shows up under the 'listening...' circle. In the image, the classifier is assigning general background noise correctly to the class audio. 
 
-## Testing your model 
+### Testing your model 
 
 Now! Fire up YouTube and search for a few gunshot noise audio clips. With your model running on your phone, play a few clips and see whether it can correctly classify these sounds. 
 
