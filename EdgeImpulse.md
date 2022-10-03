@@ -76,7 +76,7 @@ If you want to learn how to collect and process your own audio, check out the Ed
 
 ## Create an audio project 
 
-Navigate to the Edge Impulse website and login. Begin by selecting "Create a New Project". Here, we'll create a "Developer" project called "poacher-detector". 
+Navigate to the Edge Impulse website and login. Begin by selecting **Create a New Project**. Here, we'll create a **Developer** project we'll call "poacher-detector". 
 
 <p align="center">
   <img src="https://i.imgur.com/srhTOq7.png" width="600"/>
