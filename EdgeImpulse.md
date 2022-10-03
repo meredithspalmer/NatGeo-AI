@@ -79,13 +79,13 @@ If you want to learn how to collect and process your own audio, check out the Ed
 Navigate to the Edge Impulse website and login. Begin by selecting **Create a New Project**. Here, we'll create a **Developer** project we'll call "poacher-detector". 
 
 <p align="center">
-  <img src="https://i.imgur.com/srhTOq7.png" width="600"/>
+  <img src="https://i.imgur.com/srhTOq7.png" width="900"/>
 </p>
 
 Next, we get to choose what type of Edge Impulse project we want to create. Select **Audio**, but note the many different types of input data that can be used to train a machine learning model! 
 
 <p align="center">
-  <img src="https://i.imgur.com/LA37Fmw.png" width="600"/>
+  <img src="https://i.imgur.com/LA37Fmw.png" width="900"/>
 </p>
 
 ## Upload your data 
@@ -93,13 +93,13 @@ Next, we get to choose what type of Edge Impulse project we want to create. Sele
 While you can connect your Edge Impulse project to an embedded device to collect data directly, here, we'll **Import existing data** to upload our gunshot/ambient noise audio library. Click **Go to the uploader**. 
 
 <p align="center">
-  <img src="https://i.imgur.com/9Tvu8EH.png" width="600"/>
+  <img src="https://i.imgur.com/9Tvu8EH.png" width="900"/>
 </p>
 
 The audio exemplars we upload will be split between the training, testing, and validation data sets. Remember that the data used to train a model has to be labeled. First, we will choose all of our "gunshot" files (317), select that they are automatically split between training and testing data, and manually enter the label "gunshot". Begin your upload. 
 
 <p align="center">
-  <img src="https://i.imgur.com/UnJjvsn.jpg" width="600"/>
+  <img src="https://i.imgur.com/UnJjvsn.jpg" width="900"/>
 </p>
 
 When the **Upload output** panel on the right reads "Job completed", do the same process with your ambient noise files. This time, enter the label "ambient" and click **Begin upload**. 
@@ -162,7 +162,7 @@ Click **Add a processing block** and choose **Audio (MFE)**. This is the preferr
 
 The final step is adding a learning block - this is the neural network that is trained to learn on your data! The neutral network will take the features produced by the MFE as input, and try to map this to one of two classes: 'gunshot' or 'background'. The input will go through layers of virtual 'neurons', which filter and transform the input data to extract distinguishing features. Ultimately, the algorithm will procude two values: the probability that the input represents a gunshot and the probability that the input represents background nature noises.
 
-During the **training phase**, the state of these 'neurons' are tweaked and refined so that they layers ultimately transform the input into the correct output. This is an iterative process, where the model is fed samples of training data, outputs are evaluated, adjustments are made, and the process is repeated thousands and thousands of times until the correct answers are produced (or you give up - sometimes, there are problems that can't be solved by ML!). 
+During the training phase, the state of these 'neurons' are tweaked and refined so that they layers ultimately transform the input into the correct output. This is an iterative process, where the model is fed samples of training data, outputs are evaluated, adjustments are made, and the process is repeated thousands and thousands of times until the correct answers are produced (or you give up - sometimes, there are problems that can't be solved by ML!). 
 
 How the 'neurons' are arranged into layers is called an **architecture**. There are many different kinds of ML architectures that have been developed for different kinds of tasks. Here, we'll stick with Edge Impulse's defualt architecture. 
 
