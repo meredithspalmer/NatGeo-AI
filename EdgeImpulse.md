@@ -17,7 +17,7 @@
 
 ## What is Edge Impulse?
 
-[Edge Impulse](https://www.edgeimpulse.com/) is a tool for training artificial intellgience models, specifically those that are optimized to perform on edge devices (**tinyML**; more on this below!). By using Edge Impulse, you can build a sophisticated AI algorithm without having to do a deep-dive into the underlying framwork for machine learning or become an expert in Python or Tensorflow. Edge Impulse allows you to create a model pipeline (called an **"impulse"**), train and test your model, and deploy it to your device. 
+**[Edge Impulse](https://www.edgeimpulse.com/)** is a tool for training artificial intellgience models, specifically those that are optimized to perform on edge devices (**tinyML**). By using Edge Impulse, you can build sophisticated AI algorithms without having to become an expert in Python or Tensorflow. Edge Impulse allows you to create a model pipeline (called an **"impulse"**), train and test your model, and deploy it to your device. 
 
 <p align="center">
   <img src="https://miro.medium.com/max/1400/1*3_WTRShh3TTQXEzfdcEUEA.png" width="900"/>
@@ -25,12 +25,11 @@
 
 ### What is tinyML? 
 
-Instead of requiring massive computers to run complex machine learning algorithms, we can now optimize these algorithms to run on smaller devices, such as sensors which can be deployed in the field. We these optimized algorithms **tinyML** or **embedded AI** and the sensors and devices that host them **edge devices** or **embedded systems**. 
+Instead of requiring massive computers to run complex machine learning algorithms, we can now optimize these algorithms to run on smaller, less powerful devices - such as sensors which can be deployed in the field. We these optimized algorithms **tinyML** or **embedded AI** and the sensors and devices that host them **edge devices** or **embedded systems**. 
 
-??? Algorithms trained and then deployed
-??? What type of algorithms 
+When creating these models, we build the model architecture and train the model on a computer or in the cloud. When the model is ready, we deploy the fully trained neural network to run inference on an edge device. The device then processes incoming data locally without having to send data back to a server for analysis. 
 
-### Why optimize for tinyML? 
+### Why use tinyML? 
 
 TinyML is transforming the way we use sensor data. Traditionally, wildlife ecologists and conservation biologists collect data by deploying devices (like camera traps, acoustic monitors, or tracking collars) in the field; waiting a few months for data to accumulate; and then going back out, collecting those data, and - at long last! - processing that information to draw inference on their system. 
 
@@ -49,7 +48,7 @@ In addition to being able to react to the world in real-time, this type of machi
 
 ## What we will do today 
 
-Today, we'll be building and training a deep neural network that can perform an audio classification task, specificallly, recogniziing the sound of a gunshot. Hypothetically, this kind of algorithm could be deployed to a passive acoustic detector and used to send an alert to anti-poaching teams if suspicious activity is detected.
+Today, we'll be building and training a neural network that can perform an audio classification task, specificallly, recogniziing the sound of a gunshot. Hypothetically, this kind of algorithm could be deployed to a passive acoustic detector and used to send an alert to anti-poaching teams if suspicious activity is detected.
 
 <p align="center">
   <img src="https://i.imgur.com/mlj8bfA.png" width="600"/>
