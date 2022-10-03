@@ -82,7 +82,7 @@ Navigate to the Edge Impulse website and login. Begin by selecting **Create a Ne
   <img src="https://i.imgur.com/srhTOq7.png" width="600"/>
 </p>
 
-Next, we get to choose what type of Edge Impulse project we want to create. Select "Audio", but note the many different types of input data that can be used to train a machine learning model! 
+Next, we get to choose what type of Edge Impulse project we want to create. Select **Audio**, but note the many different types of input data that can be used to train a machine learning model! 
 
 <p align="center">
   <img src="https://i.imgur.com/LA37Fmw.png" width="600"/>
