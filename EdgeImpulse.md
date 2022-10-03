@@ -106,7 +106,7 @@ When the **Upload output** panel on the right reads "Job completed", do the same
 When this has finished, click on the tab at the top of the screen called **Training data**. 
 
 <p align="center">
-  <img src="https://i.imgur.com/FfypQ1V.png" width="600"/>
+  <img src="https://i.imgur.com/FfypQ1V.png" width="900"/>
 </p>
 
 You should now see that 5m 41s of our data have been designated as data that will be used to train the model. If you hover over the pie chart on the left, you can see that approximately half of the data are gunshot exemplars and half are ambient noises. The pie chart on the right shows us that 80% of the ata are being used to train the model and 20% have been reserved to test the model. 
@@ -116,7 +116,7 @@ If you click on one of the file names under **Collected data**, the raw data wil
 Now click on the tab **Test data**. 
 
 <p align="center">
-  <img src="https://i.imgur.com/2EBWNiE.png" width="600"/>
+  <img src="https://i.imgur.com/2EBWNiE.png" width="900"/>
 </p>
 
 You'll arrive at a similar page, this time showing you the distribution of samples that have been set aside in the test data set. Again, this is 20% of the total data uploaded and you should see a roughly equal split of gunshot to ambient noises. 
@@ -130,7 +130,7 @@ An **impulse** is the machine learning model pipeline. It takes the raw data, us
 First, click on the **Impulse design** tab on the left of the screen. You should arrive at the following page: 
 
 <p align="center">
-  <img src="https://i.imgur.com/NQejBDW.png" width="600"/>
+  <img src="https://i.imgur.com/NQejBDW.png" width="900"/>
 </p>
 
 ### Raw data block
@@ -205,62 +205,44 @@ When training is complete, you'll see the **Model panel** appear at the right si
   <img src="https://i.imgur.com/t4E832B.png" width="300"/>
 </p>
 
-**Accuracy** refers to 
+**Accuracy** refers to the percentage of data samples that were correctly classified. The higher number the better. For many applications, an accuracy above 80% can be considered very good. 
 
 **Loss** refers to 
 
-The **confusion matrix** shows how well the model performed on our **validation set**. Our two types of input data were pretty distinct, and the model is doing an excellent job of assigning new data to the correct category. 
+The **Confusion matrix** shows how well the model performed on our **validation set**. Our two types of input data were pretty distinct, and the model is doing an excellent job of assigning new data to the correct category. 
 
-> # YOU DID IT!  ## MAKE THIS AN IMAGE INTEAD 
+<p align="center">
+  <img src="https://media.giphy.com/media/8Iv5lqKwKsZ2g/giphy.gif" width="800"/>
+</p>
 
-Congratulationss, you've trained your first machine learning model! 
+**Congratulations**, you've trained your first machine learning model! 
 
-## Okay, but, um, what now? 
+## Deploying the model 
 
-Training data (20%) 
+There are many options for tweaking and updating the performance of your model. You can learn more by going through Edge Impulse's excellent [online documentation](XXX). 
 
-Run on training data to validate model/evaluate how well model is performing; the **Last training performance panel** displays the results of this validation, providing some vital information about your model and how well it is working.
-
-On the left hand side of the panel, **Accuracy** refers to the percentage of data samples that were correctly classified. The higher number the better, although an accuracy approaching 100% is unlikely, and is often a sign that your model has overfit the training data. -- EXPLAIN -- For many applications, an accuracy above 80% can be considered very good.
-
-The **Confusion matrix** is a table showing the balance of correctly versus incorrectly classified windows. EXPLAIN 
-
-## Classifying new data
-
-The numbers we just interpreted tell us how well the model works on training data; next, we need to test the model on data it has never seen before to ensure that the model is not overfit to the training data. 
-
-To capture live data from your  device and immediately attempt to classify it. To try it out, click on **Live classification** in the left hand menu. Your device should show up in the **'Classify new data'** panel. Capture 5 seconds of background noise by clicking **Start sampling**:
-
-IMAGE
-
-The sample will be captured, uploaded, and classified. Once this has happened, you'll see a breakdown of the results:
-
-IMAGE 
-
-Once the sample is uploaded, it is split into windows–in this case, a total of 41. These windows are then classified. As you can see, our model classified all 41 windows of the captured audio as noise. This is a great result! Our model has correctly identified that the audio was background noise, even though this is new data that was not part of its training set.
-
-## Model testing 
-
-Next phase is ... you got it, more testing! That's where the **Model testing** tab comes in. If you open it up, you'll see the sample we just captured listed in the Test data panel:
-
-IMAGE 
-
-In addition to its training data, every Edge Impulse project also has a test dataset. To use the sample we've just captured for testing, we should correctly set its expected outcome. Click the ⋮ icon and select Edit expected outcome, then enter noise. Now, select the sample using the checkbox to the left of the table and click Classify selected:
-
-IMAGE?? 
-
-Ideally, you'll want to collect a test set that contains a minimum of 25% the amount of data of your training set. So, if you've collected 10 minutes of training data, you should collect at least 2.5 minutes of test data. You should make sure this test data represents a wide range of possible conditions, so that it evaluates how the model performs with many different types of inputs. For example, collecting test audio for several different faucets is a good idea.
-
-You can use the Data acquisition tab to manage your test data. Open the tab, and then click Test data at the top. Then, use the Record new data panel to capture a few minutes of test data, including audio for both background noise and faucet. Make sure the samples are labelled correctly. Once you're done, head back to the Model testing tab, select all the samples, and click Classify selected:
-
-^ have this already split -- get from Coursera 
-
-The screenshot shows classification results from a large number of test samples (there are more on the page than would fit in the screenshot). The panel shows that our model is performing at 85% accuracy, which is 5% less than how it performed on validation data. It's normal for a model to perform less well on entirely fresh data, so this is a successful result. Our model is working well!
-
-For each test sample, the panel shows a breakdown of its individual performance. For example, one of the samples was classified with only 62% accuracy. Samples that contain a lot of misclassifications are valuable, since they have examples of types of audio that our model does not currently fit. It's often worth adding these to your training data, which you can do by clicking the ⋮ icon and selecting Move to training set. If you do this, you should add some new test data to make up for the loss!
-
-Testing your model helps confirm that it works in real life, and it's something you should do after every change. However, if you often make tweaks to your model to try to improve its performance on the test dataset, your model may gradually start to overfit to the test dataset, and it will lose its value as a metric. To avoid this, continually add fresh data to your test dataset.
-
-## Model troubleshooting
+For now, we're going to move ahead to model deployment, and classify some data "live in the field". 
 
 ## Deploying to your device 
+
+Click on the **Deployment** tabe at the bottom of the left-hand panel and scroll down to **Run your impulse directly**. Note that we're passing by options to package your model into a library or a binary that can be deployed onto a development board. 
+
+Today, we're going to upload the model onto our smartphones and use our phone microphone to test whether the impulse can correctly categorize new, incoming data. Select the **Mobile phone** option and click **Build**. 
+
+<p align="center">
+  <img src="https://imgur.com/vxwAcV1" width="600"/>
+</p>
+
+This should pop up a QR code which you can scan using your phone. This will take you to smartphone.edgeimpulse.comm, where your model will be uploaded. Grant your detector access to your phone's microphone. You should now see the classifer listening for target audio. 
+
+<p align="center">
+  <img src="https://i.imgur.com/e8buI2g.jpg" width="600"/>
+</p>
+
+The classification being assigned shows up under the 'listening...' circle. In the image, the classifier is assigning general background noise correctly to the class audio. 
+
+## Testing your model 
+
+Now! Fire up YouTube and search for a few gunshot noise audio clips. With your model running on your phone, play a few clips and see whether it can correctly classify these sounds. 
+
+How well does your model perform?  
