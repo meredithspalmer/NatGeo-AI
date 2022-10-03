@@ -140,7 +140,7 @@ First, we'll parameterize the **Raw Data** block. This is the red block on the l
 
 To expand the amound of audio data used to train the model, Edge Impulse will chop the raw data up into many little samples. **Window size** tells Edge Impulse how long each sample should be in milliseconds. Here, set the window size to **1000 ms**, or one second. This should be long enough for the algorithm to determine whether the sound is a gunshot or background noises. 
 
-To maximize the number of samples from each piece of raw data, windows can overlap. **Window increase** controls how long after the first window the subsequent window starts. Set this value to **100 ms**. While overlapping windows will contain similar data, each window is still a unique audio sample. Adjust this value to 300 ms. 
+To maximize the number of samples from each piece of raw data, windows can overlap. **Window increase** controls how long after the first window the subsequent window starts. While overlapping windows will contain similar data, each window is still a unique audio sample. Adjust this value to **300 ms**. 
 
 We'll leave the Frequency at the default for now. Ensure that the "Zero-pad data" button is checked. This prevents the models from disguarding samples that are smaller than the window size. Your screen should now look like this: 
 
