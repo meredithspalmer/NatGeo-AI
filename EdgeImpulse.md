@@ -8,10 +8,10 @@
 ## Table of Contents 
 
 1. [What is Edge Impulse](#what-is-edge-impulse)
-2. [What Edge Impulse does](#what-edge-impulse-does) 
-3. [What we will do today](#what-we-will-do-today)
-4. [Before we begin](#0-before-we-begin) 
-5. [The data](#the-data) 
+2. [What we will do today](#what-we-will-do-today)
+3. [Before we begin](#before-we-begin) 
+4. [The data](#the-data) 
+5. [Designing an impulse](#designing-an-impulse) 
 
 ## What is Edge Impulse?
 
@@ -23,7 +23,10 @@
 
 ### What is tinyML? 
 
-Rather than just running complex neural networks and other algorithms on giant computers, we can now run them on smaller, more power efficient devices. An **embedded system** is any computer system that is contained or embedded inside of another larger mechanical or electrical system. This is opposed to things like desktops, laptops, phones, and servers. Single board computers like this Raspberry Pi can be considered embedded systems if they're implanted into some other device like a robot. Similarly, microcontrollers like the one on this Arduino board, are generally considered embedded systems as well as they're often used to control physical or electrical devices with little or no human interaction. **Embedded machine learning**, also known as **tinyML**, is the field of machine learning when applied to embedded systems such as these.  -- UPDATE 
+Instead of requiring massive computers to run complex machine learning algorithms, we can now optimize these algorithms to run on smaller devices, such as sensors which can be deployed in the field. We these optimized algorithms **tinyML** or **embedded AI** and the sensors and devices that host them **edge devices** or **embedded systems**. 
+
+??? Algorithms trained and then deployed
+??? What type of algorithms 
 
 ### Why optimize for tinyML? 
 
@@ -38,11 +41,9 @@ TinyML algorithms can run inference directly on field sensors (edge devices), tr
 allowing researchers to do WHAT 
 
 In addition to being able to react to the world in real-time, this type of machine learning has other benefits that make them particularly apt for field research: 
-- They can be deployed on small, cheap hardware
+- They can be deployed on small, cheap hardware (get more for your grant!) 
 - They consume little energy, massively extending their battery life (and, consequentially, deployment length)
 - They can work without a network connection (no need to send data to a server, so can work without a cellphone, WiFi, or other kind of network) 
-
-### WHAT KIND OF AI IS THIS?? 
 
 ## What we will do today 
 
@@ -61,18 +62,72 @@ Image credit: [Hack the Poacher](https://www.hackthepoacher.com/) -- UPDATE THIS
 
 ## The data 
 
-If you were training an algorithm to deploy in the field, you would first want to collect audio data yourself - preferably under field conditions and using the same device that will the be listening for new data and running inference. Unfortunately, we won't be shipping everyone to the African bush today to record our target audio (boo!). Instead, download **this library** we've compiled for you. 
+If you were training an algorithm to deploy in the field, you would first want to collect audio data yourself - preferably under field conditions and using the same device that will the be listening for new data and running inference. Unfortunately, we won't be shipping everyone to the African bush today to record our target audio (boo!). Instead, download **[this library](https://drive.google.com/file/d/1L5QYzbW8AYzGygZjrEdj2Qm-8KbBUo2b/view?usp=sharing)** we've compiled for you. 
 
-This is a balanced dataset (see **Intro to AI**), containing HOW MUCH AUDIO divided eveningly among the two classes we want the algorithm to discriminate between:
+This is a balanced dataset (see **Intro to AI**), containing ~7 minutes of audio divided evenly among the two classes we want the algorithm to discriminate:
 
 1. Gunshots
-2. Background noises (i.e., "everything else") 
+2. Ambient nature noises (i.e., the background, or "everything else") 
 
-If you listen in on these files, you can see that we compiled a variety of sounds collected under different scenarios: "background noise" contains samples of wind, rain, birds chirping, and other things you might hear in nature; "gunshots" includes blasts from different types of guns, recorded with or without background noise. There's not guarantee that the model will generalize to noises not introduced in the datset, so the more diverse and representative of real-world conditions the dataset is, the better it will perform. 
+If you listen in on these files, you can see that we compiled a variety of sounds collected under different scenarios: "background noise" contains samples of wind, rain, bugs and birds chirping, and other things you might hear in nature; "gunshots" includes blasts recorded from different types of guns at different distances. There's not guarantee that the model will generalize to noises not introduced in the datset, so the more diverse and representative of real-world conditions the dataset is, the better it will perform. 
 
 If you want to learn how to collect and process your own audio, check out the Edge Impulse tutorial on ["Collecting your data"](https://docs.edgeimpulse.com/docs/tutorials/audio-classification#2.-collecting-your-first-data). 
 
-## Designing an impulse
+## Create a audio project 
+
+Navigate to the Edge Impulse website and login. Begin by selecting "Create a New Project". Here, we'll create a "Developer" project called "poacher-detector". 
+
+<p align="center">
+  <img src="https://i.imgur.com/srhTOq7.png" width="600"/>
+</p>
+
+Next, we get to choose what type of Edge Impulse project we want to create. Select "Audio", but note the many different types of input data that can be used to train a machine learning model! 
+
+<p align="center">
+  <img src="https://i.imgur.com/LA37Fmw.png" width="600"/>
+</p>
+
+## Upload your data 
+
+While you can connect your Edge Impulse project to an embedded device to collect data directly, here, we'll "Import existing data" to upload our gunshot/ambient noise audio library. Click "Go to the uploader". 
+
+<p align="center">
+  <img src="https://i.imgur.com/9Tvu8EH.png" width="600"/>
+</p>
+
+The audio exemplars we upload will be split between the training, testing, and validation data sets. Remember that the data used to train a model has to be labeled. First, we will choose all of our "gunshot" files (317), select that they are automatically split between training and testing data, and manually enter the label "gunshot". Begin your upload. 
+
+<p align="center">
+  <img src="https://i.imgur.com/UnJjvsn.jpg" width="600"/>
+</p>
+
+When the "Upload output" panel on the right reads "Job completed", do the same process with your ambient noise files. This time, enter the label "ambient" and click "Begin upload". 
+
+When this has finished, click on the tab at the top of the screen called "Training data". 
+
+<p align="center">
+  <img src="https://i.imgur.com/FfypQ1V.png" width="600"/>
+</p>
+
+You should now see that 5m 41s of our data have been designated as data that will be used to train the model. If you hover over the pie chart on the left, you can see that approximately half of the data are gunshot exemplars and half are ambient noises. The pie chart on the right shows us that 80% of the ata are being used to train the model and 20% have been reserved to test the model. 
+
+If you click on one of the file names under "Collected data", the raw data will appear in a panel on the left. You can click the play button to hear your examplar. 
+
+Now click on the tab "Test data". 
+
+<p align="center">
+  <img src="https://i.imgur.com/2EBWNiE.png" width="600"/>
+</p>
+
+You'll arrive at a similar page, this time showing you the distribution of samples that have been set aside in the test data set. Again, this is 20% of the total data uploaded and you should see a roughly equal split of gunshot to ambient noises. 
+
+Now that your data is uploaded, you are ready to design your impulse! 
+
+## Designing an impulse 
+
+An impulse is 
+
+
 
 An **impulse** is a WHAT does several things: 
 1. it takes the raw audio data and slices it up in smaller windows  
