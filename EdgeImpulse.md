@@ -73,7 +73,7 @@ If you listen in on these files, you can see that we compiled a variety of sound
 
 If you want to learn how to collect and process your own audio, check out the Edge Impulse tutorial on ["Collecting your data"](https://docs.edgeimpulse.com/docs/tutorials/audio-classification#2.-collecting-your-first-data). 
 
-## Create a audio project 
+## Create an audio project 
 
 Navigate to the Edge Impulse website and login. Begin by selecting "Create a New Project". Here, we'll create a "Developer" project called "poacher-detector". 
 
@@ -89,7 +89,7 @@ Next, we get to choose what type of Edge Impulse project we want to create. Sele
 
 ## Upload your data 
 
-While you can connect your Edge Impulse project to an embedded device to collect data directly, here, we'll "Import existing data" to upload our gunshot/ambient noise audio library. Click "Go to the uploader". 
+While you can connect your Edge Impulse project to an embedded device to collect data directly, here, we'll **Import existing data** to upload our gunshot/ambient noise audio library. Click **Go to the uploader**. 
 
 <p align="center">
   <img src="https://i.imgur.com/9Tvu8EH.png" width="600"/>
@@ -101,9 +101,9 @@ The audio exemplars we upload will be split between the training, testing, and v
   <img src="https://i.imgur.com/UnJjvsn.jpg" width="600"/>
 </p>
 
-When the "Upload output" panel on the right reads "Job completed", do the same process with your ambient noise files. This time, enter the label "ambient" and click "Begin upload". 
+When the **Upload output** panel on the right reads "Job completed", do the same process with your ambient noise files. This time, enter the label "ambient" and click **Begin upload**. 
 
-When this has finished, click on the tab at the top of the screen called "Training data". 
+When this has finished, click on the tab at the top of the screen called **Training data**. 
 
 <p align="center">
   <img src="https://i.imgur.com/FfypQ1V.png" width="600"/>
@@ -111,9 +111,9 @@ When this has finished, click on the tab at the top of the screen called "Traini
 
 You should now see that 5m 41s of our data have been designated as data that will be used to train the model. If you hover over the pie chart on the left, you can see that approximately half of the data are gunshot exemplars and half are ambient noises. The pie chart on the right shows us that 80% of the ata are being used to train the model and 20% have been reserved to test the model. 
 
-If you click on one of the file names under "Collected data", the raw data will appear in a panel on the left. You can click the play button to hear your examplar. 
+If you click on one of the file names under **Collected data**, the raw data will appear in a panel on the left. You can click the play button to hear your examplar. 
 
-Now click on the tab "Test data". 
+Now click on the tab **Test data**. 
 
 <p align="center">
   <img src="https://i.imgur.com/2EBWNiE.png" width="600"/>
@@ -125,66 +125,91 @@ Now that your data is uploaded, you are ready to design your impulse!
 
 ## Designing an impulse 
 
-An impulse is 
+An **impulse** is the machine learning model pipeline. It takes the raw data, uses signal processing to extract features from the data that the model will be trained to recognized, and then uses a learning block to classify new data. Don't worry, we'll take this step by step! 
 
+First, click on the **Impulse design** tab on the left of the screen. You should arrive at the following page: 
 
-
-An **impulse** is a WHAT does several things: 
-1. it takes the raw audio data and slices it up in smaller windows  
-2. then, it uses *signal processing blocks* to extract features from those audio
-3. next, it uses a *learning block* to classify new data
-
-Don't worry if this sounds confusing, we'll explain this process in more detail below. 
+<p align="center">
+  <img src="https://i.imgur.com/NQejBDW.png" width="600"/>
+</p>
 
 ### Raw data block
 
-Go to the **Create impulse** tab. You'll then see a raw data block, like shown below. 
+First, we'll parameterize the **Raw Data** block. This is the red block on the left of the screen, titled **Time series data**. 
 
-PICTURE 
+To expand the amound of audio data used to train the model, Edge Impulse will chop the raw data up into many little samples. **Window size** tells Edge Impulse how long each sample should be in milliseconds. Here, set the window size to **1000 ms**, or one second. This should be long enough for the algorithm to determine whether the sound is a gunshot or background noises. 
 
-To expand the amound of audio data used to train the model, Edge Impulse will chop the raw data up into many little samples. **Window size** tells Edge Impulse how long each slide should be in milliseconds. Here, set the window size to **1000 ms**, or one second. This should be long enough for the algorithm to determine whether the sound is a gunshot or background noises. To maximize the number of samples from each piece of raw data, windows can overlap. **Window increase** controls how long after the first window the subsequent window starts. Set this value to **100 ms**. While overlapping windows will contain similar data, each window is still a unique audio sample. 
+To maximize the number of samples from each piece of raw data, windows can overlap. **Window increase** controls how long after the first window the subsequent window starts. Set this value to **100 ms**. While overlapping windows will contain similar data, each window is still a unique audio sample. Adjust this value to 300 ms. 
+
+We'll leave the Frequency at the default for now. Ensure that the "Zero-pad data" button is checked. This prevents the models from disguarding samples that are smaller than the window size. Your screen should now look like this: 
+
+<p align="center">
+  <img src="https://i.imgur.com/Lw3a7tF.png" width="900"/>
+</p>
 
 ### Processing block
 
-Click **Add a processing block** and choose the **'MFE' block**. 
+The processing block extracts the features from your raw audio data that your model will train on. 
 
-MFE stands for Mel Frequency Energy: this is just a way of turning raw audio—which contains a large amount of redundant information—into simplified form. 
+Click **Add a processing block** and choose **Audio (MFE)**. This is the preferred option for non-voice audio. 
+
+<p align="center">
+  <img src="https://i.imgur.com/70CjZBw.png" width="900"/>
+</p>
 
 ### Learning block
 
-Next, click **Add a learning block** and choose the **'Classification (Keras)'** block. 
-
-WHY?? 
-
-Click **Save impulse**! Your impulse should look like this: 
-
-PICTURE 
-
-## Configure the impulse
-
-Next, we can start tweaking the individual blocks to optimise the model. Let's start with the **Processing block**. Click on the MFE tab in the left hand navigation menu. You'll see a page that looks like this:
-
-IMAGE
-
-The processing block transforms each audio sample into **spectrogram**, which can be seen in on the righthand side of the page. A spectrogram is a visual way of representing how the frequencies of an audio signal vary through time. Rather than "listening" to the audio files, the machine learning algorithm we are training is rather trying to distinguish visual patterns between spectrograms. As Edge Impulse provides pretty sensible starting parameters, we can leave the default settings and start generating the spectrograms on which we'll train our algorithm. To do this, click the **'Generate features'** button at the top of the page, then click the green **'Generate features'** button. This process can take a little while to complete. 
-
-When the files have been processed, we can now use the feature explorer to visualize our dataset. By mapping the features into 3D space, we can see how well our different classes separate (which, if so, bodes well for training our ML classifier!). 
-
-## Configure the neural network 
-
-Our algorithm will take the spectrograms produced by the MFE as input, and try to map this to one of two classes: 'gunshot' or 'background'. The input will go through layers of virtual 'neurons', which filter and transform the input data to extract distinguishing features. Ultimately, the algorithm will procude two values: the probability that the input represents a gunshot and the probability that the input represents background nature noises.
+The final step is adding a learning block - this is the neural network that is trained to learn on your data! The neutral network will take the features produced by the MFE as input, and try to map this to one of two classes: 'gunshot' or 'background'. The input will go through layers of virtual 'neurons', which filter and transform the input data to extract distinguishing features. Ultimately, the algorithm will procude two values: the probability that the input represents a gunshot and the probability that the input represents background nature noises.
 
 During the **training phase**, the state of these 'neurons' are tweaked and refined so that they layers ultimately transform the input into the correct output. This is an iterative process, where the model is fed samples of training data, outputs are evaluated, adjustments are made, and the process is repeated thousands and thousands of times until the correct answers are produced (or you give up - sometimes, there are problems that can't be solved by ML!). 
 
 How the 'neurons' are arranged into layers is called an **architecture**. There are many different kinds of ML architectures that have been developed for different kinds of tasks. Here, we'll stick with Edge Impulse's defualt architecture. 
 
-In the left hand menu, click on **'NN Classifier'**. You should see the following: 
+Select **Add a learning block** and choose the **'Classification (Keras)'** block. 
 
-IMAGE 
+Click **Save impulse**! You should have an impulse that looks like: 
 
-Click **'Start training'**; the process may take a few minutes. When it's complete, you'll see the **Model panel** appear at the right side of the page:
+<p align="center">
+  <img src="https://i.imgur.com/Y8pa2A7.png" width="900"/>
+</p>
 
-IMAGE 
+## Configure the impulse
+
+Next, we can start tweaking the individual blocks. Let's start with the **Processing block**. Under **Impulse design** on the left-hand panel, click **MFE**. You'll see a page that looks like this:
+
+<p align="center">
+  <img src="https://i.imgur.com/FEEh6AR.png" width="900"/>
+</p>
+
+The processing block transforms each audio sample into **spectrogram**, which can be seen in on the righthand side of the page. A spectrogram is a visual way of representing how the frequencies of an audio signal vary through time. Rather than "listening" to the audio files, the machine learning algorithm we are training is rather trying to distinguish visual patterns between spectrograms. 
+
+As Edge Impulse provides sensible starting parameters, we can leave the default settings and start generating the spectrograms on which we'll train our algorithm. To do this, click the **'Generate features'** button at the top of the page, then click the green **'Generate features'** button. This process can take a minute or two to complete. 
+
+<p align="center">
+  <img src="https://i.imgur.com/Fl3toZu.png" width="900"/>
+</p>
+
+When the files have been processed, we can now use the feature explorer panel on the right-hand side to visualize our dataset. By mapping the features into 2D space, we can see how well our different classes separate (which, if so, bodes well for training our ML classifier!). 
+
+## Train the neural network 
+
+In the left-hand menu under **Impulse design**, click on **NN Classifier**. While there are parameters here you can tweak (such as the number of training cycles), we'll stick with Edge Impulse's default parameters. Scroll down to the bottom of the page and hit the green **Start training** button. This process may also take a hot second. 
+
+<p align="center">
+  <img src="https://i.imgur.com/KlJzfu8.png" width="900"/>
+</p>
+
+When training is complete, you'll see the **Model panel** appear at the right side of the page:
+
+<p align="center">
+  <img src="https://i.imgur.com/t4E832B.png" width="300"/>
+</p>
+
+**Accuracy** refers to 
+
+**Loss** refers to 
+
+The **confusion matrix** shows how well the model performed on our **validation set**. Our two types of input data were pretty distinct, and the model is doing an excellent job of assigning new data to the correct category. 
 
 > # YOU DID IT!  ## MAKE THIS AN IMAGE INTEAD 
 
