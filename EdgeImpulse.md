@@ -51,7 +51,7 @@ In addition to being able to react to the world in real-time, this type of machi
 Today, we'll be building and training a neural network that can perform an audio classification task, specificallly, recogniziing the sound of a gunshot. Hypothetically, this kind of algorithm could be deployed to a passive acoustic detector and used to send an alert to anti-poaching teams if suspicious activity is detected.
 
 <p align="center">
-  <img src="https://i.imgur.com/mlj8bfA.png" width="600"/>
+  <img src="https://i.imgur.com/PT8QzAx.png" width="600"/>
 </p>
 
 Image credit: [Hack the Poacher](https://www.hackthepoacher.com/) -- UPDATE THIS 
