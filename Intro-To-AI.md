@@ -79,8 +79,6 @@ A subset of machine learning is **deep learning**. Deep learning models are basi
 
 **Artificial neural networks** are models that process information in a way inspired by the architecture of our brains, with highly interconnected processing units called neurons working together to solve problems. From a technical standpoint, neural networks have three main parts: (a) an input layer that receives the data, (b) an output layer that gives the result of the model, and (c) the processing core that contains one or more hidden layers. To put it more basically, neural networks are simply a function mapping input onto a desired output. They allow computer-based algorithms to “learn” based on training data, in order to accurately process similar yet distinct data at a later time.  
 
-IMAGE HERE 
-
 ### Learning from data 
 
 What is exciting - and powerful - about deep learning algorithms is this ability to learn features from data. In a process called **"supervised learning"**, a labeled dataset (i.e., a dataset where all of the classes of interest have been added - for instance, a camera trap dataset where every image is labeled with whether the picture contains a zebra, an elephant, or a mongoose) is given to a computer so that it can train to associate the labels (classifications) to the examples (data). 
