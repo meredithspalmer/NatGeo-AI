@@ -229,7 +229,7 @@ Click on the **Deployment** tabe at the bottom of the left-hand panel and scroll
 Today, we're going to upload the model onto our smartphones and use our phone microphone to test whether the impulse can correctly categorize new, incoming data. Select the **Mobile phone** option and click **Build**. 
 
 <p align="center">
-  <img src="https://imgur.com/vxwAcV1" width="600"/>
+  <img src="https://imgur.com/vxwAcV1.png" width="600"/>
 </p>
 
 This should pop up a QR code which you can scan using your phone. This will take you to smartphone.edgeimpulse.comm, where your model will be uploaded. Grant your detector access to your phone's microphone. You should now see the classifer listening for target audio. 
