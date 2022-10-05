@@ -208,8 +208,6 @@ When training is complete, you'll see the **Model panel** appear at the right si
 
 **Accuracy** refers to the percentage of data samples that were correctly classified. The higher number the better. For many applications, an accuracy above 80% can be considered very good. 
 
-**Loss** refers to 
-
 The **Confusion matrix** shows how well the model performed on our **validation set**. Our two types of input data were pretty distinct, and the model is doing an excellent job of assigning new data to the correct category. 
 
 <p align="center">
