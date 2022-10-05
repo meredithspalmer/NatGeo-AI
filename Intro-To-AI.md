@@ -1,5 +1,3 @@
-27-SEP-2022: THIS IS A WORK IN PROGRESS 
-
 # Artificial Intelligence for Wildlife Conservation 
 
 <p align="center">
@@ -225,30 +223,3 @@ AI are also becoming more sophisticated, extracting more different kinds of info
 - 3D reconstructions of the environment (what is the animal navigating) 
 
 For a more in-depth discussion, check out ["Perspectives in machine learning for wildlife conservation"](https://www.nature.com/articles/s41467-022-27980-y) and ["Applications for deep learning in ecology"](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13256).  
-
-## Definitions: 
--	**Algorithm**: A sequence of instructions to a computer, like a recipe on how to process some information
--	**Application**: An application figures what inputs to feed into the model and determines output (i.e., the code running on device)
-- **Artificial Intelligence (AI)**: A discipline concerned with the designing of computers that make predictions and decisions
-- **Computer Vision**: A branch of AI that works on computer’s ability to understand visual information like pictures or video
-- **Convolutional Neural Network**: A neural network that looks at overlapping sections of an image to identify things about the image
-- **Data preprocessing**: The program cannot always work with all the data that comes in. Preprocessing ensures none of the data is out of range or unreadable, or has any other problems for the program.
-- **Datasets**: Data have collected about thing want to understand and labelled with 'ground-truthed' classifications 
-- **GPU**: Graphics Processing Unit - a computer that is specialized for dealing with Graphics
-- **Inference**: Taking input and feeding it through the model to get output with some kind of prediction 
-- **Library**: A group of programming functions that might be useful together so other programmers don’t have to re-write them
-- **Machine Learning**: A branch of AI where programs build models that they can use to make decisions based on the data given to them by programmers
-- **Model**: An artifact you get after feeding data into ML algorithm (feed inputs, get output)
-- **Pixel**: The smallest, indivisible unit comprising an image, like a tiny square (really tiny if you have a high-resolution screen).
--	**Metadata**: Information about a picture - where it was taken, when, etc.
--	**Neural Network**: Several connected functions that collectively recognize patterns and answer questions
--	**Processor**: The part of your computer that does the “computing.” The main processor on your computer is called the CPU, but other parts might be used for processing other things.
-- **Training**: The process of feeding data into model and having it learn how to discern classes 
--	**Weight**: How important each part of information is in deciding what the whole means
-
-- **True negative**: 
-- **False negative**: 
-- Recall
-- Accuracy
-
-
