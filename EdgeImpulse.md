@@ -54,7 +54,7 @@ Today, we'll be building and training a neural network that can perform an audio
   <img src="https://i.imgur.com/PT8QzAx.png" width="600"/>
 </p>
 
-Image credit: [Hack the Poacher](https://www.hackthepoacher.com/) -- UPDATE THIS 
+Image credit: [Hack the Poacher](https://www.hackthepoacher.com/) 
 
 ## Before we begin 
 
