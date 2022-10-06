@@ -296,7 +296,7 @@ Into your Anaconda prompt, type the following:
 
 ```batch
 cd c:\git\cameratraps
-python detection\run_detector.py "c:\Desktop\megadetector\md_v5b.0.0.pt" --image_file "c:\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
+python detection\run_detector.py "C:\Users\MPalmer\Desktop\megadetector\md_v5b.0.0.pt" --image_file "C:\Users\MPalmer\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
 ``` 
 
 Note: You may need a longer path name to get to your Desktop. To check, right click on your Desktop > Properties. For my computer, I need to update "c:\Desktop\" in the code below to "c:\Users\MPalmer\Desktop".
@@ -322,12 +322,12 @@ Now we're reading to dive in with some batch processing! Here, we'll be using a 
 
 ```batch
 cd c:\git\cameratraps
-python detection\run_detector_batch.py "c:\Desktop\megadetector\md_v5b.0.0.pt" "c:\Desktop\cameratrap_images" "c:\Desktop\cameratrap_images\test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
+python detection\run_detector_batch.py "C:\Users\MPalmer\Desktop\megadetector\md_v5b.0.0.pt" "C:\Users\MPalmer\Desktop\cameratrap_images" "C:\Users\MPalmer\Desktop\cameratrap_images\test_output.json" --output_relative_filenames --recursive --checkpoint_frequency 10000
 ```
 
 Again, don't forget to update the paths to your Desktop if necessary! 
 
-This will produce a file called "c:\Desktop\cameratrap_images\test_output.json"
+This will produce a file called "c:\Users\MPalmer\Desktop\cameratrap_images\test_output.json"
 
 ### Instructions for Mac
 
