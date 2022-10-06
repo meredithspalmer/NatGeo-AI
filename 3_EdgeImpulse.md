@@ -1,6 +1,6 @@
 # Getting started with Edge Impulse! 
 
-**DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to create a audio classifier through the online [Edge Impulse](https://www.edgeimpulse.com/) platform. The instructions presented are based strongly on the accessible and comprehensive [Edge Impulse documentation](https://docs.edgeimpulse.com/docs/tutorials/audio-classification), including their Coursera series ["Introduction to Embedded Machine Learning"](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/home/week/1). Modifications have been made to simplify the pipeline and to add additional explanations or clarifications to aid understanding by a non-technical audience. Dan Situnayake's Tech Tutors epsiode, ["How do I train my first machine learning model"](https://www.wildlabs.net/event/how-do-i-train-my-first-machine-learning-model), is another amazing resource. We strongly recommend that you consult these original sources for more information. 
+**DISCLAIMER**: This packet is written for the **National Geographic Tech Tutors Workshop** run through [WILDLABS](https://www.wildlabs.net/) (5/6-Oct-2022) and outlines the steps we will take in the workshop to create a audio classifier through the online [Edge Impulse](https://www.edgeimpulse.com/) platform. The instructions presented are based strongly on the accessible and comprehensive [Edge Impulse documentation](https://docs.edgeimpulse.com/docs/tutorials/audio-classification), including their Coursera series ["Introduction to Embedded Machine Learning"](https://www.coursera.org/learn/introduction-to-embedded-machine-learning/home/week/1). Modifications have been made to simplify the pipeline and to add additional explanations or clarifications to aid understanding by a non-technical audience. Dan Situnayake's Tech Tutors episode, ["How do I train my first machine learning model"](https://www.wildlabs.net/event/how-do-i-train-my-first-machine-learning-model), is another amazing resource. We strongly recommend that you consult these original sources for more information. 
 
 ## Table of Contents 
 
@@ -36,7 +36,7 @@ TinyML is transforming the way we use sensor data. Traditionally, wildlife ecolo
 But what if you need to know immediately if, say, a poacher's gun goes off, or if an elephant starts heading out of the reserve towards a neighboring village? You can't take action to capture the poacher or divert the elephant if you only find out about the event several months later. Ideally, you would want the ability to process the incoming data as it is received and take immediate action based on what was detected. 
 
 TinyML algorithms can run inference directly on field sensors (edge devices), transforming the way computers interact with the real world. These algorithms can be trained to detect and respond to input such as: 
-- Vibration and motion (e.g., acceleromoter, pressure, speed)
+- Vibration and motion (e.g., accelerometer, pressure, speed)
 - Voice and sound (e.g., keyword spotting, speech/sound recognition)
 - Images and video (e.g., face unlock, object detection/classification)
 allowing researchers to do WHAT 
@@ -48,7 +48,7 @@ In addition to being able to react to the world in real-time, this type of machi
 
 ## What we will do today 
 
-Today, we'll be building and training a neural network that can perform an audio classification task, specificallly, recogniziing the sound of a gunshot. Hypothetically, this kind of algorithm could be deployed to a passive acoustic detector and used to send an alert to anti-poaching teams if suspicious activity is detected.
+Today, we'll be building and training a neural network that can perform an audio classification task, specifically, recognizing the sound of a gunshot. Hypothetically, this kind of algorithm could be deployed to a passive acoustic detector and used to send an alert to anti-poaching teams if suspicious activity is detected.
 
 <p align="center">
   <img src="https://i.imgur.com/PT8QzAx.png" width="600"/>
