@@ -25,11 +25,11 @@ Image credit: ["Perspectives in machine learning for wildlife conservation"](htt
 
 In this workshop, we'll be focusing on wildlife data collected from two sources: **camera traps** and **bioacoustic sensors**. 
 
-***Camera traps*** are remote senors which are automatically triggered by passing animals to take images or video, thereby unobtrusively collecting data on medium- and large-bodied vertebrates. Camera traps are inexpensive, easy to use, and can provide a wide variety of information (e.g., species, sex, heath, age, behavior, ecological interactions) on entire ecology communities. These data can be used to assess occurrence, richness, distribution, density, and species interactions. 
+***Camera traps*** are remote sensors which are automatically triggered by passing animals to take images or video, thereby unobtrusively collecting data on medium- and large-bodied vertebrates. Camera traps are inexpensive, easy to use, and can provide a wide variety of information (e.g., species, sex, heath, age, behavior, ecological interactions) on entire ecology communities. These data can be used to assess occurrence, richness, distribution, density, and species interactions. 
 
 - To learn more about camera trapping, check out WWF's comprehensive [Guide to Camera Trapping](https://www.wwf.org.uk/sites/default/files/2019-04/CameraTraps-WWF-guidelines.pdf)
 
-***Bioacoustic sensors***, also known as ***acoustic monitors***, capture sound instead of images. These microphones or hydrophones (underwater microphones) record soundscapes, which can be analyzed to detect what species are active in a given area, when these animals are active, and in some cases, what they are doing (e.g., feeding, mating, interacting). Networks of sensors can be used to derive the distribution, occupancy, density, and richness of vocalizing species. Inexpensive, open-source accoustic sensors such as the [AudioMoth](https://www.openacousticdevices.info/audiomoth) are making these types of studies increasingly popular. 
+***Bioacoustic sensors***, also known as ***acoustic monitors***, capture sound instead of images. These microphones or hydrophones (underwater microphones) record soundscapes, which can be analyzed to detect what species are active in a given area, when these animals are active, and in some cases, what they are doing (e.g., feeding, mating, interacting). Networks of sensors can be used to derive the distribution, occupancy, density, and richness of vocalizing species. Inexpensive, open-source acoustic sensors such as the [AudioMoth](https://www.openacousticdevices.info/audiomoth) are making these types of studies increasingly popular. 
 
 - WWF also has a great [Guide to Acoustic Monitoring](https://www.wwf.org.uk/sites/default/files/2019-04/Acousticmonitoring-WWF-guidelines.pdf)  
 
@@ -41,9 +41,9 @@ In this workshop, we'll be focusing on wildlife data collected from two sources:
 
 Image credit: [Sara Beery](https://beerys.github.io/)
 
-While inexpensive and accessible sensors are accelerating our ability to collect ecological data, one big hurdle curtails us from using these data for large-scale ecological understanding: the massive about of time and labor needed to distill the piles and piles information collected into data that can be used for analysis and learning. 
+While inexpensive and accessible sensors are accelerating our ability to collect ecological data, one big hurdle curtails us from using these data for large-scale ecological understanding: the massive about of time and labor needed to distil the piles and piles information collected into data that can be used for analysis and learning. 
 
-For example, more than a [million camera traps](https://www.nature.com/articles/s41467-022-27980-y) are currently used to monitor biodiversity worldwide. Each of these camera trap can collect thousands or tens of thousands of photographs every every year. The millions of resulting images have to be manually sorted to classify the species they contain. Often, the amount of labor and time required means that images don't get processed until months or years after they are collected, severely limiting their application in conservation or management practice and reduces research productivity.
+For example, more than a [million camera traps](https://www.nature.com/articles/s41467-022-27980-y) are currently used to monitor biodiversity worldwide. Each of these camera trap can collect thousands or tens of thousands of photographs every year. The millions of resulting images have to be manually sorted to classify the species they contain. Often, the amount of labor and time required means that images don't get processed until months or years after they are collected, severely limiting their application in conservation or management practice and reduces research productivity.
 
 Similarly, acoustic monitors continuously gather audio data that then has to be reviewed by researchers to identify and classify calls or noises of interest. Networks of acoustic sensors generate collect hundreds or thousands of hours of audio during a single field deployment; when it takes longer to review an audio file than the length of the file itself, these datasets quickly become overwhelming. When responding quickly to critical noises - for instance, sending out rangers to investigate the gunshot of a poacher - is key, the delay between data collection and processing reduces these devices' usefulness for conservation applications. 
 
@@ -59,7 +59,7 @@ How can we process these data on timescales (and on budgets) that make them rele
 > 
 > (*From* [Perspectives in machine learning for wildlife conservation](https://www.nature.com/articles/s41467-022-27980-y))
 
-With increasingly sophisticated artificial intelligence (AI) algorithms, advanced computing infrastructures,and the increasing availability of large and diverse labeled training datasets (e.g., https://lila.science for camera trap iamges or www.macaulaylibrary.org for birds calls), we are increasingly able to build accurate and robust machine learning solutions to the ecological Big Data classification problem.  
+With increasingly sophisticated artificial intelligence (AI) algorithms, advanced computing infrastructures, and the increasing availability of large and diverse labeled training datasets (e.g., https://lila.science for camera trap images or www.macaulaylibrary.org for birds calls), we are increasingly able to build accurate and robust machine learning solutions to the ecological Big Data classification problem.  
 
 The goal of AI is to build a good predictive model, a model that takes input data such as a camera trap image or audio file, and is able to accurately predict what species or behavior is being recorded.
 
@@ -71,7 +71,7 @@ The goal of AI is to build a good predictive model, a model that takes input dat
 
 Image credit: [McClure et al. 2020](https://www.sciencedirect.com/science/article/pii/S2666389920301434)
 
-So what exactly is **artificial intelligence**? AI is intelligent software-based technology that receives information from the environment and then takes actions based on that information that affect the environment. At it's core, AI is the ability for machines to simulate and enhance human intelligence. 
+So what exactly is **artificial intelligence**? AI is intelligent software-based technology that receives information from the environment and then takes actions based on that information that affect the environment. At its core, AI is the ability for machines to simulate and enhance human intelligence. 
 
 A subset of AI is **machine learning**. Machine learning algorithms are a collection of mathematical and statistical models that learn representations from the underlying training data. Basically, machine learning algorithms extract patterns from input data in order to come up with the rules and the parameters of these models, so that they can make smart predictions and decisions when confronted with new, unseen inputs. 
 
@@ -133,12 +133,10 @@ Maybe consider an alternative option to machine learning if:
 - Positional data (e.g., GPS location, vertical position)
 - ... or any combo of the above  
 
-PUT SOME IMAGES HERE 
-
 ### Machine learning workflow 
 1. Formulate your question in terms of what is observed and what answer you want the model to predict
 2. Obtain a clean, representative dataset for training 
-3. Train your model (an interative process) 
+3. Train your model (an iterative process) 
 4. You have a model! (or you gave up)
 5. Monitor your model periodically to make sure it is working 
 
@@ -158,11 +156,11 @@ Each example/observation in your data must contain two elements:
   <img src="https://i.imgur.com/DEsftmt.jpg" width="600"/>
 </p>
 
-> For example, let's say we are trying to create a model that classifies pictures of dogs, and we feed it a bunch of pictures of poodles as our training data. We then test the model with an image of a Welsh Corgi. Do you think that the model will be able to classify this as a dog or not? And the answer is, it depends. Maybe the model generalizes enough to pick out common features like eyes, a snout, round nose, and so on. However, what you'll likely find is that the model trained on features unique to what we gave it in the training data. Such as, curly fur, and floppy ears. We'll have a hard time classifying new images that do not have these features. Most modern machine learning algorithms are terrible at generalizing and we must take great care to ensure that the data they learn from represents the data we ultimately want them to work with. 
+> For example, let's say we are trying to create a model that classifies pictures of dogs, and we feed it a bunch of pictures of poodles as our training data. We then test the model with an image of a Welsh Corgi. Do you think that the model will be able to classify this as a dog or not? And the answer is, it depends. Maybe the model generalizes enough to pick out common features like eyes, a snout, round nose, and so on. However, what you'll likely find is that the model trained on features unique to what we gave it in the training data, such as, curly fur, and floppy ears. We'll have a hard time classifying new images that do not have these features. Most modern machine learning algorithms are terrible at generalizing and we must take great care to ensure that the data they learn from represents the data we ultimately want them to work with. 
 
 Note also that your model needs to be exposed to all the things you want it to understand: if your model is trained to distinguish different breeds of dogs and you show it an image of a cat, it will attempt to classify the cat as one of the dog breeds. 
 
-***Balanced data***: In addition to having data from multiple difference classess, the data across classes should be **balanaced**. That means having approximately equal numbers of samples in each class. For example, if you have four classes you want to distinguish, you should have ~25% of samples for each class. Note: the balance of data in your training set may not reflect the distribution of data in the real world! You may not expect to encounter one of your classes very frequently in the real world; however, your classifier will perform poorly on this class if it is trained on fewer samples of this class than of the other classes. 
+***Balanced data***: In addition to having data from multiple difference classess, the data across classs should be **balanced**. That means having approximately equal numbers of samples in each class. For example, if you have four classes you want to distinguish, you should have ~25% of samples for each class. Note: the balance of data in your training set may not reflect the distribution of data in the real world! You may not expect to encounter one of your classes very frequently in the real world; however, your classifier will perform poorly on this class if it is trained on fewer samples of this class than of the other classes. 
 
 ### 3. Train your model 
 
@@ -170,7 +168,7 @@ Data is randomly divided into a **training set**, a **validation set**, and a **
 
 During training, the training set and associated labels will be used to update the parameters in the machine learning model as the model figures out how to associate labels and data. 
 
-The model's performance is then evaluated on the validation set, which is data that - until now - it has never seen before. If the model performs poorly on the validation set, we can go back, tweak, and retrain the model. The new model will again be tested on the validation set, and the entire process repeated until weare happy with how the model performs. 
+The model's performance is then evaluated on the validation set, which is data that - until now - it has never seen before. If the model performs poorly on the validation set, we can go back, tweak, and retrain the model. The new model will again be tested on the validation set, and the entire process repeated until we are happy with how the model performs. 
 
 Only now do we run the model on the test set. The performance metrics we get when running the model on the test set tell us how good the model is at accomplishing its task. We keep the test set separate from the validation step because every time we iteratively retain and test the model on the validation data, it learns some of the characteristics of the validation dataset. The test data is a check - the model could perform very well on the validation data but poorly on the test data if it has been "overfit" to the input data, i.e., has memorized the data it has been exposed to and is unable to generalize to unseen examples. 
 
@@ -186,7 +184,7 @@ Today, we'll cover how to use pre-trained models for classifying camera trap ima
 
 ### MegaDetector 
 
-MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. Created by Microsoft and trained on millions of images from afround the world, this deep learning algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone by identifying which images do not contain wildlife. 
+MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. Created by Microsoft and trained on millions of images from around the world, this deep learning algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone by identifying which images do not contain wildlife. 
 
 <p align="center">
   <img src="https://i.imgur.com/e9A9boY.png" width="600"/>
@@ -206,13 +204,13 @@ Image credit: [Edge Impulse](https://www.edgeimpulse.com/)
 
 ## Other opportunities and future directions 
 
-Previously inaccessible areas of ecological and conservation interest can now be studied in intense detail thanks to new break-throughs in remote sensing and conservation technology. In addition to camera traps and acoustic sensors, ML can be employed to help process and analyse data from: 
+Previously inaccessible areas of ecological and conservation interest can now be studied in intense detail thanks to new breakthroughs in remote sensing and conservation technology. In addition to camera traps and acoustic sensors, ML can be employed to help process and analyse data from: 
 - On-animal sensors (e.g., GPS trackers, accelerometers, microphones, video cameras, heart-rate monitors)
 - Remote sensing footage (e.g., unmanned aerial vehicles (UAVS) or drones, satellites)
 - Crowd-sourced data (e.g., data from iPhones, images collected by iNaturalist) 
    - As a note, crowdsourcing classifications through platforms such as the [Zooniverse](https://zooniverse.org) can help produce the [massive labeled image datasets](https://www.nature.com/articles/sdata201526?origin=app) necessary to train AI algorithms 
 
-AI are also becoming more sophisticated, extracting more different kinds of information from Big Data. For instance, camera trap image recognition algorithsm are not only getting better at detecting and classifying species, but now are being trained to extract trickier metrics, such as: 
+AI are also becoming more sophisticated, extracting more different kinds of information from Big Data. For instance, camera trap image recognition algorithms are not only getting better at detecting and classifying species, but now are being trained to extract trickier metrics, such as: 
 - Counts (how many animals are there?)
 - Behavior (what are they doing?)
 - Multiple species (classifying >1 species per image) 
