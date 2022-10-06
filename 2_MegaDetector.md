@@ -299,13 +299,13 @@ cd c:\git\cameratraps
 python detection\run_detector.py "C:\Users\MPalmer\Desktop\megadetector\md_v5b.0.0.pt" --image_file "C:\Users\MPalmer\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
 ``` 
 
-Note: You may need a longer path name to get to your Desktop. To check, right click on your Desktop > Properties. For my computer, I need to update "c:\Desktop\" in the code below to "c:\Users\MPalmer\Desktop".
+Note: You will need to update the "path" your Desktop. The path is simply the list of directions of where to find the folder that is your deskop. To check, right click on your Desktop > Properties. Likely, you will replace "c:\Users\MPalmer\" (my desktop sits in my folder which sits in 'users') with something slightly different. 
 
 Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg" with bounding boxes around the objects of interest! 
 
 ### Instructions for Mac
 
-Into your terminal, type the following: 
+Into your terminal, type the following (updating the name of "some_image_file" to that of your image): 
 
 ```batch 
 cd ~/git/cameratraps
@@ -327,7 +327,7 @@ python detection\run_detector_batch.py "C:\Users\MPalmer\Desktop\megadetector\md
 
 Again, don't forget to update the paths to your Desktop if necessary! 
 
-This will produce a file called "c:\Users\MPalmer\Desktop\cameratrap_images\test_output.json"
+This will produce a file called "C:\Users\MPalmer\Desktop\cameratrap_images\test_output.json"
 
 ### Instructions for Mac
 
