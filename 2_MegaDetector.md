@@ -21,7 +21,7 @@
 
 MegaDetector is a free, open-source image recognition system designed to detect wildlife, humans, and vehicles in camera trap images. 
 
-Created by Microsoft and trained on millions of images from afround the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone. 
+Created by Microsoft and trained on millions of images from around the world, this algorithm can be used to help automate the processing of images at far faster rates than would be possible by relying on manual human labor alone. 
 
 <p align="center">
   <img src="https://i.imgur.com/YHjuxaN.gif" width="600"/>
@@ -31,9 +31,9 @@ Image credit [eMammal](https://emammal.si.edu/). Video created by [Sara Beery](h
 
 ### Background
 
-**Camera traps** are rugged cameras, deployed in the field, which are automatically triggered by passing animals, unobtrusively collecting data on the abundance, distribution, and behavior of medium- and large-bodied vertebrates. Data from camera traps can be used to address ecological questions and tackled conservation conundrums. The improved reliability and continually decreasing cost of camera traps has resulted in their enthusiastic uptake by the ecological community - and, concommitantly, an exponential increase in the amount of camera trap footage gathered every year. 
+**Camera traps** are rugged cameras, deployed in the field, which are automatically triggered by passing animals, unobtrusively collecting data on the abundance, distribution, and behavior of medium- and large-bodied vertebrates. Data from camera traps can be used to address ecological questions and tackled conservation conundrums. The improved reliability and continually decreasing cost of camera traps has resulted in their enthusiastic uptake by the ecological community - and, concomitantly, an exponential increase in the amount of camera trap footage gathered every year. 
 
-Once collected, the images need to be transformed into the kinds of data that can be used in statistical analyses (numbers). Each picture must be manually reviewed to classify what species it contains, and often, how many individuals there are, their characteristics (e.g., age, sex, health), and their behavior. Unfortunately, with average-sixed camera trap projects ([~78 cameras or larger](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/fee.1448)) now amassing millions of photos annually, the rate at which we capture data now [far exceeds](https://www.cambridge.org/core/journals/environmental-conservation/article/wildlife-insights-a-platform-to-maximize-the-potential-of-camera-trap-and-other-passive-sensor-wildlife-data-for-the-planet/98295387F86A977F2ECD96CCC5705CCC) our ability to process those images. The time and labor required to annotate these images - sometimes, years pass! - can mean that survey results are less relevant to practitioners by the time analysis is complete.  
+Once collected, the images need to be transformed into the kinds of data that can be used in statistical analyses (numbers). Each picture must be manually reviewed to classify what species it contains, and often, how many individuals there are, their characteristics (e.g., age, sex, health), and their behavior. Unfortunately, with average-sized camera trap projects ([~78 cameras or larger](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/fee.1448)) now amassing millions of photos annually, the rate at which we capture data now [far exceeds](https://www.cambridge.org/core/journals/environmental-conservation/article/wildlife-insights-a-platform-to-maximize-the-potential-of-camera-trap-and-other-passive-sensor-wildlife-data-for-the-planet/98295387F86A977F2ECD96CCC5705CCC) our ability to process those images. The time and labor required to annotate these images - sometimes, years pass! - can mean that survey results are less relevant to practitioners by the time analysis is complete.  
 
 Frustratingly, a huge proportion of the time wildlife ecologists and conservation biologists invest in reviewing camera trap images is spent going through data they aren’t even interested in – that is, empty images with no wildlife or those containing non-focal species, like people or vehicles. The good news is, **artificial intelligence (AI)** can help accelerate this process, removing these “noise” images and allowing biologists to spend their time on images that matter!   
 
@@ -84,13 +84,13 @@ The detector pinpoints where in the image you need to look - you'll then be clas
 
 4. **Detectors make AI classification a little easier too**:
 
-The information provided by the bounding boxes (zeroing in on the wildlife in the image) is also helpful if AI classifiers are then applied to try and sort your data by species. By cropping images to individual animals, classifiers only need to worry about identifying the wildlife pixels, rather than trying to figure out backgorund pixels as well. It's also a way to introduce counting (how many bounding boxes are in each image?) and handle images that contain multiple species.
+The information provided by the bounding boxes (zeroing in on the wildlife in the image) is also helpful if AI classifiers are then applied to try and sort your data by species. By cropping images to individual animals, classifiers only need to worry about identifying the wildlife pixels, rather than trying to figure out background pixels as well. It's also a way to introduce counting (how many bounding boxes are in each image?) and handle images that contain multiple species.
 
 ### Under the hood
 
 Typically, we would not recommend using an 'off-the-shelf' AI algorithm that hadn't been trained on your specific data - the huge variability in terms of species, geography, background, etc. can mean that even an algorithm that works exceptionally well for the camera trap images it is trained on might perform poorly even on new location within the very same system! 
 
-But wait - we're talking now about an image classifer. When Sara Beery and her team took [millions of labeled camera trap images from around the world](https://lila.science), they found that an animal ***detector*** not only performed on species and sites used in the training data, but also generalized exceptionally well to animals and place that it had never 'seen' before. Thus, MegaDetector was born. 
+But wait - we're talking now about an image classifier. When Sara Beery and her team took [millions of labeled camera trap images from around the world](https://lila.science), they found that an animal ***detector*** not only performed on species and sites used in the training data, but also generalized exceptionally well to animals and place that it had never 'seen' before. Thus, MegaDetector was born. 
 
 So what kind of AI is MegaDetector? MegaDetector is an *Faster R-CNN* object detection model. **CNN** stands for **"convolutional neural network"**, a type of artificial neural network used in image recognition and processing that is specifically designed to process pixel data. CNNs evaluate image data in a hierarchical fashion similar to the way mammalian brains process visual information. They are trained to identify objects of interest by learning how to associate raw inputs (i.e., pixel values) to labelled image data. CNNs are a powerful class of models because they are able to learn and extract complex visual features without direct supervision of a human expert. 
 
@@ -299,7 +299,7 @@ cd c:\git\cameratraps
 python detection\run_detector.py "C:\Users\MPalmer\Desktop\megadetector\md_v5b.0.0.pt" --image_file "C:\Users\MPalmer\Desktop\cameratrap_images\some_image_file.jpg" --threshold 0.1
 ``` 
 
-Note: You will need to update the "path" your Desktop. The path is simply the list of directions of where to find the folder that is your deskop. To check, right click on your Desktop > Properties. Likely, you will replace "c:\Users\MPalmer\" (my desktop sits in my folder which sits in 'users') with something slightly different. 
+***Note***: You will need to update the "path" your Desktop. The path is simply the list of directions of where to find the folder that is your deskop. To check, right click on your Desktop > Properties. Likely, you will replace "c:\Users\MPalmer\" (my desktop sits in my personal 'MPalmer' folder which sits in 'users') with something slightly different. 
 
 Go into the **cameratrap_images** folder - if this script worked correctly, you should see a new file called "some_image_file_detections.jpg" with bounding boxes around the objects of interest! 
 
@@ -408,7 +408,7 @@ The number of images you can process in a single day depends on the computer res
 
 - 5K-10K images per day on typical mid-range laptop with no GPU
 - 100K images per day on a not-quite-top-of-the-line-but-pretty-decent GPU (i.e., a gaming computer or in the cloud) 
-- alternative, you can submit images to the MegaDetector team: they have 16 GPU and can process 1.6M images per day (*note: uploading the images to servers accessible to MegaDetector team can take a long time depending on the number of images and your internet connectivty) 
+- alternative, you can submit images to the MegaDetector team: they have 16 GPU and can process 1.6M images per day (*note: uploading the images to servers accessible to MegaDetector team can take a long time depending on the number of images and your internet connection) 
 
 ### Want to learn more?
 
@@ -420,4 +420,3 @@ Here are some additional MegaDetector tutorials to step you through the MegaDete
 ### Need more help?
 
 Contact Dan Morris (cameratraps@lila.science) to guide you through the MegaDetector process. 
-
