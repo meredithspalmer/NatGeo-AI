@@ -165,7 +165,7 @@ On Windows, Anaconda will create two different comand prompts: 'Anaconda Prompt 
 
 2. **Git**: Git is a free, open-source version control software, i.e., a program for coordinating among programmers by tracking changes in sets of files. 
 
-- For Windows: download [Git for Windows](https://www.git-scm.comd/download/win). 
+- For Windows: download [Git for Windows](https://gitforwindows.org/). 
 
 - For Macs, you can use Homebrew (a package manager) to download Git. If you haven't already installed Homebrew, open up your terminal and type: 
 
